@@ -52,6 +52,7 @@ class AffiliationIdentifierStructure510(AffiliationIdentifierStructureKr):
     """
     Mandatory ElectionCategory, and some additional Elements.
     """
+
     id: str = field(
         metadata={
             "name": "Id",
@@ -68,11 +69,12 @@ class CandidateIdentifierStructure510(CandidateIdentifierStructureKr):
     Only CandidateName and ShortCode (Element or Attribute) allowed, Id Attribute
     mandatory.
     """
+
     short_code_attribute: Any = field(
         init=False,
         metadata={
             "type": "Ignore",
-        }
+        },
     )
 
 
@@ -88,6 +90,7 @@ class Emlstructure510(EmlstructureKr):
     """
     Only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
+
     class Meta:
         name = "EMLstructure510"
 
@@ -107,7 +110,7 @@ class Emlstructure510(EmlstructureKr):
             "namespace": "http://www.kiesraad.nl/extensions",
             "min_occurs": 1,
             "max_occurs": 2,
-        }
+        },
     )
 
 
@@ -136,7 +139,7 @@ class ReportingUnitVotes:
             "name": "Selection",
             "type": "Element",
             "min_occurs": 1,
-        }
+        },
     )
     cast: int = field(
         metadata={
@@ -159,7 +162,7 @@ class ReportingUnitVotes:
             "type": "Element",
             "min_occurs": 2,
             "max_occurs": 2,
-        }
+        },
     )
     uncounted_votes: List["ReportingUnitVotes.UncountedVotes"] = field(
         default_factory=list,
@@ -167,7 +170,7 @@ class ReportingUnitVotes:
             "name": "UncountedVotes",
             "type": "Element",
             "max_occurs": 14,
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -177,21 +180,21 @@ class ReportingUnitVotes:
             metadata={
                 "name": "Candidate",
                 "type": "Element",
-            }
+            },
         )
         affiliation_identifier: Optional[AffiliationIdentifierStructure510] = field(
             default=None,
             metadata={
                 "name": "AffiliationIdentifier",
                 "type": "Element",
-            }
+            },
         )
         referendum_option_identifier: Optional[ReferendumOptionIdentifier] = field(
             default=None,
             metadata={
                 "name": "ReferendumOptionIdentifier",
                 "type": "Element",
-            }
+            },
         )
         valid_votes: int = field(
             metadata={
@@ -205,14 +208,14 @@ class ReportingUnitVotes:
             metadata={
                 "name": "Value",
                 "type": "Attribute",
-            }
+            },
         )
         category: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Category",
                 "type": "Attribute",
-            }
+            },
         )
 
     @dataclass(kw_only=True)
@@ -227,7 +230,7 @@ class ReportingUnitVotes:
             metadata={
                 "name": "Reason",
                 "type": "Attribute",
-            }
+            },
         )
         reason_code: RejectedVotesReasonCode = field(
             metadata={
@@ -241,7 +244,7 @@ class ReportingUnitVotes:
             metadata={
                 "name": "VoteType",
                 "type": "Attribute",
-            }
+            },
         )
 
     @dataclass(kw_only=True)
@@ -256,7 +259,7 @@ class ReportingUnitVotes:
             metadata={
                 "name": "Reason",
                 "type": "Attribute",
-            }
+            },
         )
         reason_code: UncountedVotesReasonCode = field(
             metadata={
@@ -270,7 +273,7 @@ class ReportingUnitVotes:
             metadata={
                 "name": "VoteType",
                 "type": "Attribute",
-            }
+            },
         )
 
 
@@ -298,7 +301,7 @@ class Count:
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -326,7 +329,7 @@ class Count:
                     "name": "Contest",
                     "type": "Element",
                     "min_occurs": 1,
-                }
+                },
             )
 
             @dataclass(kw_only=True)
@@ -352,18 +355,20 @@ class Count:
                         "type": "Element",
                         "min_occurs": 1,
                         "sequence": 1,
-                    }
+                    },
                 )
 
                 @dataclass(kw_only=True)
                 class TotalVotes:
-                    selection: List["Count.Election.Contests.Contest.TotalVotes.Selection"] = field(
+                    selection: List[
+                        "Count.Election.Contests.Contest.TotalVotes.Selection"
+                    ] = field(
                         default_factory=list,
                         metadata={
                             "name": "Selection",
                             "type": "Element",
                             "min_occurs": 1,
-                        }
+                        },
                     )
                     cast: int = field(
                         metadata={
@@ -379,22 +384,26 @@ class Count:
                             "required": True,
                         }
                     )
-                    rejected_votes: List["Count.Election.Contests.Contest.TotalVotes.RejectedVotes"] = field(
+                    rejected_votes: List[
+                        "Count.Election.Contests.Contest.TotalVotes.RejectedVotes"
+                    ] = field(
                         default_factory=list,
                         metadata={
                             "name": "RejectedVotes",
                             "type": "Element",
                             "min_occurs": 2,
                             "max_occurs": 2,
-                        }
+                        },
                     )
-                    uncounted_votes: List["Count.Election.Contests.Contest.TotalVotes.UncountedVotes"] = field(
+                    uncounted_votes: List[
+                        "Count.Election.Contests.Contest.TotalVotes.UncountedVotes"
+                    ] = field(
                         default_factory=list,
                         metadata={
                             "name": "UncountedVotes",
                             "type": "Element",
                             "max_occurs": 14,
-                        }
+                        },
                     )
 
                     @dataclass(kw_only=True)
@@ -404,21 +413,25 @@ class Count:
                             metadata={
                                 "name": "Candidate",
                                 "type": "Element",
-                            }
+                            },
                         )
-                        affiliation_identifier: Optional[AffiliationIdentifierStructure510] = field(
+                        affiliation_identifier: Optional[
+                            AffiliationIdentifierStructure510
+                        ] = field(
                             default=None,
                             metadata={
                                 "name": "AffiliationIdentifier",
                                 "type": "Element",
-                            }
+                            },
                         )
-                        referendum_option_identifier: Optional[ReferendumOptionIdentifier] = field(
+                        referendum_option_identifier: Optional[
+                            ReferendumOptionIdentifier
+                        ] = field(
                             default=None,
                             metadata={
                                 "name": "ReferendumOptionIdentifier",
                                 "type": "Element",
-                            }
+                            },
                         )
                         valid_votes: int = field(
                             metadata={
@@ -432,14 +445,14 @@ class Count:
                             metadata={
                                 "name": "Value",
                                 "type": "Attribute",
-                            }
+                            },
                         )
                         category: Optional[str] = field(
                             default=None,
                             metadata={
                                 "name": "Category",
                                 "type": "Attribute",
-                            }
+                            },
                         )
 
                     @dataclass(kw_only=True)
@@ -454,7 +467,7 @@ class Count:
                             metadata={
                                 "name": "Reason",
                                 "type": "Attribute",
-                            }
+                            },
                         )
                         reason_code: RejectedVotesReasonCode = field(
                             metadata={
@@ -468,7 +481,7 @@ class Count:
                             metadata={
                                 "name": "VoteType",
                                 "type": "Attribute",
-                            }
+                            },
                         )
 
                     @dataclass(kw_only=True)
@@ -483,7 +496,7 @@ class Count:
                             metadata={
                                 "name": "Reason",
                                 "type": "Attribute",
-                            }
+                            },
                         )
                         reason_code: UncountedVotesReasonCode = field(
                             metadata={
@@ -497,5 +510,20 @@ class Count:
                             metadata={
                                 "name": "VoteType",
                                 "type": "Attribute",
-                            }
+                            },
                         )
+
+
+@dataclass(kw_only=True)
+class Eml(Emlstructure510):
+    class Meta:
+        name = "EML"
+        namespace = "urn:oasis:names:tc:evs:schema:eml"
+
+    count: Count = field(
+        metadata={
+            "name": "Count",
+            "type": "Element",
+            "required": True,
+        }
+    )

@@ -29,6 +29,7 @@ class Emlstructure230(EmlstructureKr):
     """
     Only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
+
     class Meta:
         name = "EMLstructure230"
 
@@ -56,7 +57,7 @@ class Emlstructure230(EmlstructureKr):
             "namespace": "http://www.kiesraad.nl/extensions",
             "min_occurs": 1,
             "max_occurs": 2,
-        }
+        },
     )
 
 
@@ -65,6 +66,7 @@ class ElectionIdentifierStructure230(ElectionIdentifierStructureKr):
     """
     Mandatory ElectionCategory, and some additional Elements.
     """
+
     nomination_date: List[XmlDate] = field(
         default_factory=list,
         metadata={
@@ -73,7 +75,7 @@ class ElectionIdentifierStructure230(ElectionIdentifierStructureKr):
             "namespace": "http://www.kiesraad.nl/extensions",
             "min_occurs": 2,
             "max_occurs": 4,
-        }
+        },
     )
 
 
@@ -87,7 +89,7 @@ class CandidateList:
         metadata={
             "name": "ListDate",
             "type": "Element",
-        }
+        },
     )
     election: "CandidateList.Election" = field(
         metadata={
@@ -101,7 +103,7 @@ class CandidateList:
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -119,7 +121,7 @@ class CandidateList:
                 "name": "Contest",
                 "type": "Element",
                 "min_occurs": 1,
-            }
+            },
         )
 
         @dataclass(kw_only=True)
@@ -137,14 +139,14 @@ class CandidateList:
                     "name": "Affiliation",
                     "type": "Element",
                     "min_occurs": 1,
-                }
+                },
             )
             other_element: List[object] = field(
                 default_factory=list,
                 metadata={
                     "type": "Wildcard",
                     "namespace": "##other",
-                }
+                },
             )
 
             @dataclass(kw_only=True)
@@ -155,5 +157,20 @@ class CandidateList:
                         "name": "Candidate",
                         "type": "Element",
                         "min_occurs": 1,
-                    }
+                    },
                 )
+
+
+@dataclass(kw_only=True)
+class Eml(Emlstructure230):
+    class Meta:
+        name = "EML"
+        namespace = "urn:oasis:names:tc:evs:schema:eml"
+
+    candidate_list: CandidateList = field(
+        metadata={
+            "name": "CandidateList",
+            "type": "Element",
+            "required": True,
+        }
+    )

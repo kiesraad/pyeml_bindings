@@ -33,6 +33,7 @@ class AffiliationIdentifierStructure520(AffiliationIdentifierStructureKr):
     """
     Id mandatory.
     """
+
     id: str = field(
         metadata={
             "name": "Id",
@@ -48,6 +49,7 @@ class CandidateIdentifierStructure520(CandidateIdentifierStructureKr):
     """
     Id Attribute mandatory.
     """
+
     id: str = field(
         metadata={
             "name": "Id",
@@ -64,6 +66,7 @@ class CandidateStructure520(CandidateStructureKr):
 
     Gender, and QualifyingAddress allowed, the latter made mandatory
     """
+
     candidate_full_name: PersonNameStructure = field(
         metadata={
             "name": "CandidateFullName",
@@ -87,6 +90,7 @@ class Emlstructure520(EmlstructureKr):
     """
     Only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
+
     class Meta:
         name = "EMLstructure520"
 
@@ -106,7 +110,7 @@ class Emlstructure520(EmlstructureKr):
             "namespace": "http://www.kiesraad.nl/extensions",
             "min_occurs": 1,
             "max_occurs": 2,
-        }
+        },
     )
     id: str = field(
         init=False,
@@ -115,7 +119,7 @@ class Emlstructure520(EmlstructureKr):
             "name": "Id",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -143,7 +147,7 @@ class Result:
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -161,7 +165,7 @@ class Result:
                 "name": "Contest",
                 "type": "Element",
                 "min_occurs": 1,
-            }
+            },
         )
 
         @dataclass(kw_only=True)
@@ -179,7 +183,7 @@ class Result:
                     "name": "Selection",
                     "type": "Element",
                     "min_occurs": 1,
-                }
+                },
             )
 
             @dataclass(kw_only=True)
@@ -189,21 +193,23 @@ class Result:
                     metadata={
                         "name": "Candidate",
                         "type": "Element",
-                    }
+                    },
                 )
-                affiliation_identifier: Optional[AffiliationIdentifierStructure520] = field(
+                affiliation_identifier: Optional[
+                    AffiliationIdentifierStructure520
+                ] = field(
                     default=None,
                     metadata={
                         "name": "AffiliationIdentifier",
                         "type": "Element",
-                    }
+                    },
                 )
                 votes: Optional[int] = field(
                     default=None,
                     metadata={
                         "name": "Votes",
                         "type": "Element",
-                    }
+                    },
                 )
                 ranking: SelectionRanking = field(
                     metadata={
@@ -220,7 +226,7 @@ class Result:
                         "min_occurs": 2,
                         "max_occurs": 2,
                         "sequence": 1,
-                    }
+                    },
                 )
 
 

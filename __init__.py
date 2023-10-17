@@ -199,6 +199,7 @@ from pyeml_bindings.mod_210_nomination_kiesraad_strict import (
     CandidateStructure210,
     ContestIdentifierStructure210,
     Emlstructure210,
+    Eml,
     ElectionIdentifierStructure210,
     Nomination,
     ProposerStructureKr,
@@ -208,6 +209,7 @@ from pyeml_bindings.mod_210_nomination_kiesraad_strict import (
 from pyeml_bindings.mod_230_candidatelist_kiesraad_strict import (
     CandidateList,
     Emlstructure230,
+    Eml,
     Emlstructure230Id,
     ElectionIdentifierStructure230,
 )
@@ -217,6 +219,7 @@ from pyeml_bindings.mod_510_count_kiesraad_strict import (
     CandidateStructure510,
     Count,
     Emlstructure510,
+    Eml,
     ElectionIdentifierStructure510,
     RejectedVotesReasonCode,
     ReportingUnitVotes,
@@ -226,8 +229,8 @@ from pyeml_bindings.mod_520_result_kiesraad_strict import (
     AffiliationIdentifierStructure520,
     CandidateIdentifierStructure520,
     CandidateStructure520,
-    Eml,
     Emlstructure520,
+    Eml,
     ElectionIdentifierStructure520,
     Result,
     SelectionRanking,
@@ -309,6 +312,7 @@ from pyeml_bindings.x_nl_kiesraad_strict import (
 )
 
 __all__ = [
+    "Eml",
     "Accepted",
     "Affiliation",
     "AffiliationIdentifier",
@@ -517,7 +521,6 @@ __all__ = [
     "AffiliationIdentifierStructure520",
     "CandidateIdentifierStructure520",
     "CandidateStructure520",
-    "Eml",
     "Emlstructure520",
     "ElectionIdentifierStructure520",
     "Result",
