@@ -211,12 +211,12 @@ class Result:
                         "type": "Element",
                     },
                 )
-                ranking: SelectionRanking = field(
+                ranking: Optional[SelectionRanking] = field(
+                    default=None,
                     metadata={
                         "name": "Ranking",
                         "type": "Element",
-                        "required": True,
-                    }
+                    },
                 )
                 elected: List[YesNoType] = field(
                     default_factory=list,
