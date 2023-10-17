@@ -14,8 +14,8 @@ Make sure that xsData is installed. Using example file [`Telling_PS2023_Flevolan
 ```python
 from pathlib import Path
 from xsdata.formats.dataclass.parsers import XmlParser
-from pyeml_bindings.mod_510_count_kiesraad_strict import Eml as Eml510
-from pyeml_bindings import NAMESPACE
+from xsdata.formats.dataclass.serializers import XmlSerializer
+from pyeml_bindings import Eml510, NAMESPACE
 
 # Create a parser object, can optionally be given extra config, see xsData docs
 parser = XmlParser()
@@ -24,7 +24,7 @@ parser = XmlParser()
 eml = parser.from_path(Path("Telling_PS2023_Flevoland_gemeente_Almere.eml.xml"), Eml510)
 
 # We can now access the data using standard Python syntax
-# > prints "Provinciale Staten Flevoland 2023"
+# prints "Provinciale Staten Flevoland 2023"
 print(eml.count.election.election_identifier.election_name)
 
 # Or change some of the fields
@@ -33,20 +33,9 @@ eml.count.election.contests.contest[0].total_votes.cast = 1234
 # And write back to EML using a serializer
 serializer = XmlSerializer()
 
-with open("output.xml", "w") as out_file:
+with open(Path("output.xml"), "w") as out_file:
     # We can optionally pass the NAMESPACE from the bindings to the write function
     # to use the same namespace prefixes.
     # If we don't, we still get back valid EML but with ns0, ns1 etc.
     serializer.write(out=out_file, obj=eml, ns_map=NAMESPACE)
-
-```
-
-## Useful dataclasses
-
-The most useful dataclasses are those corresponding to the different EML_NL file types:
-```
-pyeml_bindings.mod_210_nomination_kiesraad_strict.Eml
-pyeml_bindings.mod_230_candidatelist_kiesraad_strict.Eml
-pyeml_bindings.mod_510_count_kiesraad_strict.Eml
-pyeml_bindings.mod_520_result_kiesraad_strict.Eml
 ```
