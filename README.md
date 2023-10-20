@@ -5,8 +5,10 @@ Data bindings for the EML_NL Standard to load EML_NL files into Python [dataclas
 - At least Python version 3.10 for the [KW_ONLY](https://docs.python.org/3/library/dataclasses.html#dataclasses.KW_ONLY) type annotations for dataclasses. This is so that non-nullable fields can be marked as mandatory (see [here](https://xsdata.readthedocs.io/en/latest/faq/why-non-nullable-fields-are-marked-as-optional.html)).
 - [xsData](https://github.com/tefra/xsdata) for parsing using these databindings (`pip install xsdata`)
 
-## Codegen
-These bindings are mostly generated using [xsData](https://xsdata.readthedocs.io) with some minor changes where needed. See commit history for these changes.
+## Testing
+The bindings are tested on over 2500 different EML files from different type of Dutch elections, all downloaded from [data.overheid.nl](https://data.overheid.nl/community/organization/kiesraad) using a roundtrip serialization test.
+
+See the [test report](test/pyeml_bindings_testreport.html)
 
 ## Usage
 Make sure that xsData is installed. Using example file [`Telling_PS2023_Flevoland_gemeente_Almere.eml.xml`](https://data.overheid.nl/dataset/verkiezingsuitslag-provinciale-staten-2023#panel-resources) which has EML id 510b:
@@ -15,7 +17,10 @@ Make sure that xsData is installed. Using example file [`Telling_PS2023_Flevolan
 from pathlib import Path
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
-from pyeml_bindings import Eml510, NAMESPACE
+from xsdata.formats.dataclass.serializers.config import SerializerConfig
+from pyeml_bindings import Eml510
+from pyeml_bindings.namespace import NAMESPACE
+
 
 # Create a parser object, can optionally be given extra config, see xsData docs
 parser = XmlParser()
@@ -31,11 +36,15 @@ print(eml.count.election.election_identifier.election_name)
 eml.count.election.contests.contest[0].total_votes.cast = 1234
 
 # And write back to EML using a serializer
-serializer = XmlSerializer()
+serializer = XmlSerializer(config=SerializerConfig(xml_declaration=False))
 
 with open(Path("output.xml"), "w") as out_file:
     # We can optionally pass the NAMESPACE from the bindings to the write function
     # to use the same namespace prefixes.
     # If we don't, we still get back valid EML but with ns0, ns1 etc.
     serializer.write(out=out_file, obj=eml, ns_map=NAMESPACE)
+
 ```
+
+## Codegen
+These bindings are mostly generated using [xsData](https://xsdata.readthedocs.io) with some minor changes where needed. See commit history for these changes.

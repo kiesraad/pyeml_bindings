@@ -310,7 +310,6 @@ from pyeml_bindings.x_nl_kiesraad_strict import (
     PersonName as XNlPersonName,
     XNl,
 )
-from pyeml_bindings.ns_map import NAMESPACE
 
 __all__ = [
     "Accepted",
@@ -600,5 +599,4 @@ __all__ = [
     "OrganisationNameDetails1",
     "XNlPersonName",
     "XNl",
-    "NAMESPACE",
 ]

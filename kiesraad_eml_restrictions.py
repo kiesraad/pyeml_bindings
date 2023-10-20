@@ -54,6 +54,7 @@ class AddressStructureRestrictedKr(AddressDetails):
     Due to deficiencies in XML schema, everyting except attributes is removed from
     the original type.
     """
+
     class Meta:
         name = "AddressStructureRestrictedKR"
 
@@ -63,6 +64,7 @@ class AffiliationIdentifierStructureKr(AffiliationIdentifierStructure):
     """
     Only attribute optionally used is Id.
     """
+
     class Meta:
         name = "AffiliationIdentifierStructureKR"
 
@@ -72,6 +74,7 @@ class AuthorityIdentifierStructureKr(AuthorityIdentifierStructure):
     """
     Id Attribute mandatory, content restricted.
     """
+
     class Meta:
         name = "AuthorityIdentifierStructureKR"
 
@@ -91,6 +94,7 @@ class CandidateIdentifierStructureKr(CandidateIdentifierStructure):
     Only CandidateName and ShortCode (Element or Attribute) allowed, Id Attribute
     mandatory.
     """
+
     class Meta:
         name = "CandidateIdentifierStructureKR"
 
@@ -100,6 +104,7 @@ class ContestIdentifierStructureKr(ContestIdentifierStructure):
     """
     Id Attribute mandatory, content restricted.
     """
+
     class Meta:
         name = "ContestIdentifierStructureKR"
 
@@ -109,6 +114,7 @@ class ElectionIdentifierStructureKr:
     """
     Mandatory ElectionCategory, and some additional Elements.
     """
+
     class Meta:
         name = "ElectionIdentifierStructureKR"
 
@@ -118,7 +124,7 @@ class ElectionIdentifierStructureKr:
             "name": "ElectionName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     election_category: ElectionCategoryType = field(
         metadata={
@@ -135,7 +141,7 @@ class ElectionIdentifierStructureKr:
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 4,
-        }
+        },
     )
     election_domain: List[ElectionDomain] = field(
         default_factory=list,
@@ -144,7 +150,7 @@ class ElectionIdentifierStructureKr:
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 4,
-        }
+        },
     )
     election_date: List[XmlDate] = field(
         default_factory=list,
@@ -153,7 +159,7 @@ class ElectionIdentifierStructureKr:
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 4,
-        }
+        },
     )
     nomination_date: List[XmlDate] = field(
         default_factory=list,
@@ -162,7 +168,7 @@ class ElectionIdentifierStructureKr:
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 4,
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -179,6 +185,7 @@ class ReportingUnitIdentifierStructureKr(ReportingUnitIdentifierStructure):
     """
     Id Attribute mandatory, content restricted.
     """
+
     class Meta:
         name = "ReportingUnitIdentifierStructureKR"
 
@@ -197,6 +204,7 @@ class AffiliationStructureKr:
     """
     Only mandatory elements allowed, Type restricted to 3 defined values.
     """
+
     class Meta:
         name = "AffiliationStructureKR"
 
@@ -223,14 +231,14 @@ class AffiliationStructureKr:
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 2,
-        }
+        },
     )
     kiesraad_nl_reportgenerator_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "http://www.kiesraad.nl/reportgenerator",
-        }
+        },
     )
 
 
@@ -239,6 +247,7 @@ class GenericMailingAddressStructureKr(AddressStructureRestrictedKr):
     """
     Due to deficiencies in XML schema, the result type is built by extension.
     """
+
     class Meta:
         name = "GenericMailingAddressStructureKR"
 
@@ -248,7 +257,7 @@ class GenericMailingAddressStructureKr(AddressStructureRestrictedKr):
             "name": "Locality",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
     country: Optional[GenericCountryType] = field(
         default=None,
@@ -256,7 +265,7 @@ class GenericMailingAddressStructureKr(AddressStructureRestrictedKr):
             "name": "Country",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
 
 
@@ -265,6 +274,7 @@ class GenericQualifyingAddressStructureKr(AddressStructureRestrictedKr):
     """
     Due to deficiencies in XML schema, the result type is built by extension.
     """
+
     class Meta:
         name = "GenericQualifyingAddressStructureKR"
 
@@ -274,7 +284,7 @@ class GenericQualifyingAddressStructureKr(AddressStructureRestrictedKr):
             "name": "Locality",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
     country: Optional[GenericCountryType] = field(
         default=None,
@@ -282,7 +292,7 @@ class GenericQualifyingAddressStructureKr(AddressStructureRestrictedKr):
             "name": "Country",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
 
 
@@ -292,6 +302,7 @@ class ManagingAuthorityStructureKr:
     Only AuthorityIdentifier and AuthorityAddress allowed, as well as the new
     Element CreatedByAuthority.
     """
+
     class Meta:
         name = "ManagingAuthorityStructureKR"
 
@@ -317,13 +328,14 @@ class ManagingAuthorityStructureKr:
             "name": "CreatedByAuthority",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
-        }
+        },
     )
 
 
 @dataclass(kw_only=True)
 class ContactDetailsStructureKr:
     """only MailingAddress allowed - and mandatory"""
+
     class Meta:
         name = "ContactDetailsStructureKR"
 
@@ -343,6 +355,7 @@ class EmlstructureKr:
     Only TransactionId, ManagingAuthority, and IssueDate needed,
     CanoncalizationMethod added.
     """
+
     class Meta:
         name = "EMLstructureKR"
 
@@ -360,7 +373,7 @@ class EmlstructureKr:
             "name": "ManagingAuthority",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     issue_date: Optional[Union[XmlDate, XmlDateTime]] = field(
         default=None,
@@ -368,7 +381,7 @@ class EmlstructureKr:
             "name": "IssueDate",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     creation_date_time: List[XmlDateTime] = field(
         default_factory=list,
@@ -377,7 +390,7 @@ class EmlstructureKr:
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 2,
-        }
+        },
     )
     canonicalization_method: List[CanonicalizationMethod] = field(
         default_factory=list,
@@ -386,7 +399,7 @@ class EmlstructureKr:
             "type": "Element",
             "namespace": "http://www.w3.org/2000/09/xmldsig#",
             "max_occurs": 2,
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -402,6 +415,7 @@ class MailingAddressStructureKr(GenericMailingAddressStructureKr):
     """
     Full address.
     """
+
     class Meta:
         name = "MailingAddressStructureKR"
 
@@ -411,7 +425,7 @@ class MailingAddressStructureKr(GenericMailingAddressStructureKr):
             "name": "Locality",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
     country: Optional[GenericCountryType] = field(
         default=None,
@@ -419,7 +433,7 @@ class MailingAddressStructureKr(GenericMailingAddressStructureKr):
             "name": "Country",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
 
 
@@ -428,6 +442,7 @@ class MinimalQualifyingAddressStructureKr(GenericQualifyingAddressStructureKr):
     """
     Minimal address.
     """
+
     class Meta:
         name = "MinimalQualifyingAddressStructureKR"
 
@@ -437,7 +452,7 @@ class MinimalQualifyingAddressStructureKr(GenericQualifyingAddressStructureKr):
             "name": "Locality",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
     country: Optional[MinimalCountryType] = field(
         default=None,
@@ -445,7 +460,7 @@ class MinimalQualifyingAddressStructureKr(GenericQualifyingAddressStructureKr):
             "name": "Country",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
 
 
@@ -454,6 +469,7 @@ class QualifyingAddressStructureKr(GenericQualifyingAddressStructureKr):
     """
     Full address.
     """
+
     class Meta:
         name = "QualifyingAddressStructureKR"
 
@@ -463,7 +479,7 @@ class QualifyingAddressStructureKr(GenericQualifyingAddressStructureKr):
             "name": "Locality",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
     country: Optional[CountryType] = field(
         default=None,
@@ -471,13 +487,14 @@ class QualifyingAddressStructureKr(GenericQualifyingAddressStructureKr):
             "name": "Country",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        }
+        },
     )
 
 
 @dataclass(kw_only=True)
 class AgentStructureKr:
     """only AgentIdentifier, Contact and ##other allowed - and mandatory"""
+
     class Meta:
         name = "AgentStructureKR"
 
@@ -495,7 +512,7 @@ class AgentStructureKr:
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     living_address: LivingAddress = field(
         metadata={
@@ -510,7 +527,7 @@ class AgentStructureKr:
         metadata={
             "name": "Role",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -522,6 +539,7 @@ class CandidateStructureKr:
     allowed; re-defined without inheritance because of inflexible rules of
     restriction.
     """
+
     class Meta:
         name = "CandidateStructureKR"
 
@@ -539,7 +557,7 @@ class CandidateStructureKr:
             "name": "CandidateFullName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     date_of_birth: Optional[XmlDate] = field(
         default=None,
@@ -547,7 +565,7 @@ class CandidateStructureKr:
             "name": "DateOfBirth",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     gender: Optional[GenderType] = field(
         default=None,
@@ -555,7 +573,7 @@ class CandidateStructureKr:
             "name": "Gender",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     qualifying_address: Optional[GenericQualifyingAddressStructureKr] = field(
         default=None,
@@ -563,7 +581,7 @@ class CandidateStructureKr:
             "name": "QualifyingAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     contact: Optional[ContactDetailsStructureKr] = field(
         default=None,
@@ -571,7 +589,7 @@ class CandidateStructureKr:
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     agent: Optional[AgentStructureKr] = field(
         default=None,
@@ -579,7 +597,7 @@ class CandidateStructureKr:
             "name": "Agent",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     date_of_birth_annex: Optional[str] = field(
         default=None,
@@ -588,7 +606,7 @@ class CandidateStructureKr:
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "pattern": r"(XX-(XX|\d[1-9]|[1-9]0)-([1-9]\d{3}|\d[1-9]\d\d|\d\d[1-9]\d|\d{3}[1-9])|XX-XX-XXXX)",
-        }
+        },
     )
     national_identification_number: Optional[str] = field(
         default=None,
@@ -596,5 +614,5 @@ class CandidateStructureKr:
             "name": "NationalIdentificationNumber",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
-        }
+        },
     )

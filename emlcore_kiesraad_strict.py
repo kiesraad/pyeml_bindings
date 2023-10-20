@@ -40,28 +40,28 @@ class AffiliationIdentifierStructure:
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     short_code: Optional[str] = field(
         default=None,
         metadata={
             "name": "ShortCode",
             "type": "Attribute",
-        }
+        },
     )
     expected_confirmation_reference: Optional[str] = field(
         default=None,
         metadata={
             "name": "ExpectedConfirmationReference",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -70,32 +70,33 @@ class AreaStructure:
     """
     The geographical area (and its type, such as County) covered by a contest.
     """
+
     value: str = field(
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     type_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -105,21 +106,21 @@ class AuthorityIdentifierStructure:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -131,7 +132,7 @@ class BallotIdentifierStructure:
             "name": "BallotName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -145,7 +146,7 @@ class BallotIdentifierStructure:
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -174,7 +175,7 @@ class ComplexDateRangeStructure:
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
             "max_occurs": 2,
-        }
+        },
     )
     start: Optional[Union[XmlDate, XmlDateTime]] = field(
         default=None,
@@ -182,7 +183,7 @@ class ComplexDateRangeStructure:
             "name": "Start",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     type_value: str = field(
         metadata={
@@ -201,7 +202,7 @@ class ContestIdentifierStructure:
             "name": "ContestName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -215,14 +216,14 @@ class ContestIdentifierStructure:
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     short_code: Optional[str] = field(
         default=None,
         metadata={
             "name": "ShortCode",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -245,21 +246,21 @@ class CountMetricStructure:
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     algorithm_id: Optional[str] = field(
         default=None,
         metadata={
             "name": "AlgorithmId",
             "type": "Attribute",
-        }
+        },
     )
     position_xpath: Optional[str] = field(
         default=None,
         metadata={
             "name": "PositionXPath",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -272,7 +273,7 @@ class CountingAlgorithm:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -282,7 +283,7 @@ class DocumentIdentifierStructure:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     href: str = field(
         metadata={
@@ -299,7 +300,7 @@ class ElectionGroupStructure:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -316,14 +317,14 @@ class EventQualifierStructure:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -342,7 +343,7 @@ class MaxVotes:
         default=1,
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -355,7 +356,7 @@ class MessageType:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -368,14 +369,14 @@ class MessagesStructure:
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
             "min_occurs": 1,
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -385,21 +386,21 @@ class MessagesStructure:
             metadata={
                 "name": "Format",
                 "type": "Attribute",
-            }
+            },
         )
         type_value: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
-            }
+            },
         )
         lang: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Lang",
                 "type": "Attribute",
-            }
+            },
         )
         content: List[object] = field(
             default_factory=list,
@@ -407,7 +408,7 @@ class MessagesStructure:
                 "type": "Wildcard",
                 "namespace": "##any",
                 "mixed": True,
-            }
+            },
         )
 
 
@@ -420,7 +421,7 @@ class MinVotes:
         default=0,
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -445,7 +446,7 @@ class NumberOfPositions:
         default=1,
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -461,7 +462,7 @@ class PollingDistrictStructure:
             "name": "Name",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     association: List["PollingDistrictStructure.Association"] = field(
         default_factory=list,
@@ -469,21 +470,21 @@ class PollingDistrictStructure:
             "name": "Association",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -492,14 +493,14 @@ class PollingDistrictStructure:
             default="",
             metadata={
                 "required": True,
-            }
+            },
         )
         id: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Id",
                 "type": "Attribute",
-            }
+            },
         )
 
 
@@ -509,21 +510,21 @@ class PositionStructure:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -543,35 +544,35 @@ class ProposalIdentifierStructure:
             "name": "ProposalName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     short_code: Optional[str] = field(
         default=None,
         metadata={
             "name": "ShortCode",
             "type": "Attribute",
-        }
+        },
     )
     expected_confirmation_reference: Optional[str] = field(
         default=None,
         metadata={
             "name": "ExpectedConfirmationReference",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -583,7 +584,7 @@ class ProposalItemStructure:
             "name": "ProposalText",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     selection_text: Optional[str] = field(
         default=None,
@@ -591,35 +592,35 @@ class ProposalItemStructure:
             "name": "SelectionText",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     referendum_option_identifier: Optional[str] = field(
         default=None,
         metadata={
             "name": "ReferendumOptionIdentifier",
             "type": "Attribute",
-        }
+        },
     )
     proposal_identifier: Optional[str] = field(
         default=None,
         metadata={
             "name": "ProposalIdentifier",
             "type": "Attribute",
-        }
+        },
     )
     lang: Optional[str] = field(
         default=None,
         metadata={
             "name": "Lang",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -635,35 +636,35 @@ class ReferendumOptionIdentifierStructure:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     short_code: Optional[str] = field(
         default=None,
         metadata={
             "name": "ShortCode",
             "type": "Attribute",
-        }
+        },
     )
     expected_confirmation_reference: Optional[str] = field(
         default=None,
         metadata={
             "name": "ExpectedConfirmationReference",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -673,21 +674,21 @@ class ReportingUnitIdentifierStructure:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -706,7 +707,7 @@ class ResultsReportedStructure:
         metadata={
             "name": "CurrentStatus",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -717,7 +718,7 @@ class ResultsReportedStructure:
                 "name": "ChannelID",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         notes: Optional[str] = field(
             default=None,
@@ -725,21 +726,21 @@ class ResultsReportedStructure:
                 "name": "Notes",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         date_time: Optional[XmlDateTime] = field(
             default=None,
             metadata={
                 "name": "DateTime",
                 "type": "Attribute",
-            }
+            },
         )
         type_value: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
-            }
+            },
         )
 
 
@@ -752,7 +753,7 @@ class ScrutinyRequirement:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -827,14 +828,14 @@ class SupporterIdentifierStructure:
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -847,7 +848,7 @@ class TransactionId:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -863,7 +864,7 @@ class VtokenStructure:
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
             "min_occurs": 1,
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -874,7 +875,7 @@ class VtokenStructure:
                 "type": "Wildcard",
                 "namespace": "##any",
                 "mixed": True,
-            }
+            },
         )
 
 
@@ -959,14 +960,14 @@ class AgentIdentifierStructure:
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1011,7 +1012,7 @@ class BallotIdentifierRangeStructure:
         metadata={
             "name": "Colour",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1023,7 +1024,7 @@ class BinaryItemStructure:
             "name": "URL",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     binary: Optional["BinaryItemStructure.Binary"] = field(
         default=None,
@@ -1031,56 +1032,56 @@ class BinaryItemStructure:
             "name": "Binary",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     item_type: Optional[str] = field(
         default=None,
         metadata={
             "name": "ItemType",
             "type": "Attribute",
-        }
+        },
     )
     verified: Optional[YesNoType] = field(
         default=None,
         metadata={
             "name": "Verified",
             "type": "Attribute",
-        }
+        },
     )
     problem: Optional[YesNoType] = field(
         default=None,
         metadata={
             "name": "Problem",
             "type": "Attribute",
-        }
+        },
     )
     notes: Optional[str] = field(
         default=None,
         metadata={
             "name": "Notes",
             "type": "Attribute",
-        }
+        },
     )
     role: Optional[str] = field(
         default=None,
         metadata={
             "name": "Role",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -1109,7 +1110,7 @@ class CandidateIdentifierStructure:
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
             "max_length": 70,
-        }
+        },
     )
     known_as: Optional[str] = field(
         default=None,
@@ -1117,7 +1118,7 @@ class CandidateIdentifierStructure:
             "name": "KnownAs",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     candidate_gender: Optional[GenderType] = field(
         default=None,
@@ -1125,7 +1126,7 @@ class CandidateIdentifierStructure:
             "name": "CandidateGender",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     short_code: Optional[str] = field(
         default=None,
@@ -1133,35 +1134,35 @@ class CandidateIdentifierStructure:
             "name": "ShortCode",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     short_code_attribute: Optional[str] = field(
         default=None,
         metadata={
             "name": "ShortCode",
             "type": "Attribute",
-        }
+        },
     )
     expected_confirmation_reference: Optional[str] = field(
         default=None,
         metadata={
             "name": "ExpectedConfirmationReference",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1185,7 +1186,7 @@ class CountQualifierStructure:
             "name": "Simulation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     final: Optional[YesNoType] = field(
         default=None,
@@ -1193,7 +1194,7 @@ class CountQualifierStructure:
             "name": "Final",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     extrapolation: Optional[YesNoType] = field(
         default=None,
@@ -1201,7 +1202,7 @@ class CountQualifierStructure:
             "name": "Extrapolation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     partial: Optional[YesNoType] = field(
         default=None,
@@ -1209,7 +1210,7 @@ class CountQualifierStructure:
             "name": "Partial",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     previous: Optional[YesNoType] = field(
         default=None,
@@ -1217,14 +1218,14 @@ class CountQualifierStructure:
             "name": "Previous",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
 
@@ -1242,7 +1243,7 @@ class ElectionIdentifierStructure:
             "name": "ElectionName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     election_group: Optional[ElectionGroupStructure] = field(
         default=None,
@@ -1250,7 +1251,7 @@ class ElectionIdentifierStructure:
             "name": "ElectionGroup",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     election_category: Optional[str] = field(
         default=None,
@@ -1258,14 +1259,14 @@ class ElectionIdentifierStructure:
             "name": "ElectionCategory",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -1279,14 +1280,14 @@ class ElectionIdentifierStructure:
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     short_code: Optional[str] = field(
         default=None,
         metadata={
             "name": "ShortCode",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1304,14 +1305,14 @@ class EmailStructure:
             "required": True,
             "max_length": 129,
             "pattern": r"[^@]+@[^@]+",
-        }
+        },
     )
     preferred: Optional[YesNoType] = field(
         default=None,
         metadata={
             "name": "Preferred",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1323,7 +1324,7 @@ class EventIdentifierStructure:
             "name": "EventName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     event_qualifier: Optional[EventQualifierStructure] = field(
         default=None,
@@ -1331,21 +1332,21 @@ class EventIdentifierStructure:
             "name": "EventQualifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1399,7 +1400,7 @@ class ProcessingUnitStructure:
             "name": "Name",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -1456,7 +1457,7 @@ class SealStructure:
             "name": "Signature",
             "type": "Element",
             "namespace": "http://www.w3.org/2000/09/xmldsig#",
-        }
+        },
     )
     timestamp: Optional[Timestamp] = field(
         default=None,
@@ -1464,7 +1465,7 @@ class SealStructure:
             "name": "Timestamp",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-        }
+        },
     )
     other_seal: Optional["SealStructure.OtherSeal"] = field(
         default=None,
@@ -1472,7 +1473,7 @@ class SealStructure:
             "name": "OtherSeal",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -1482,7 +1483,7 @@ class SealStructure:
             metadata={
                 "type": "Wildcard",
                 "namespace": "##other",
-            }
+            },
         )
         type_value: str = field(
             metadata={
@@ -1521,21 +1522,21 @@ class TelephoneStructure:
             "min_length": 1,
             "max_length": 6,
             "pattern": r"[0-9]{1,6}",
-        }
+        },
     )
     preferred: Optional[YesNoType] = field(
         default=None,
         metadata={
             "name": "Preferred",
             "type": "Attribute",
-        }
+        },
     )
     mobile: Optional[YesNoType] = field(
         default=None,
         metadata={
             "name": "Mobile",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1602,7 +1603,7 @@ class AuditInformationStructure:
             "name": "VotingChannel",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     processing_units: Optional["AuditInformationStructure.ProcessingUnits"] = field(
         default=None,
@@ -1610,14 +1611,14 @@ class AuditInformationStructure:
             "name": "ProcessingUnits",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -1628,7 +1629,7 @@ class AuditInformationStructure:
                 "name": "OriginatingDevice",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         gateway: Optional[ProcessingUnitStructure] = field(
             default=None,
@@ -1636,7 +1637,7 @@ class AuditInformationStructure:
                 "name": "Gateway",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         voting_system: Optional[ProcessingUnitStructure] = field(
             default=None,
@@ -1644,7 +1645,7 @@ class AuditInformationStructure:
                 "name": "VotingSystem",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         counting_system: Optional[ProcessingUnitStructure] = field(
             default=None,
@@ -1652,7 +1653,7 @@ class AuditInformationStructure:
                 "name": "CountingSystem",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         vtoken_logging_system: Optional[ProcessingUnitStructure] = field(
             default=None,
@@ -1660,7 +1661,7 @@ class AuditInformationStructure:
                 "name": "VTokenLoggingSystem",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         seal_logging_system: Optional[ProcessingUnitStructure] = field(
             default=None,
@@ -1668,7 +1669,7 @@ class AuditInformationStructure:
                 "name": "SealLoggingSystem",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         other: List["AuditInformationStructure.ProcessingUnits.Other"] = field(
             default_factory=list,
@@ -1676,7 +1677,7 @@ class AuditInformationStructure:
                 "name": "Other",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
 
         @dataclass(kw_only=True)
@@ -1710,7 +1711,7 @@ class ContactDetailsStructure:
             "name": "MailingAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     email: List[EmailStructure] = field(
         default_factory=list,
@@ -1718,7 +1719,7 @@ class ContactDetailsStructure:
             "name": "Email",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     telephone: List[TelephoneStructure] = field(
         default_factory=list,
@@ -1726,7 +1727,7 @@ class ContactDetailsStructure:
             "name": "Telephone",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     fax: List[TelephoneStructure] = field(
         default_factory=list,
@@ -1734,7 +1735,7 @@ class ContactDetailsStructure:
             "name": "Fax",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     preferred_contact: Optional[str] = field(
         default=None,
@@ -1742,21 +1743,21 @@ class ContactDetailsStructure:
             "name": "PreferredContact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1791,7 +1792,7 @@ class PollingPlaceStructure:
             "name": "PhysicalLocation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     postal_location: Optional["PollingPlaceStructure.PostalLocation"] = field(
         default=None,
@@ -1799,7 +1800,7 @@ class PollingPlaceStructure:
             "name": "PostalLocation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     electronic_location: Optional["PollingPlaceStructure.ElectronicLocation"] = field(
         default=None,
@@ -1807,7 +1808,7 @@ class PollingPlaceStructure:
             "name": "ElectronicLocation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_location: Optional["PollingPlaceStructure.OtherLocation"] = field(
         default=None,
@@ -1815,7 +1816,7 @@ class PollingPlaceStructure:
             "name": "OtherLocation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     time_available: List["PollingPlaceStructure.TimeAvailable"] = field(
         default_factory=list,
@@ -1823,7 +1824,7 @@ class PollingPlaceStructure:
             "name": "TimeAvailable",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     results_reported: List[ResultsReportedStructure] = field(
         default_factory=list,
@@ -1831,7 +1832,7 @@ class PollingPlaceStructure:
             "name": "ResultsReported",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     channel: VotingChannelType = field(
         metadata={
@@ -1845,7 +1846,7 @@ class PollingPlaceStructure:
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -1877,13 +1878,15 @@ class PollingPlaceStructure:
                 "required": True,
             }
         )
-        polling_station: List["PollingPlaceStructure.PhysicalLocation.PollingStation"] = field(
+        polling_station: List[
+            "PollingPlaceStructure.PhysicalLocation.PollingStation"
+        ] = field(
             default_factory=list,
             metadata={
                 "name": "PollingStation",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         map: Optional[BinaryItemStructure] = field(
             default=None,
@@ -1891,14 +1894,14 @@ class PollingPlaceStructure:
                 "name": "Map",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         id: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Id",
                 "type": "Attribute",
-            }
+            },
         )
 
         @dataclass(kw_only=True)
@@ -1907,14 +1910,14 @@ class PollingPlaceStructure:
                 default="",
                 metadata={
                     "required": True,
-                }
+                },
             )
             id: Optional[str] = field(
                 default=None,
                 metadata={
                     "name": "Id",
                     "type": "Attribute",
-                }
+                },
             )
 
     @dataclass(kw_only=True)
@@ -1924,14 +1927,14 @@ class PollingPlaceStructure:
             metadata={
                 "name": "Id",
                 "type": "Attribute",
-            }
+            },
         )
         display_order: Optional[int] = field(
             default=None,
             metadata={
                 "name": "DisplayOrder",
                 "type": "Attribute",
-            }
+            },
         )
 
     @dataclass(kw_only=True)
@@ -1940,21 +1943,21 @@ class PollingPlaceStructure:
             default="",
             metadata={
                 "required": True,
-            }
+            },
         )
         id: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Id",
                 "type": "Attribute",
-            }
+            },
         )
         display_order: Optional[int] = field(
             default=None,
             metadata={
                 "name": "DisplayOrder",
                 "type": "Attribute",
-            }
+            },
         )
 
     @dataclass(kw_only=True)
@@ -1963,21 +1966,21 @@ class PollingPlaceStructure:
             default="",
             metadata={
                 "required": True,
-            }
+            },
         )
         id: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Id",
                 "type": "Attribute",
-            }
+            },
         )
         display_order: Optional[int] = field(
             default=None,
             metadata={
                 "name": "DisplayOrder",
                 "type": "Attribute",
-            }
+            },
         )
 
 
@@ -1989,7 +1992,7 @@ class ProposalStructure:
             "name": "ProposalIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     description: Optional[MessagesStructure] = field(
         default=None,
@@ -1997,7 +2000,7 @@ class ProposalStructure:
             "name": "Description",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     options: Optional["ProposalStructure.Options"] = field(
         default=None,
@@ -2005,14 +2008,14 @@ class ProposalStructure:
             "name": "Options",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     proposal_item: Optional[ProposalItem] = field(
         default=None,
@@ -2020,14 +2023,14 @@ class ProposalStructure:
             "name": "ProposalItem",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     type_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -2039,7 +2042,7 @@ class ProposalStructure:
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
                 "min_occurs": 1,
-            }
+            },
         )
 
 
@@ -2068,7 +2071,7 @@ class VtokenQualifiedStructure(VtokenStructure):
             "name": "VToken",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -2077,7 +2080,7 @@ class VtokenQualifiedStructure(VtokenStructure):
             default="",
             metadata={
                 "required": True,
-            }
+            },
         )
         type_value: str = field(
             metadata={
@@ -2108,7 +2111,7 @@ class InternalGenericCommunicationStructure:
             "name": "From",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     to: Optional["InternalGenericCommunicationStructure.To"] = field(
         default=None,
@@ -2116,7 +2119,7 @@ class InternalGenericCommunicationStructure:
             "name": "To",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     event_identifier: Optional[EventIdentifier] = field(
         default=None,
@@ -2124,7 +2127,7 @@ class InternalGenericCommunicationStructure:
             "name": "EventIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     election_identifier: Optional[ElectionIdentifier] = field(
         default=None,
@@ -2132,7 +2135,7 @@ class InternalGenericCommunicationStructure:
             "name": "ElectionIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     contest_identifier: Optional[ContestIdentifier] = field(
         default=None,
@@ -2140,7 +2143,7 @@ class InternalGenericCommunicationStructure:
             "name": "ContestIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     messages: Optional[MessagesStructure] = field(
         default=None,
@@ -2148,7 +2151,7 @@ class InternalGenericCommunicationStructure:
             "name": "Messages",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -2158,7 +2161,7 @@ class InternalGenericCommunicationStructure:
             metadata={
                 "type": "Wildcard",
                 "namespace": "##targetNamespace",
-            }
+            },
         )
 
     @dataclass(kw_only=True)
@@ -2168,7 +2171,7 @@ class InternalGenericCommunicationStructure:
             metadata={
                 "type": "Wildcard",
                 "namespace": "##targetNamespace",
-            }
+            },
         )
 
 
@@ -2201,7 +2204,7 @@ class NominatingOfficerStructure:
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
 
@@ -2213,7 +2216,7 @@ class PeriodStructure:
             "name": "Dates",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     event: List["PeriodStructure.Event"] = field(
         default_factory=list,
@@ -2221,7 +2224,7 @@ class PeriodStructure:
             "name": "Event",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     permanent: Optional[PeriodStructurePermanent] = field(
         default=None,
@@ -2229,7 +2232,7 @@ class PeriodStructure:
             "name": "Permanent",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -2240,7 +2243,7 @@ class PeriodStructure:
                 "name": "Start",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
         end: XmlDate = field(
             metadata={
@@ -2267,7 +2270,7 @@ class PeriodStructure:
                 "name": "ElectionIdentifier",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
 
 
@@ -2299,7 +2302,7 @@ class ProposerStructure:
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     job_title: Optional[str] = field(
         default=None,
@@ -2307,7 +2310,7 @@ class ProposerStructure:
             "name": "JobTitle",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     date_of_birth: Optional[XmlDate] = field(
         default=None,
@@ -2315,7 +2318,7 @@ class ProposerStructure:
             "name": "DateOfBirth",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     id: List[str] = field(
         default_factory=list,
@@ -2323,21 +2326,21 @@ class ProposerStructure:
             "name": "Id",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     category: Optional[ProposerStructureCategory] = field(
         default=None,
         metadata={
             "name": "Category",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2360,7 +2363,7 @@ class ResponsibleOfficerStructure:
             "min_occurs": 1,
             "max_occurs": 2,
             "sequence": 1,
-        }
+        },
     )
     contact: Optional[ContactDetailsStructure] = field(
         default=None,
@@ -2368,21 +2371,21 @@ class ResponsibleOfficerStructure:
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2417,7 +2420,7 @@ class AffiliationStructure:
             "name": "Description",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     logo: List[Logo] = field(
         default_factory=list,
@@ -2425,14 +2428,14 @@ class AffiliationStructure:
             "name": "Logo",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
 
@@ -2476,14 +2479,14 @@ class SupporterStructure:
             "name": "Logo",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
 
@@ -2502,13 +2505,14 @@ class VoterIdentificationStructure:
     :ivar display_order:
     :ivar id:
     """
+
     voter_name: Optional[VoterName] = field(
         default=None,
         metadata={
             "name": "VoterName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     electoral_address: Optional[ElectoralAddressStructure] = field(
         default=None,
@@ -2516,7 +2520,7 @@ class VoterIdentificationStructure:
             "name": "ElectoralAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     previous_electoral_address: Optional[ElectoralAddressStructure] = field(
         default=None,
@@ -2524,7 +2528,7 @@ class VoterIdentificationStructure:
             "name": "PreviousElectoralAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     vtoken: Optional[Vtoken] = field(
         default=None,
@@ -2532,7 +2536,7 @@ class VoterIdentificationStructure:
             "name": "VToken",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     vtoken_qualified: Optional[VtokenQualified] = field(
         default=None,
@@ -2540,7 +2544,7 @@ class VoterIdentificationStructure:
             "name": "VTokenQualified",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     voter_id: List[str] = field(
         default_factory=list,
@@ -2548,7 +2552,7 @@ class VoterIdentificationStructure:
             "name": "VoterId",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     voter_signature: Optional[BinaryItemStructure] = field(
         default=None,
@@ -2556,28 +2560,28 @@ class VoterIdentificationStructure:
             "name": "VoterSignature",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     id: Optional[object] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2595,7 +2599,7 @@ class ChannelStructure:
             "name": "PreferredChannel",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     period: Optional[Period] = field(
         default=None,
@@ -2603,14 +2607,14 @@ class ChannelStructure:
             "name": "Period",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -2625,7 +2629,7 @@ class ChannelStructure:
             metadata={
                 "name": "Fixed",
                 "type": "Attribute",
-            }
+            },
         )
 
 
@@ -2659,7 +2663,7 @@ class ManagingAuthorityStructure:
             "name": "ResponsibleOfficer",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     logo: Optional[Logo] = field(
         default=None,
@@ -2667,14 +2671,14 @@ class ManagingAuthorityStructure:
             "name": "Logo",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
 
 
@@ -2694,7 +2698,7 @@ class AgentStructure:
             "name": "Affiliation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     official_address: Optional[OfficialAddressStructure] = field(
         default=None,
@@ -2702,7 +2706,7 @@ class AgentStructure:
             "name": "OfficialAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     contact: Optional[ContactDetailsStructure] = field(
         default=None,
@@ -2710,35 +2714,35 @@ class AgentStructure:
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     role: Optional[str] = field(
         default=None,
         metadata={
             "name": "Role",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2779,7 +2783,7 @@ class Emlstructure:
             "name": "SequenceNumber",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     number_in_sequence: Optional[int] = field(
         default=None,
@@ -2787,7 +2791,7 @@ class Emlstructure:
             "name": "NumberInSequence",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     sequenced_element_name: Optional[str] = field(
         default=None,
@@ -2795,7 +2799,7 @@ class Emlstructure:
             "name": "SequencedElementName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     additional_validation: Optional["Emlstructure.AdditionalValidation"] = field(
         default=None,
@@ -2803,7 +2807,7 @@ class Emlstructure:
             "name": "AdditionalValidation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     message_language: Optional[str] = field(
         default=None,
@@ -2811,7 +2815,7 @@ class Emlstructure:
             "name": "MessageLanguage",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     requested_response_language: Optional[str] = field(
         default=None,
@@ -2819,7 +2823,7 @@ class Emlstructure:
             "name": "RequestedResponseLanguage",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     managing_authority: Optional[ManagingAuthority] = field(
         default=None,
@@ -2827,7 +2831,7 @@ class Emlstructure:
             "name": "ManagingAuthority",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     issue_date: Optional[Union[XmlDate, XmlDateTime]] = field(
         default=None,
@@ -2835,7 +2839,7 @@ class Emlstructure:
             "name": "IssueDate",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     display: List["Emlstructure.Display"] = field(
         default_factory=list,
@@ -2843,7 +2847,7 @@ class Emlstructure:
             "name": "Display",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     seal: Optional[Seal] = field(
         default=None,
@@ -2851,14 +2855,14 @@ class Emlstructure:
             "name": "Seal",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -2873,6 +2877,14 @@ class Emlstructure:
             "type": "Attribute",
             "required": True,
         }
+    )
+    schema_location: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "schemaLocation",
+            "type": "Attribute",
+            "namespace": "http://www.w3.org/2001/XMLSchema-instance",
+        },
     )
 
     @dataclass(kw_only=True)
@@ -2903,14 +2915,14 @@ class Emlstructure:
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
                 "min_occurs": 1,
-            }
+            },
         )
         format: Optional[str] = field(
             default=None,
             metadata={
                 "name": "Format",
                 "type": "Attribute",
-            }
+            },
         )
 
         @dataclass(kw_only=True)
@@ -2919,7 +2931,7 @@ class Emlstructure:
                 default="",
                 metadata={
                     "required": True,
-                }
+                },
             )
             type_value: str = field(
                 metadata={
@@ -2939,7 +2951,7 @@ class ProxyStructure:
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
             "max_occurs": 2,
-        }
+        },
     )
     name: Optional[PersonNameStructure] = field(
         default=None,
@@ -2947,7 +2959,7 @@ class ProxyStructure:
             "name": "Name",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     address: Optional[ProxyAddressStructure] = field(
         default=None,
@@ -2955,7 +2967,7 @@ class ProxyStructure:
             "name": "Address",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     date_of_birth: Optional[XmlDate] = field(
         default=None,
@@ -2963,7 +2975,7 @@ class ProxyStructure:
             "name": "DateOfBirth",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     qualification: Optional[str] = field(
         default=None,
@@ -2971,7 +2983,7 @@ class ProxyStructure:
             "name": "Qualification",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     reason: Optional[str] = field(
         default=None,
@@ -2979,7 +2991,7 @@ class ProxyStructure:
             "name": "Reason",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     period: Optional[Period] = field(
         default=None,
@@ -2987,7 +2999,7 @@ class ProxyStructure:
             "name": "Period",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     proxy_agrees: Optional[YesNoType] = field(
         default=None,
@@ -2995,7 +3007,7 @@ class ProxyStructure:
             "name": "ProxyAgrees",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     preferred_language: Optional[str] = field(
         default=None,
@@ -3003,7 +3015,7 @@ class ProxyStructure:
             "name": "PreferredLanguage",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     channel: List[Channel] = field(
         default_factory=list,
@@ -3011,7 +3023,7 @@ class ProxyStructure:
             "name": "Channel",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     vtoken: Optional[Vtoken] = field(
         default=None,
@@ -3019,7 +3031,7 @@ class ProxyStructure:
             "name": "VToken",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     vtoken_qualified: Optional[VtokenQualified] = field(
         default=None,
@@ -3027,28 +3039,28 @@ class ProxyStructure:
             "name": "VTokenQualified",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3060,7 +3072,7 @@ class CandidateStructure:
             "name": "CandidateIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     candidate_full_name: Optional[PersonNameStructure] = field(
         default=None,
@@ -3068,7 +3080,7 @@ class CandidateStructure:
             "name": "CandidateFullName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     date_of_birth: Optional[XmlDate] = field(
         default=None,
@@ -3076,7 +3088,7 @@ class CandidateStructure:
             "name": "DateOfBirth",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     age: Optional[int] = field(
         default=None,
@@ -3084,7 +3096,7 @@ class CandidateStructure:
             "name": "Age",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     gender: Optional[GenderType] = field(
         default=None,
@@ -3092,7 +3104,7 @@ class CandidateStructure:
             "name": "Gender",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     qualifying_address: Optional[QualifyingAddressStructure] = field(
         default=None,
@@ -3100,7 +3112,7 @@ class CandidateStructure:
             "name": "QualifyingAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     contact: Optional[ContactDetailsStructure] = field(
         default=None,
@@ -3108,7 +3120,7 @@ class CandidateStructure:
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     affiliation: Optional[Affiliation] = field(
         default=None,
@@ -3116,7 +3128,7 @@ class CandidateStructure:
             "name": "Affiliation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     logo: List[Logo] = field(
         default_factory=list,
@@ -3124,7 +3136,7 @@ class CandidateStructure:
             "name": "Logo",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     profession: Optional[str] = field(
         default=None,
@@ -3132,7 +3144,7 @@ class CandidateStructure:
             "name": "Profession",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     agent: List[Agent] = field(
         default_factory=list,
@@ -3140,7 +3152,7 @@ class CandidateStructure:
             "name": "Agent",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     photo: Optional[BinaryItemStructure] = field(
         default=None,
@@ -3148,7 +3160,7 @@ class CandidateStructure:
             "name": "Photo",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     profile: Optional[Profile] = field(
         default=None,
@@ -3156,7 +3168,7 @@ class CandidateStructure:
             "name": "Profile",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     election_statement: Optional[ElectionStatement] = field(
         default=None,
@@ -3164,14 +3176,14 @@ class CandidateStructure:
             "name": "ElectionStatement",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     proposal_item: Optional[ProposalItem] = field(
         default=None,
@@ -3179,21 +3191,21 @@ class CandidateStructure:
             "name": "ProposalItem",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
     independent: Optional[YesNoType] = field(
         default=None,
         metadata={
             "name": "Independent",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3225,7 +3237,7 @@ class IncomingGenericCommunicationStructure:
             "name": "Recipient",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     event_identifier: Optional[EventIdentifier] = field(
         default=None,
@@ -3233,7 +3245,7 @@ class IncomingGenericCommunicationStructure:
             "name": "EventIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     election_identifier: Optional[ElectionIdentifier] = field(
         default=None,
@@ -3241,7 +3253,7 @@ class IncomingGenericCommunicationStructure:
             "name": "ElectionIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     contest_identifier: Optional[ContestIdentifier] = field(
         default=None,
@@ -3249,7 +3261,7 @@ class IncomingGenericCommunicationStructure:
             "name": "ContestIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     messages: Optional[MessagesStructure] = field(
         default=None,
@@ -3257,7 +3269,7 @@ class IncomingGenericCommunicationStructure:
             "name": "Messages",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -3284,7 +3296,7 @@ class IncomingGenericCommunicationStructure:
                 "name": "Proxy",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
 
 
@@ -3294,6 +3306,7 @@ class OutgoingGenericCommunicationStructure:
     Note that this can include multiple voters to allow communication with a
     distributor.
     """
+
     voter: List["OutgoingGenericCommunicationStructure.Voter"] = field(
         default_factory=list,
         metadata={
@@ -3301,7 +3314,7 @@ class OutgoingGenericCommunicationStructure:
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
             "min_occurs": 1,
-        }
+        },
     )
     event_identifier: Optional[EventIdentifier] = field(
         default=None,
@@ -3309,7 +3322,7 @@ class OutgoingGenericCommunicationStructure:
             "name": "EventIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     election_identifier: Optional[ElectionIdentifier] = field(
         default=None,
@@ -3317,7 +3330,7 @@ class OutgoingGenericCommunicationStructure:
             "name": "ElectionIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     contest_identifier: Optional[ContestIdentifier] = field(
         default=None,
@@ -3325,7 +3338,7 @@ class OutgoingGenericCommunicationStructure:
             "name": "ContestIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     return_to: Optional[ResponsibleOfficerStructure] = field(
         default=None,
@@ -3333,7 +3346,7 @@ class OutgoingGenericCommunicationStructure:
             "name": "ReturnTo",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     messages: Optional[MessagesStructure] = field(
         default=None,
@@ -3341,7 +3354,7 @@ class OutgoingGenericCommunicationStructure:
             "name": "Messages",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -3368,7 +3381,7 @@ class OutgoingGenericCommunicationStructure:
                 "name": "Proxy",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            }
+            },
         )
 
 
@@ -3400,13 +3413,14 @@ class VoterInformationStructure:
     :ivar id:
     :ivar display_order:
     """
+
     contact: List["VoterInformationStructure.Contact"] = field(
         default_factory=list,
         metadata={
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     date_of_birth: Optional[XmlDate] = field(
         default=None,
@@ -3414,7 +3428,7 @@ class VoterInformationStructure:
             "name": "DateOfBirth",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     place_of_birth: Optional[str] = field(
         default=None,
@@ -3422,7 +3436,7 @@ class VoterInformationStructure:
             "name": "PlaceOfBirth",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     effective_date_added: Optional[XmlDate] = field(
         default=None,
@@ -3430,7 +3444,7 @@ class VoterInformationStructure:
             "name": "EffectiveDateAdded",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     effective_date_removed: Optional[XmlDate] = field(
         default=None,
@@ -3438,7 +3452,7 @@ class VoterInformationStructure:
             "name": "EffectiveDateRemoved",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     preferred_language: Optional[str] = field(
         default=None,
@@ -3446,7 +3460,7 @@ class VoterInformationStructure:
             "name": "PreferredLanguage",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     channel: List[Channel] = field(
         default_factory=list,
@@ -3454,7 +3468,7 @@ class VoterInformationStructure:
             "name": "Channel",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     qualifier: List[str] = field(
         default_factory=list,
@@ -3462,7 +3476,7 @@ class VoterInformationStructure:
             "name": "Qualifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     check_box: List["VoterInformationStructure.CheckBox"] = field(
         default_factory=list,
@@ -3470,7 +3484,7 @@ class VoterInformationStructure:
             "name": "CheckBox",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     eligibility: List[str] = field(
         default_factory=list,
@@ -3478,7 +3492,7 @@ class VoterInformationStructure:
             "name": "Eligibility",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     polling_district: Optional[PollingDistrict] = field(
         default=None,
@@ -3486,7 +3500,7 @@ class VoterInformationStructure:
             "name": "PollingDistrict",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     polling_place: List[PollingPlace] = field(
         default_factory=list,
@@ -3494,7 +3508,7 @@ class VoterInformationStructure:
             "name": "PollingPlace",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     affiliation: Optional[str] = field(
         default=None,
@@ -3502,7 +3516,7 @@ class VoterInformationStructure:
             "name": "Affiliation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     gender: Optional[VoterInformationStructureGender] = field(
         default=None,
@@ -3510,7 +3524,7 @@ class VoterInformationStructure:
             "name": "Gender",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     nationality: Optional[str] = field(
         default=None,
@@ -3518,7 +3532,7 @@ class VoterInformationStructure:
             "name": "Nationality",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     ethnicity: Optional[str] = field(
         default=None,
@@ -3526,7 +3540,7 @@ class VoterInformationStructure:
             "name": "Ethnicity",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     special_request: List[str] = field(
         default_factory=list,
@@ -3534,7 +3548,7 @@ class VoterInformationStructure:
             "name": "SpecialRequest",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     proxy: List[Proxy] = field(
         default_factory=list,
@@ -3542,7 +3556,7 @@ class VoterInformationStructure:
             "name": "Proxy",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     further_information: Optional[MessagesStructure] = field(
         default=None,
@@ -3550,28 +3564,28 @@ class VoterInformationStructure:
             "name": "FurtherInformation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-        }
+        },
     )
     other_element: List[object] = field(
         default_factory=list,
         metadata={
             "type": "Wildcard",
             "namespace": "##other",
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
-        }
+        },
     )
     display_order: Optional[int] = field(
         default=None,
         metadata={
             "name": "DisplayOrder",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass(kw_only=True)
@@ -3581,7 +3595,7 @@ class VoterInformationStructure:
             metadata={
                 "name": "ElectionId",
                 "type": "Attribute",
-            }
+            },
         )
 
     @dataclass(kw_only=True)
