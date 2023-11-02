@@ -192,6 +192,15 @@ from pyeml_bindings.kiesraad_eml_restrictions import (
     QualifyingAddressStructureKr,
     ReportingUnitIdentifierStructureKr,
 )
+from pyeml_bindings.mod_110a_electionevent_kiesraad_strict import (
+    ContestIdentifierStructure110A,
+    Emlstructure110,
+    Eml as Eml110a,
+    ElectionEvent,
+    ElectionIdentifierStructure110A,
+    PollingPlaceStructure110,
+    PollingPlaceStructure110Channel,
+)
 from pyeml_bindings.mod_210_nomination_kiesraad_strict import (
     AffiliationIdentifierStructure210,
     AffiliationStructure210,
@@ -599,4 +608,11 @@ __all__ = [
     "OrganisationNameDetails1",
     "XNlPersonName",
     "XNl",
+    "ContestIdentifierStructure110A",
+    "Emlstructure110",
+    "Eml110a",
+    "ElectionEvent",
+    "ElectionIdentifierStructure110A",
+    "PollingPlaceStructure110",
+    "PollingPlaceStructure110Channel",
 ]

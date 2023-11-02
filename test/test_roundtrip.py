@@ -2,7 +2,7 @@ from pathlib import Path
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
-from .. import Eml230, Eml510, Eml520
+from .. import Eml110a, Eml230, Eml510, Eml520
 from ..namespace import NAMESPACE
 import xml.etree.ElementTree as ET
 from formencode.doctest_xml_compare import xml_compare
@@ -37,6 +37,7 @@ test_cases = zip(
     files,
 )
 
+p_110a = re.compile(r"[Vv]erkiezingsdefinitie_")
 p_230 = re.compile(r"[Kk]andidatenlijsten_")
 p_510 = re.compile(r"[Tt]elling|[Tt]otaaltelling_")
 p_520 = re.compile(r"[Rr]esultaat_")
@@ -48,7 +49,9 @@ p_520 = re.compile(r"[Rr]esultaat_")
 )
 def test_roundtrip(parser, serializer, reporter, file):
     name = Path(file).name
-    if p_230.match(name):
+    if p_110a.match(name):
+        assert parsing_roundtrip_same(parser, serializer, reporter, file, Eml110a)
+    elif p_230.match(name):
         assert parsing_roundtrip_same(parser, serializer, reporter, file, Eml230)
     elif p_510.match(name):
         assert parsing_roundtrip_same(parser, serializer, reporter, file, Eml510)

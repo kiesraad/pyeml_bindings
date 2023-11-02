@@ -15,6 +15,7 @@ class AffiliationType(Enum):
     """
     Restricts the basic type to the allowed values for the affiliation type.
     """
+
     LIJSTENGROEP = "lijstengroep"
     STEL_GELIJKLUIDENDE_LIJSTEN = "stel gelijkluidende lijsten"
     OP_ZICHZELF_STAANDE_LIJST = "op zichzelf staande lijst"
@@ -36,7 +37,7 @@ class Contest:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: str = field(
         metadata={
@@ -53,6 +54,7 @@ class CreatedByAuthority:
     """
     Instance which created a data set on behalf of another (only if different!)
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -71,7 +73,7 @@ class CreatedByAuthority:
             "type": "Wildcard",
             "namespace": "##any",
             "mixed": True,
-        }
+        },
     )
 
 
@@ -81,6 +83,7 @@ class CreationDateTime:
     Date and time of the last modification of the data which was used to create the
     EML file.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -97,6 +100,7 @@ class DateOfBirthAnnex:
     Use this instead of DateOfBirth when day, month and/or year is unknown, e.g.
     XX-05-1976, XX-XX-1964, XX-XX-XXXX.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -104,7 +108,7 @@ class DateOfBirthAnnex:
         default="",
         metadata={
             "pattern": r"(XX-(XX|\d[1-9]|[1-9]0)-([1-9]\d{3}|\d[1-9]\d\d|\d\d[1-9]\d|\d{3}[1-9])|XX-XX-XXXX)",
-        }
+        },
     )
 
 
@@ -113,6 +117,7 @@ class ElectionCategoryType(Enum):
     Restricts the basic type to the allowed values for the election category
     (election type abreviation)
     """
+
     EK = "EK"
     TK = "TK"
     EP = "EP"
@@ -133,6 +138,7 @@ class ElectionDate:
     """
     Election date.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -151,6 +157,7 @@ class ElectionDomain:
     name, e.g. election of the council of a municipality or province.
     Not needed e.g. for Tweede Kamer or European Parliament.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -158,7 +165,7 @@ class ElectionDomain:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     id: Optional[str] = field(
         default=None,
@@ -166,7 +173,7 @@ class ElectionDomain:
             "name": "Id",
             "type": "Attribute",
             "pattern": r"\d{4}|([12]?[0-9])",
-        }
+        },
     )
 
 
@@ -189,6 +196,7 @@ class ElectionSubcategoryType(Enum):
     :cvar LR:
     :cvar IR:
     """
+
     PS1 = "PS1"
     PS2 = "PS2"
     AB1 = "AB1"
@@ -223,7 +231,7 @@ class LivingAddressType:
             "name": "CountryNameCode",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
-        }
+        },
     )
 
 
@@ -233,6 +241,7 @@ class NationalIdentificationNumber:
 
     For the Netherlands, this is the Burgerservicenummer (BSN).
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -240,7 +249,7 @@ class NationalIdentificationNumber:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -250,6 +259,7 @@ class NominationDate:
     Date of the proposition of the candidate list (filing of the candidate list at
     the electoral committee)
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -277,6 +287,7 @@ class PreferenceThreshold:
     """
     Electoral quota in % a candidate will be prefered.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -311,6 +322,7 @@ class RegionName:
     """
     Region name.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -318,7 +330,7 @@ class RegionName:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -327,6 +339,7 @@ class RegisteredAppellation:
     """
     Registered appellation of the political grouping.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -334,7 +347,7 @@ class RegisteredAppellation:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -343,6 +356,7 @@ class RegisteredBy:
     """
     Person, who registered this appellation.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -350,7 +364,7 @@ class RegisteredBy:
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
 
 
@@ -359,6 +373,7 @@ class RegisteredParty:
     """
     Registered political grouping.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -374,7 +389,7 @@ class RegisteredParty:
         metadata={
             "name": "RegisteredBy",
             "type": "Element",
-        }
+        },
     )
 
 
@@ -387,6 +402,7 @@ class Committee:
     :ivar committee_name: If not set, use region name
     :ivar accept_central_submissions:
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -402,14 +418,14 @@ class Committee:
         metadata={
             "name": "CommitteeName",
             "type": "Attribute",
-        }
+        },
     )
     accept_central_submissions: Optional[bool] = field(
         default=None,
         metadata={
             "name": "AcceptCentralSubmissions",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -420,6 +436,7 @@ class Contests:
     For submission to multiple contests (provinces for EK elections,
     electoral districts for PS, TK and EP).
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -429,13 +446,14 @@ class Contests:
             "name": "Contest",
             "type": "Element",
             "min_occurs": 1,
-        }
+        },
     )
 
 
 @dataclass(kw_only=True)
 class ElectionSubcategory:
     """defines a subcategory to the ElectionCategory: PS1 (one electoral district), PS2 (more than one electoral district), AB1 (less than 19 seats), AB2 (19 seats or more), GR1 (less than 19 seats), GR2 (19 seats or more), TK, EK, BC, GC, and EP (not sub-categorized)"""
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -457,6 +475,7 @@ class RegisteredParties:
     """
     All registered names of political groupings.
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -465,7 +484,7 @@ class RegisteredParties:
         metadata={
             "name": "RegisteredParty",
             "type": "Element",
-        }
+        },
     )
 
 
@@ -484,6 +503,7 @@ class ListData:
     :ivar belongs_to_combination: list combination letter set by program
         3 (only 230b and 230c)
     """
+
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
@@ -492,7 +512,7 @@ class ListData:
         metadata={
             "name": "Contests",
             "type": "Element",
-        }
+        },
     )
     publish_gender: bool = field(
         metadata={
@@ -506,14 +526,14 @@ class ListData:
         metadata={
             "name": "PublicationLanguage",
             "type": "Attribute",
-        }
+        },
     )
     belongs_to_set: Optional[int] = field(
         default=None,
         metadata={
             "name": "BelongsToSet",
             "type": "Attribute",
-        }
+        },
     )
     belongs_to_combination: Optional[str] = field(
         default=None,
@@ -522,7 +542,7 @@ class ListData:
             "type": "Attribute",
             "length": 1,
             "pattern": r"[a-z|A-Z]",
-        }
+        },
     )
 
 
@@ -544,14 +564,14 @@ class Region:
             "name": "Committee",
             "type": "Element",
             "max_occurs": 3,
-        }
+        },
     )
     region_number: Optional[int] = field(
         default=None,
         metadata={
             "name": "RegionNumber",
             "type": "Attribute",
-        }
+        },
     )
     region_category: RegionCategoryType = field(
         metadata={
@@ -560,33 +580,33 @@ class Region:
             "required": True,
         }
     )
-    roman_numerals: bool = field(
-        default=False,
+    roman_numerals: Optional[bool] = field(
+        default=None,
         metadata={
             "name": "RomanNumerals",
             "type": "Attribute",
-        }
+        },
     )
-    frysian_export_allowed: bool = field(
-        default=False,
+    frysian_export_allowed: Optional[bool] = field(
+        default=None,
         metadata={
             "name": "FrysianExportAllowed",
             "type": "Attribute",
-        }
+        },
     )
     superior_region_number: Optional[int] = field(
         default=None,
         metadata={
             "name": "SuperiorRegionNumber",
             "type": "Attribute",
-        }
+        },
     )
     superior_region_category: Optional[RegionCategoryType] = field(
         default=None,
         metadata={
             "name": "SuperiorRegionCategory",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -601,5 +621,5 @@ class ElectionTree:
             "name": "Region",
             "type": "Element",
             "min_occurs": 1,
-        }
+        },
     )
