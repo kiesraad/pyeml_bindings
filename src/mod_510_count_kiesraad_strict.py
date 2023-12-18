@@ -7,12 +7,12 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional, Any
 from xsdata.models.datatype import XmlDateTime
-from pyeml_bindings.emlcore_kiesraad_strict import (
+from pyeml_bindings.src.emlcore_kiesraad_strict import (
     Emlstructure,
     EventIdentifier,
     ReferendumOptionIdentifier,
 )
-from pyeml_bindings.kiesraad_eml_restrictions import (
+from pyeml_bindings.src.kiesraad_eml_restrictions import (
     AffiliationIdentifierStructureKr,
     CandidateIdentifierStructureKr,
     CandidateStructureKr,

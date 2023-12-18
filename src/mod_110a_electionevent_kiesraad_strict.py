@@ -7,18 +7,18 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 from xsdata.models.datatype import XmlDate, XmlDateTime
-from pyeml_bindings.emlcore_kiesraad_strict import Emlstructure, VotingMethodType
-from pyeml_bindings.kiesraad_eml_extensions import (
+from pyeml_bindings.src.emlcore_kiesraad_strict import Emlstructure, VotingMethodType
+from pyeml_bindings.src.kiesraad_eml_extensions import (
     ElectionSubcategoryType,
     ElectionTree,
     RegisteredParties,
 )
-from pyeml_bindings.kiesraad_eml_restrictions import (
+from pyeml_bindings.src.kiesraad_eml_restrictions import (
     ContestIdentifierStructureKr,
     EmlstructureKr,
     ElectionIdentifierStructureKr,
 )
-from pyeml_bindings.x_al_kiesraad_strict import Address
+from pyeml_bindings.src.x_al_kiesraad_strict import Address
 
 __NAMESPACE__ = "urn:oasis:names:tc:evs:schema:eml"
 

@@ -3,7 +3,7 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from .. import Eml110a, Eml230, Eml510, Eml520
-from ..namespace import NAMESPACE
+from ..src.namespace import NAMESPACE
 import xml.etree.ElementTree as ET
 from formencode.doctest_xml_compare import xml_compare
 from sys import stdout

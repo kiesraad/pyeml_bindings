@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional, Union
 from xsdata.models.datatype import XmlDate, XmlDateTime
-from pyeml_bindings.emlcore_kiesraad_strict import (
+from pyeml_bindings.src.emlcore_kiesraad_strict import (
     AffiliationIdentifierStructure,
     AgentIdentifier,
     AuthorityIdentifierStructure,
@@ -16,12 +16,12 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
     GenderType,
     ReportingUnitIdentifierStructure,
 )
-from pyeml_bindings.emlexternals_kiesraad_strict import (
+from pyeml_bindings.src.emlexternals_kiesraad_strict import (
     AuthorityAddressStructure,
     PersonNameStructure,
 )
-from pyeml_bindings.external.xmldsig_core_schema import CanonicalizationMethod
-from pyeml_bindings.kiesraad_eml_extensions import (
+from pyeml_bindings.src.external.xmldsig_core_schema import CanonicalizationMethod
+from pyeml_bindings.src.kiesraad_eml_extensions import (
     AffiliationType,
     CreatedByAuthority,
     ElectionCategoryType,
@@ -30,7 +30,7 @@ from pyeml_bindings.kiesraad_eml_extensions import (
     ListData,
     LivingAddress,
 )
-from pyeml_bindings.x_al_kiesraad_strict import (
+from pyeml_bindings.src.x_al_kiesraad_strict import (
     AddressDetails,
     CountryType,
     GenericCountryType,
