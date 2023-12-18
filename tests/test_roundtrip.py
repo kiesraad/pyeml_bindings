@@ -2,8 +2,8 @@ from pathlib import Path
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
-from .. import Eml110a, Eml230, Eml510, Eml520
-from ..namespace import NAMESPACE
+from pyeml_bindings import Eml110a, Eml230, Eml510, Eml520
+from pyeml_bindings.namespace import NAMESPACE
 import xml.etree.ElementTree as ET
 from formencode.doctest_xml_compare import xml_compare
 from sys import stdout
@@ -28,7 +28,7 @@ def parsing_roundtrip_same(parser, serializer, reporter, path_to_eml, type) -> b
 parser = XmlParser(ParserConfig(fail_on_unknown_properties=False))
 serializer = XmlSerializer()
 reporter = lambda x: stdout.write(x + "\n")
-files = glob.glob(f"pyeml_bindings/test/data/**/*.eml.xml", recursive=True)
+files = glob.glob(f"data/**/*.eml.xml", recursive=True)
 
 test_cases = zip(
     itertools.repeat(parser),
