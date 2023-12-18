@@ -8,7 +8,7 @@ from decimal import Decimal
 from enum import Enum
 from typing import List, Optional, Union
 from xsdata.models.datatype import XmlDate, XmlDateTime
-from pyeml_bindings.src.emlexternals_kiesraad_strict import (
+from pyeml_bindings.emlexternals_kiesraad_strict import (
     AuthorityAddressStructure,
     ElectoralAddressStructure,
     MailingAddressStructure,
@@ -19,8 +19,8 @@ from pyeml_bindings.src.emlexternals_kiesraad_strict import (
     ProxyAddressStructure,
     QualifyingAddressStructure,
 )
-from pyeml_bindings.src.external.emltimestamp import Timestamp
-from pyeml_bindings.src.external.xmldsig_core_schema import Signature
+from pyeml_bindings.external.emltimestamp import Timestamp
+from pyeml_bindings.external.xmldsig_core_schema import Signature
 
 __NAMESPACE__ = "urn:oasis:names:tc:evs:schema:eml"
 

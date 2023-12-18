@@ -3,7 +3,7 @@
 Generator: DataclassGenerator
 See: https://xsdata.readthedocs.io/
 """
-from pyeml_bindings.src.external.emltimestamp import (
+from pyeml_bindings.external.emltimestamp import (
     AccuracyType,
     CanonicalizationMethod as EmltimestampCanonicalizationMethod,
     CanonicalizationMethodType as EmltimestampCanonicalizationMethodType,
@@ -53,7 +53,7 @@ from pyeml_bindings.src.external.emltimestamp import (
     X509DataType as EmltimestampX509DataType,
     X509IssuerSerialType as EmltimestampX509IssuerSerialType,
 )
-from pyeml_bindings.src.external.xmldsig_core_schema import (
+from pyeml_bindings.external.xmldsig_core_schema import (
     CanonicalizationMethod as XmldsigCoreSchemaCanonicalizationMethod,
     CanonicalizationMethodType as XmldsigCoreSchemaCanonicalizationMethodType,
     DsakeyValue as XmldsigCoreSchemaDsakeyValue,

@@ -4,8 +4,8 @@ Generator: DataclassGenerator
 See: https://xsdata.readthedocs.io/
 """
 from dataclasses import dataclass, field
-from pyeml_bindings.src.x_al_kiesraad_strict import AddressDetails
-from pyeml_bindings.src.x_nl_kiesraad_strict import (
+from pyeml_bindings.x_al_kiesraad_strict import AddressDetails
+from pyeml_bindings.x_nl_kiesraad_strict import (
     NameDetails1,
     PersonName,
 )

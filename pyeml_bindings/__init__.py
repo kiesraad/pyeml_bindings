@@ -3,7 +3,7 @@
 Generator: DataclassGenerator
 See: https://xsdata.readthedocs.io/
 """
-from pyeml_bindings.src.emlcore_kiesraad_strict import (
+from pyeml_bindings.emlcore_kiesraad_strict import (
     Accepted,
     Affiliation,
     AffiliationIdentifier,
@@ -129,7 +129,7 @@ from pyeml_bindings.src.emlcore_kiesraad_strict import (
     WriteInType,
     YesNoType,
 )
-from pyeml_bindings.src.emlexternals_kiesraad_strict import (
+from pyeml_bindings.emlexternals_kiesraad_strict import (
     AuthorityAddressStructure,
     ElectoralAddressStructure,
     MailingAddressStructure,
@@ -140,7 +140,7 @@ from pyeml_bindings.src.emlexternals_kiesraad_strict import (
     ProxyAddressStructure,
     QualifyingAddressStructure,
 )
-from pyeml_bindings.src.kiesraad_eml_extensions import (
+from pyeml_bindings.kiesraad_eml_extensions import (
     AffiliationType,
     Committee,
     CommitteeCategoryType,
@@ -171,7 +171,7 @@ from pyeml_bindings.src.kiesraad_eml_extensions import (
     RegisteredParties,
     RegisteredParty,
 )
-from pyeml_bindings.src.kiesraad_eml_restrictions import (
+from pyeml_bindings.kiesraad_eml_restrictions import (
     AddressStructureRestrictedKr,
     AffiliationIdentifierStructureKr,
     AffiliationStructureKr,
@@ -192,7 +192,7 @@ from pyeml_bindings.src.kiesraad_eml_restrictions import (
     QualifyingAddressStructureKr,
     ReportingUnitIdentifierStructureKr,
 )
-from pyeml_bindings.src.mod_110a_electionevent_kiesraad_strict import (
+from pyeml_bindings.mod_110a_electionevent_kiesraad_strict import (
     ContestIdentifierStructure110A,
     Emlstructure110,
     Eml as Eml110a,
@@ -201,7 +201,7 @@ from pyeml_bindings.src.mod_110a_electionevent_kiesraad_strict import (
     PollingPlaceStructure110,
     PollingPlaceStructure110Channel,
 )
-from pyeml_bindings.src.mod_210_nomination_kiesraad_strict import (
+from pyeml_bindings.mod_210_nomination_kiesraad_strict import (
     AffiliationIdentifierStructure210,
     AffiliationStructure210,
     CandidateIdentifierStructure210,
@@ -215,14 +215,14 @@ from pyeml_bindings.src.mod_210_nomination_kiesraad_strict import (
     ProposerStructureRestricted,
     ProposerStructureRestrictedJobTitle,
 )
-from pyeml_bindings.src.mod_230_candidatelist_kiesraad_strict import (
+from pyeml_bindings.mod_230_candidatelist_kiesraad_strict import (
     CandidateList,
     Emlstructure230,
     Eml as Eml230,
     Emlstructure230Id,
     ElectionIdentifierStructure230,
 )
-from pyeml_bindings.src.mod_510_count_kiesraad_strict import (
+from pyeml_bindings.mod_510_count_kiesraad_strict import (
     AffiliationIdentifierStructure510,
     CandidateIdentifierStructure510,
     CandidateStructure510,
@@ -234,7 +234,7 @@ from pyeml_bindings.src.mod_510_count_kiesraad_strict import (
     ReportingUnitVotes,
     UncountedVotesReasonCode,
 )
-from pyeml_bindings.src.mod_520_result_kiesraad_strict import (
+from pyeml_bindings.mod_520_result_kiesraad_strict import (
     AffiliationIdentifierStructure520,
     CandidateIdentifierStructure520,
     CandidateStructure520,
@@ -244,7 +244,7 @@ from pyeml_bindings.src.mod_520_result_kiesraad_strict import (
     Result,
     SelectionRanking,
 )
-from pyeml_bindings.src.x_al_kiesraad_strict import (
+from pyeml_bindings.x_al_kiesraad_strict import (
     Address,
     AddressDetails,
     AddressLine,
@@ -308,7 +308,7 @@ from pyeml_bindings.src.x_al_kiesraad_strict import (
     ThoroughfareDependentThoroughfares,
     XAl,
 )
-from pyeml_bindings.src.x_nl_kiesraad_strict import (
+from pyeml_bindings.x_nl_kiesraad_strict import (
     Function,
     JointPersonName,
     NameDetails,
