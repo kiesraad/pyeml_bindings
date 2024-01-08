@@ -1,12 +1,16 @@
 # Python bindings for the EML_NL Standard
-Data bindings for the EML_NL Standard to load EML_NL files into Python [dataclasses](https://docs.python.org/3/library/dataclasses.html) with correct structure, datatypes and typehints following the [EML_NL Xml Schema Definitions](https://www.kiesraad.nl/adviezen-en-publicaties/formulieren/2016/osv/eml-bestanden/eml_nl_1_2_1-xsd). Type hints can be staticically checked using [mypy](https://mypy-lang.org/) or [pyright](https://github.com/microsoft/pyright).
+Data bindings for the EML_NL Standard to load EML_NL files into Python [dataclasses](https://docs.python.org/3/library/dataclasses.html) with correct structure, datatypes and typehints following the [EML_NL Xml Schema Definitions](https://www.kiesraad.nl/adviezen-en-publicaties/formulieren/2016/osv/eml-bestanden/eml_nl_1_2_1-xsd). Type hints can be statically checked using [mypy](https://mypy-lang.org/) or [pyright](https://github.com/microsoft/pyright).
 
 ## Requirements
-- At least Python version 3.10 for the [KW_ONLY](https://docs.python.org/3/library/dataclasses.html#dataclasses.KW_ONLY) type annotations for dataclasses. This is so that non-nullable fields can be marked as mandatory (see [here](https://xsdata.readthedocs.io/en/latest/faq/why-non-nullable-fields-are-marked-as-optional.html)).
-- [xsData](https://github.com/tefra/xsdata) for parsing using these databindings.
+- At least Python version 3.10 for the [KW_ONLY](https://docs.python.org/3/library/dataclasses.html#dataclasses.KW_ONLY) type annotations for dataclasses. This is so that non-nullable fields can be marked as mandatory (refer to [xsdata documentation](https://xsdata.readthedocs.io/en/latest/faq/why-non-nullable-fields-are-marked-as-optional.html)).
+- [xsData](https://github.com/tefra/xsdata) for parsing using these data bindings.
+
+For running tests, additionally:
+- [pytest](https://docs.pytest.org/) for the test framework.
+- [formencode](http://www.formencode.org/) for XML comparison.
 
 ## Testing
-The bindings are tested on over 2500 different EML files from different type of Dutch elections, all downloaded from [data.overheid.nl](https://data.overheid.nl/community/organization/kiesraad) using a roundtrip serialization test.
+The bindings are tested on over 2500 different EML files from different type of Dutch elections, all downloaded from [data.overheid.nl](https://data.overheid.nl/community/organization/kiesraad) using a roundtrip serialization test. To run the tests, install the test dependencies (see above), put EML files into a `data` folder and run `pytest` in the root folder.
 
 See the [test report](pyeml_bindings_testreport.html)
 
@@ -43,7 +47,6 @@ with open(Path("output.xml"), "w") as out_file:
     # to use the same namespace prefixes.
     # If we don't, we still get back valid EML but with ns0, ns1 etc.
     serializer.write(out=out_file, obj=eml, ns_map=NAMESPACE)
-
 ```
 
 ## Building
