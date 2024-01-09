@@ -27,7 +27,7 @@ def parsing_roundtrip_same(parser, serializer, reporter, path_to_eml, type) -> b
 
 parser = XmlParser(ParserConfig(fail_on_unknown_properties=False))
 serializer = XmlSerializer()
-reporter = lambda x: stdout.write(x + "\n")
+reporter = print
 files = glob.glob(f"data/**/*.eml.xml", recursive=True)
 
 test_cases = zip(
