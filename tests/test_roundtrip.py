@@ -1,16 +1,17 @@
+import glob
+import itertools
+import re
+import xml.etree.ElementTree as ET
 from pathlib import Path
+
+import pytest
+from formencode.doctest_xml_compare import xml_compare
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
+
 from pyeml_bindings import Eml110a, Eml230, Eml510, Eml520
 from pyeml_bindings.namespace import NAMESPACE
-import xml.etree.ElementTree as ET
-from formencode.doctest_xml_compare import xml_compare
-from sys import stdout
-import pytest
-import itertools
-import glob
-import re
 
 
 def parsing_roundtrip_same(parser, serializer, reporter, path_to_eml, type) -> bool:
@@ -28,7 +29,7 @@ def parsing_roundtrip_same(parser, serializer, reporter, path_to_eml, type) -> b
 parser = XmlParser(ParserConfig(fail_on_unknown_properties=False))
 serializer = XmlSerializer()
 reporter = print
-files = glob.glob(f"data/**/*.eml.xml", recursive=True)
+files = glob.glob("data/**/*.eml.xml", recursive=True)
 
 test_cases = zip(
     itertools.repeat(parser),
@@ -49,6 +50,11 @@ p_520 = re.compile(r"[Rr]esultaat_")
 )
 def test_roundtrip(parser, serializer, reporter, file):
     name = Path(file).name
+
+    # Skip known invalid EML file from TK2023
+    if name == "Telling_TK2023_NBSB.eml.xml":
+        pytest.skip(f"Skipping known invalid EML file {name}")
+
     if p_110a.match(name):
         assert parsing_roundtrip_same(parser, serializer, reporter, file, Eml110a)
     elif p_230.match(name):

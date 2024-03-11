@@ -5,12 +5,12 @@ build-backend = "hatchling.build"
 [project]
 name = "pyeml_bindings"
 description = "Data bindings for the EML_NL Standard"
-version = "1.0.0"
+version = "1.0.1"
 authors = [{name = "Chris Mostert", email = "chris.mostert@kiesraad.nl"}]
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "xsdata == 23.*"
+    "xsdata == 24.*"
 ]
 license = {file = "LICENSE"}
 classifiers = [

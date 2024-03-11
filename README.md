@@ -55,5 +55,10 @@ To build the package yourself instead of installing the `.whl`, simply clone the
 python -m build
 ```
 
+or you can simply install the package by running
+```
+python -m pip install .
+```
+
 ## Codegen
 These bindings are mostly generated using [xsData](https://xsdata.readthedocs.io) with some minor changes where needed. See commit history for these changes.
