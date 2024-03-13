@@ -3,6 +3,8 @@
 Generator: DataclassGenerator
 See: https://xsdata.readthedocs.io/
 """
+
+from pyeml_bindings.converters.xml_date_time import FullPrecisionXmlDateTimeConverter
 from pyeml_bindings.emlcore_kiesraad_strict import (
     Accepted,
     Affiliation,
@@ -23,8 +25,8 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
     BallotIdentifierRange,
     BallotIdentifierRangeStructure,
     BallotIdentifierStructure,
-    BinaryItemStructure,
     BinaryFormat,
+    BinaryItemStructure,
     Candidate,
     CandidateIdentifier,
     CandidateIdentifierStructure,
@@ -36,19 +38,19 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
     ContactDetailsStructure,
     ContestIdentifier,
     ContestIdentifierStructure,
+    CountingAlgorithm,
     CountMetric,
     CountMetricStructure,
     CountQualifier,
     CountQualifierStructure,
-    CountingAlgorithm,
     DocumentIdentifier,
     DocumentIdentifierStructure,
-    Emlstructure,
     ElectionGroupStructure,
     ElectionIdentifier,
     ElectionIdentifierStructure,
     ElectionStatement,
     EmailStructure,
+    Emlstructure,
     Endorsement,
     EventIdentifier,
     EventIdentifierStructure,
@@ -63,8 +65,8 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
     ManagingAuthority,
     ManagingAuthorityStructure,
     MaxVotes,
-    MessageType,
     MessagesStructure,
+    MessageType,
     MinVotes,
     NominatingOfficer,
     NominatingOfficerStructure,
@@ -74,7 +76,6 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
     Period,
     PeriodStructure,
     PeriodStructurePermanent,
-    PersonName as EmlcorePersonName,
     PollingDistrict,
     PollingDistrictStructure,
     PollingPlace,
@@ -113,10 +114,6 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
     SupporterStructure,
     TelephoneStructure,
     TransactionId,
-    Vtoken,
-    VtokenQualified,
-    VtokenQualifiedStructure,
-    VtokenStructure,
     VoterIdentificationStructure,
     VoterInformationStructure,
     VoterInformationStructureGender,
@@ -125,9 +122,16 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
     VotingChannelType,
     VotingMethod,
     VotingMethodType,
+    Vtoken,
+    VtokenQualified,
+    VtokenQualifiedStructure,
+    VtokenStructure,
     WriteIn,
     WriteInType,
     YesNoType,
+)
+from pyeml_bindings.emlcore_kiesraad_strict import (
+    PersonName as EmlcorePersonName,
 )
 from pyeml_bindings.emlexternals_kiesraad_strict import (
     AuthorityAddressStructure,
@@ -182,8 +186,8 @@ from pyeml_bindings.kiesraad_eml_restrictions import (
     CandidateStructureKr,
     ContactDetailsStructureKr,
     ContestIdentifierStructureKr,
-    EmlstructureKr,
     ElectionIdentifierStructureKr,
+    EmlstructureKr,
     GenericMailingAddressStructureKr,
     GenericQualifyingAddressStructureKr,
     MailingAddressStructureKr,
@@ -194,12 +198,14 @@ from pyeml_bindings.kiesraad_eml_restrictions import (
 )
 from pyeml_bindings.mod_110a_electionevent_kiesraad_strict import (
     ContestIdentifierStructure110A,
-    Emlstructure110,
-    Eml as Eml110a,
     ElectionEvent,
     ElectionIdentifierStructure110A,
+    Emlstructure110,
     PollingPlaceStructure110,
     PollingPlaceStructure110Channel,
+)
+from pyeml_bindings.mod_110a_electionevent_kiesraad_strict import (
+    Eml as Eml110a,
 )
 from pyeml_bindings.mod_210_nomination_kiesraad_strict import (
     AffiliationIdentifierStructure210,
@@ -207,42 +213,50 @@ from pyeml_bindings.mod_210_nomination_kiesraad_strict import (
     CandidateIdentifierStructure210,
     CandidateStructure210,
     ContestIdentifierStructure210,
-    Emlstructure210,
-    Eml as Eml210,
     ElectionIdentifierStructure210,
+    Emlstructure210,
     Nomination,
     ProposerStructureKr,
     ProposerStructureRestricted,
     ProposerStructureRestrictedJobTitle,
 )
+from pyeml_bindings.mod_210_nomination_kiesraad_strict import (
+    Eml as Eml210,
+)
 from pyeml_bindings.mod_230_candidatelist_kiesraad_strict import (
     CandidateList,
-    Emlstructure230,
-    Eml as Eml230,
-    Emlstructure230Id,
     ElectionIdentifierStructure230,
+    Emlstructure230,
+    Emlstructure230Id,
+)
+from pyeml_bindings.mod_230_candidatelist_kiesraad_strict import (
+    Eml as Eml230,
 )
 from pyeml_bindings.mod_510_count_kiesraad_strict import (
     AffiliationIdentifierStructure510,
     CandidateIdentifierStructure510,
     CandidateStructure510,
     Count,
-    Emlstructure510,
-    Eml as Eml510,
     ElectionIdentifierStructure510,
+    Emlstructure510,
     RejectedVotesReasonCode,
     ReportingUnitVotes,
     UncountedVotesReasonCode,
+)
+from pyeml_bindings.mod_510_count_kiesraad_strict import (
+    Eml as Eml510,
 )
 from pyeml_bindings.mod_520_result_kiesraad_strict import (
     AffiliationIdentifierStructure520,
     CandidateIdentifierStructure520,
     CandidateStructure520,
-    Emlstructure520,
-    Eml as Eml520,
     ElectionIdentifierStructure520,
+    Emlstructure520,
     Result,
     SelectionRanking,
+)
+from pyeml_bindings.mod_520_result_kiesraad_strict import (
+    Eml as Eml520,
 )
 from pyeml_bindings.x_al_kiesraad_strict import (
     Address,
@@ -271,41 +285,41 @@ from pyeml_bindings.x_al_kiesraad_strict import (
     MailStopType,
     MinimalCountryType,
     MinimalLocalityType,
+    PostalCode,
+    PostalRouteType,
     PostBox,
     PostOffice,
     PostOfficeNumberIndicatorOccurrence,
-    PostalCode,
-    PostalRouteType,
     Premise,
     PremiseNameTypeOccurrence,
     PremiseNumber,
+    PremiseNumberIndicatorOccurrence,
+    PremiseNumberNumberType,
+    PremiseNumberNumberTypeOccurrence,
     PremiseNumberPrefix,
     PremiseNumberRangeIndicatorOccurence,
     PremiseNumberRangeNumberRangeOccurence,
     PremiseNumberSuffix,
-    PremiseNumberIndicatorOccurrence,
-    PremiseNumberNumberType,
-    PremiseNumberNumberTypeOccurrence,
     SubPremiseNameTypeOccurrence,
     SubPremiseNumberIndicatorOccurrence,
     SubPremiseNumberNumberTypeOccurrence,
     SubPremiseType,
     Thoroughfare,
+    ThoroughfareDependentThoroughfares,
     ThoroughfareLeadingTypeType,
     ThoroughfareNameType,
     ThoroughfareNumber,
+    ThoroughfareNumberIndicatorOccurrence,
+    ThoroughfareNumberNumberOccurrence,
+    ThoroughfareNumberNumberType,
     ThoroughfareNumberPrefix,
     ThoroughfareNumberRangeIndicatorOccurrence,
     ThoroughfareNumberRangeNumberRangeOccurrence,
     ThoroughfareNumberRangeRangeType,
     ThoroughfareNumberSuffix,
-    ThoroughfareNumberIndicatorOccurrence,
-    ThoroughfareNumberNumberOccurrence,
-    ThoroughfareNumberNumberType,
     ThoroughfarePostDirectionType,
     ThoroughfarePreDirectionType,
     ThoroughfareTrailingTypeType,
-    ThoroughfareDependentThoroughfares,
     XAl,
 )
 from pyeml_bindings.x_nl_kiesraad_strict import (
@@ -316,8 +330,10 @@ from pyeml_bindings.x_nl_kiesraad_strict import (
     NameLineType,
     OrganisationNameDetails,
     OrganisationNameDetails1,
-    PersonName as XNlPersonName,
     XNl,
+)
+from pyeml_bindings.x_nl_kiesraad_strict import (
+    PersonName as XNlPersonName,
 )
 
 __all__ = [
@@ -616,3 +632,9 @@ __all__ = [
     "PollingPlaceStructure110",
     "PollingPlaceStructure110Channel",
 ]
+
+# Register custom converters for serialization
+from xsdata.formats.converter import converter
+from xsdata.models.datatype import XmlDateTime
+
+converter.register_converter(XmlDateTime, FullPrecisionXmlDateTimeConverter())
