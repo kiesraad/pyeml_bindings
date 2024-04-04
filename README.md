@@ -1,4 +1,9 @@
 # Python bindings for the EML_NL Standard
+
+> [!NOTE]
+>
+> This Python package makes it easier to work with `EML_NL` files in Python, but is no substitute for the [official standard](https://www.kiesraad.nl/verkiezingen/osv-en-eml/eml-standaard). Please use the official XSD files for validating `EML_NL` files. 
+
 Data bindings for the EML_NL Standard to load EML_NL files into Python [dataclasses](https://docs.python.org/3/library/dataclasses.html) with correct structure, datatypes and typehints following the [EML_NL Xml Schema Definitions](https://www.kiesraad.nl/adviezen-en-publicaties/formulieren/2016/osv/eml-bestanden/eml_nl_1_2_1-xsd). Type hints can be statically checked using [mypy](https://mypy-lang.org/) or [pyright](https://github.com/microsoft/pyright).
 
 ## Requirements
@@ -12,7 +17,8 @@ For running tests, additionally:
 ## Testing
 The bindings are tested on over 2500 different EML files from different type of Dutch elections, all downloaded from [data.overheid.nl](https://data.overheid.nl/community/organization/kiesraad) using a roundtrip serialization test. To run the tests, install the test dependencies (see above), put EML files into a `data` folder and run `pytest` in the root folder.
 
-See the [test report](pyeml_bindings_testreport.html)
+### Automated testing
+Additionally, the bindings are tested against the election data specified in `testfiles.txt`. Due to the test duration, only the most recent election files are included in this test.
 
 ## Usage
 Make sure that xsData is installed. Using example file [`Telling_PS2023_Flevoland_gemeente_Almere.eml.xml`](https://data.overheid.nl/dataset/verkiezingsuitslag-provinciale-staten-2023#panel-resources) which has EML id 510b:
