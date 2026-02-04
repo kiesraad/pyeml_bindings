@@ -3,9 +3,11 @@
 Generator: DataclassGenerator
 See: https://xsdata.readthedocs.io/
 """
+
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional
+
 from xsdata.models.datatype import XmlDate, XmlDateTime
 
 __NAMESPACE__ = "http://www.kiesraad.nl/extensions"
@@ -623,3 +625,42 @@ class ElectionTree:
             "min_occurs": 1,
         },
     )
+
+
+class InvestigationReasonCode(Enum):
+    ONDERZOCHT_VANWEGE_ONVERKLAARD_VERSCHIL = "onderzocht vanwege onverklaard verschil"
+    ONDERZOCHT_VANWEGE_ANDERE_FOUT = "onderzocht vanwege andere fout"
+    UITSLAG_GECORRIGEERD = "uitslag gecorrigeerd"
+    TOEGELATEN_KIEZERS_OPNIEUW_VASTGESTELD = "toegelaten kiezers opnieuw vastgesteld"
+    ONDERZOCHT_VANWEGE_ANDERE_REDEN = "onderzocht vanwege andere reden"
+    STEMBILJETTEN_DEELS_HERTELD = "stembiljetten deels herteld"
+
+
+@dataclass(kw_only=True)
+class ReportingUnitInvestigations:
+    class Meta:
+        namespace = "http://www.kiesraad.nl/extensions"
+
+    investigation: list["ReportingUnitInvestigations.Investigation"] = field(
+        default_factory=list,
+        metadata={
+            "name": "Investigation",
+            "type": "Element",
+            "max_occurs": 3,
+        },
+    )
+
+    @dataclass(kw_only=True)
+    class Investigation:
+        value: bool = field(
+            metadata={
+                "required": True,
+            }
+        )
+        reason_code: InvestigationReasonCode = field(
+            metadata={
+                "name": "ReasonCode",
+                "type": "Attribute",
+                "required": True,
+            }
+        )
