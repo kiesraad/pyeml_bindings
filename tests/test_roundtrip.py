@@ -51,8 +51,8 @@ p_520 = re.compile(r"[Rr]esultaat_")
 def test_roundtrip(parser, serializer, reporter, file):
     name = Path(file).name
 
-    # Skip known invalid EML file from TK2023
-    if name == "Telling_TK2023_NBSB.eml.xml":
+    # Skip known invalid EML file from TK2025
+    if name == "Telling_TK2025_NBSB.eml.xml":
         pytest.skip(f"Skipping known invalid EML file {name}")
 
     if p_110a.match(name):

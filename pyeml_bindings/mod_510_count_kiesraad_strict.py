@@ -3,22 +3,26 @@
 Generator: DataclassGenerator
 See: https://xsdata.readthedocs.io/
 """
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Optional, Any
+from typing import Any, List, Optional
+
 from xsdata.models.datatype import XmlDateTime
+
 from pyeml_bindings.emlcore_kiesraad_strict import (
     Emlstructure,
     EventIdentifier,
     ReferendumOptionIdentifier,
 )
+from pyeml_bindings.kiesraad_eml_extensions import ReportingUnitInvestigations
 from pyeml_bindings.kiesraad_eml_restrictions import (
     AffiliationIdentifierStructureKr,
     CandidateIdentifierStructureKr,
     CandidateStructureKr,
     ContestIdentifierStructureKr,
-    EmlstructureKr,
     ElectionIdentifierStructureKr,
+    EmlstructureKr,
     ManagingAuthorityStructureKr,
     ReportingUnitIdentifierStructureKr,
 )
@@ -171,6 +175,14 @@ class ReportingUnitVotes:
             "name": "UncountedVotes",
             "type": "Element",
             "max_occurs": 14,
+        },
+    )
+    reporting_unit_investigations: Optional[ReportingUnitInvestigations] = field(
+        default=None,
+        metadata={
+            "name": "ReportingUnitInvestigations",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
         },
     )
 

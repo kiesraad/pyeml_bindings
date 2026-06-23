@@ -174,6 +174,7 @@ from pyeml_bindings.kiesraad_eml_extensions import (
     RegisteredBy,
     RegisteredParties,
     RegisteredParty,
+    ReportingUnitInvestigations,
 )
 from pyeml_bindings.kiesraad_eml_restrictions import (
     AddressStructureRestrictedKr,
@@ -631,6 +632,7 @@ __all__ = [
     "ElectionIdentifierStructure110A",
     "PollingPlaceStructure110",
     "PollingPlaceStructure110Channel",
+    "ReportingUnitInvestigations",
 ]
 
 # Register custom converters for serialization
