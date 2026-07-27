@@ -7,7 +7,7 @@
 Data bindings for the EML_NL Standard to load EML_NL files into Python [dataclasses](https://docs.python.org/3/library/dataclasses.html) with correct structure, datatypes and typehints following the [EML_NL Xml Schema Definitions](https://www.kiesraad.nl/adviezen-en-publicaties/formulieren/2016/osv/eml-bestanden/eml_nl_1_2_1-xsd). Type hints can be statically checked using [mypy](https://mypy-lang.org/) or [pyright](https://github.com/microsoft/pyright).
 
 ## Requirements
-- At least Python version 3.10 for the [KW_ONLY](https://docs.python.org/3/library/dataclasses.html#dataclasses.KW_ONLY) type annotations for dataclasses. This is so that non-nullable fields can be marked as mandatory (refer to [xsdata documentation](https://xsdata.readthedocs.io/en/latest/faq/why-non-nullable-fields-are-marked-as-optional.html)).
+- At least Python version 3.10
 - [xsData](https://github.com/tefra/xsdata) for parsing using these data bindings.
 
 For running tests, additionally:
