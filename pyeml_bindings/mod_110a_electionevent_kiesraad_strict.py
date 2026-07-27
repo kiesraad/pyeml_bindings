@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 from pyeml_bindings.emlcore_kiesraad_strict import (
     MaxVotes,
@@ -8,12 +10,14 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
 )
 from pyeml_bindings.kiesraad_eml_extensions import (
     CreationDateTime,
+    ElectionDate,
     ElectionSubcategory,
     ElectionTree,
     NominationDate,
     NumberOfSeats,
     PreferenceThreshold,
     RegisteredParties,
+    Schema,
 )
 from pyeml_bindings.kiesraad_eml_restrictions import (
     ContestIdentifierStructureKr,
@@ -51,12 +55,22 @@ class ContestIdentifierStructure110A(ContestIdentifierStructureKr):
 @dataclass(kw_only=True)
 class Emlstructure110(EmlstructureKr):
     """
-    Only TransactionId and IssueDate needed, CanoncalizationMethod added.
+    only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
 
     class Meta:
         name = "EMLstructure110"
 
+    schema: list[Schema] = field(
+        default_factory=list,
+        metadata={
+            "name": "Schema",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 2,
+            "max_occurs": 3,
+        },
+    )
     creation_date_time: list[CreationDateTime] = field(
         default_factory=list,
         metadata={
@@ -81,7 +95,7 @@ class Emlstructure110(EmlstructureKr):
 @dataclass(kw_only=True)
 class ElectionIdentifierStructure110A(ElectionIdentifierStructureKr):
     """
-    Mandatory ElectionCategory, and some additional Elements.
+    mandatory ElectionCategory, and some additional Elements.
     """
 
     class Meta:
@@ -92,13 +106,22 @@ class ElectionIdentifierStructure110A(ElectionIdentifierStructureKr):
             "name": "ElectionName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
     election_subcategory: list[ElectionSubcategory] = field(
         default_factory=list,
         metadata={
             "name": "ElectionSubcategory",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 3,
+            "max_occurs": 4,
+        },
+    )
+    election_date: list[ElectionDate] = field(
+        default_factory=list,
+        metadata={
+            "name": "ElectionDate",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "min_occurs": 3,
@@ -123,39 +146,37 @@ class PollingPlaceStructure110:
     Id content further restricted, contest name omitted.
     """
 
-    physical_location: "PollingPlaceStructure110.PhysicalLocation" = field(
+    physical_location: PollingPlaceStructure110.PhysicalLocation = field(
         metadata={
             "name": "PhysicalLocation",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
     channel: PollingPlaceStructure110Channel = field(
         metadata={
             "name": "Channel",
             "type": "Attribute",
-            "required": True,
         }
     )
 
     @dataclass(kw_only=True)
     class PhysicalLocation:
-        address: "PollingPlaceStructure110.PhysicalLocation.Address" = field(
+        address: PollingPlaceStructure110.PhysicalLocation.Address = field(
             metadata={
                 "name": "Address",
                 "type": "Element",
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
-                "required": True,
             }
         )
-        polling_station: "PollingPlaceStructure110.PhysicalLocation.PollingStation" = field(
-            metadata={
-                "name": "PollingStation",
-                "type": "Element",
-                "namespace": "urn:oasis:names:tc:evs:schema:eml",
-                "required": True,
-            }
+        polling_station: PollingPlaceStructure110.PhysicalLocation.PollingStation = (
+            field(
+                metadata={
+                    "name": "PollingStation",
+                    "type": "Element",
+                    "namespace": "urn:oasis:names:tc:evs:schema:eml",
+                }
+            )
         )
 
         @dataclass(kw_only=True)
@@ -165,7 +186,6 @@ class PollingPlaceStructure110:
                     "name": "Address",
                     "type": "Element",
                     "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-                    "required": True,
                 }
             )
 
@@ -174,7 +194,6 @@ class PollingPlaceStructure110:
             value: str = field(
                 default="",
                 metadata={
-                    "required": True,
                     "pattern": r"\d+",
                 },
             )
@@ -182,7 +201,6 @@ class PollingPlaceStructure110:
                 metadata={
                     "name": "Id",
                     "type": "Attribute",
-                    "required": True,
                     "pattern": r"\d+",
                 }
             )
@@ -191,24 +209,23 @@ class PollingPlaceStructure110:
 @dataclass(kw_only=True)
 class ElectionEvent:
     """
-    Data (payload)
+    data (payload).
     """
 
     class Meta:
         namespace = "urn:oasis:names:tc:evs:schema:eml"
 
-    event_identifier: Optional[object] = field(
+    event_identifier: None | object = field(
         default=None,
         metadata={
             "name": "EventIdentifier",
             "type": "Element",
         },
     )
-    election: "ElectionEvent.Election" = field(
+    election: ElectionEvent.Election = field(
         metadata={
             "name": "Election",
             "type": "Element",
-            "required": True,
         }
     )
 
@@ -227,17 +244,15 @@ class ElectionEvent:
             metadata={
                 "name": "ElectionIdentifier",
                 "type": "Element",
-                "required": True,
             }
         )
-        contest: "ElectionEvent.Election.Contest" = field(
+        contest: ElectionEvent.Election.Contest = field(
             metadata={
                 "name": "Contest",
                 "type": "Element",
-                "required": True,
             }
         )
-        number_of_seats: Optional[NumberOfSeats] = field(
+        number_of_seats: None | NumberOfSeats = field(
             default=None,
             metadata={
                 "name": "NumberOfSeats",
@@ -245,7 +260,7 @@ class ElectionEvent:
                 "namespace": "http://www.kiesraad.nl/extensions",
             },
         )
-        preference_threshold: Optional[PreferenceThreshold] = field(
+        preference_threshold: None | PreferenceThreshold = field(
             default=None,
             metadata={
                 "name": "PreferenceThreshold",
@@ -253,7 +268,7 @@ class ElectionEvent:
                 "namespace": "http://www.kiesraad.nl/extensions",
             },
         )
-        election_tree: Optional[ElectionTree] = field(
+        election_tree: None | ElectionTree = field(
             default=None,
             metadata={
                 "name": "ElectionTree",
@@ -261,7 +276,7 @@ class ElectionEvent:
                 "namespace": "http://www.kiesraad.nl/extensions",
             },
         )
-        registered_parties: Optional[RegisteredParties] = field(
+        registered_parties: None | RegisteredParties = field(
             default=None,
             metadata={
                 "name": "RegisteredParties",
@@ -276,20 +291,32 @@ class ElectionEvent:
                 metadata={
                     "name": "ContestIdentifier",
                     "type": "Element",
-                    "required": True,
                 }
             )
             voting_method: VotingMethod = field(
                 metadata={
                     "name": "VotingMethod",
                     "type": "Element",
-                    "required": True,
                 }
             )
             max_votes: MaxVotes = field(
                 metadata={
                     "name": "MaxVotes",
                     "type": "Element",
-                    "required": True,
                 }
             )
+
+
+@dataclass(kw_only=True)
+class Eml(Emlstructure110):
+    class Meta:
+        name = "EML"
+        namespace = "urn:oasis:names:tc:evs:schema:eml"
+
+    election_event: ElectionEvent = field(
+        metadata={
+            "name": "ElectionEvent",
+            "type": "Element",
+            "required": True,
+        }
+    )

@@ -1,7 +1,8 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from decimal import Decimal
 from enum import Enum
-from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime
 
@@ -10,21 +11,21 @@ __NAMESPACE__ = "urn:oasis:names:tc:evs:schema:eml:ts"
 
 @dataclass(kw_only=True)
 class AccuracyType:
-    seconds: Optional[Decimal] = field(
+    seconds: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    millis: Optional[Decimal] = field(
+    millis: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    micros: Optional[Decimal] = field(
+    micros: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
@@ -39,7 +40,6 @@ class CanonicalizationMethodType:
         metadata={
             "name": "Algorithm",
             "type": "Attribute",
-            "required": True,
         }
     )
     content: list[object] = field(
@@ -57,7 +57,7 @@ class DsakeyValueType:
     class Meta:
         name = "DSAKeyValueType"
 
-    p: Optional[bytes] = field(
+    p: None | bytes = field(
         default=None,
         metadata={
             "name": "P",
@@ -66,7 +66,7 @@ class DsakeyValueType:
             "format": "base64",
         },
     )
-    q: Optional[bytes] = field(
+    q: None | bytes = field(
         default=None,
         metadata={
             "name": "Q",
@@ -75,7 +75,7 @@ class DsakeyValueType:
             "format": "base64",
         },
     )
-    j: Optional[bytes] = field(
+    j: None | bytes = field(
         default=None,
         metadata={
             "name": "J",
@@ -84,7 +84,7 @@ class DsakeyValueType:
             "format": "base64",
         },
     )
-    g: Optional[bytes] = field(
+    g: None | bytes = field(
         default=None,
         metadata={
             "name": "G",
@@ -98,11 +98,10 @@ class DsakeyValueType:
             "name": "Y",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
             "format": "base64",
         }
     )
-    seed: Optional[bytes] = field(
+    seed: None | bytes = field(
         default=None,
         metadata={
             "name": "Seed",
@@ -111,7 +110,7 @@ class DsakeyValueType:
             "format": "base64",
         },
     )
-    pgen_counter: Optional[bytes] = field(
+    pgen_counter: None | bytes = field(
         default=None,
         metadata={
             "name": "PgenCounter",
@@ -128,7 +127,6 @@ class DigestMethodType:
         metadata={
             "name": "Algorithm",
             "type": "Attribute",
-            "required": True,
         }
     )
     content: list[object] = field(
@@ -147,10 +145,10 @@ class DigestValue:
         namespace = "urn:oasis:names:tc:evs:schema:eml:ts"
 
     value: bytes = field(
+        default=b"",
         metadata={
-            "required": True,
             "format": "base64",
-        }
+        },
     )
 
 
@@ -169,7 +167,7 @@ class DocumentationReferencesType:
 
 @dataclass(kw_only=True)
 class EntityNameType:
-    friendly_name: Optional[str] = field(
+    friendly_name: None | str = field(
         default=None,
         metadata={
             "name": "FriendlyName",
@@ -177,7 +175,7 @@ class EntityNameType:
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    uri: Optional[str] = field(
+    uri: None | str = field(
         default=None,
         metadata={
             "name": "URI",
@@ -192,12 +190,7 @@ class KeyName:
     class Meta:
         namespace = "urn:oasis:names:tc:evs:schema:eml:ts"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
 
 
 @dataclass(kw_only=True)
@@ -205,12 +198,7 @@ class MgmtData:
     class Meta:
         namespace = "urn:oasis:names:tc:evs:schema:eml:ts"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
 
 
 @dataclass(kw_only=True)
@@ -218,14 +206,14 @@ class PgpdataType:
     class Meta:
         name = "PGPDataType"
 
-    pgpkey_id: bytes = field(
+    pgpkey_id: None | bytes = field(
+        default=None,
         metadata={
             "name": "PGPKeyID",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
             "format": "base64",
-        }
+        },
     )
     pgpkey_packet: list[bytes] = field(
         default_factory=list,
@@ -261,7 +249,6 @@ class RsakeyValueType:
             "name": "Modulus",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
             "format": "base64",
         }
     )
@@ -270,7 +257,6 @@ class RsakeyValueType:
             "name": "Exponent",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
             "format": "base64",
         }
     )
@@ -308,7 +294,6 @@ class SignatureMethodType:
         metadata={
             "name": "Algorithm",
             "type": "Attribute",
-            "required": True,
         }
     )
     content: list[object] = field(
@@ -334,12 +319,12 @@ class SignatureOrTstvalueType:
         name = "SignatureOrTSTValueType"
 
     value: bytes = field(
+        default=b"",
         metadata={
-            "required": True,
             "format": "base64",
-        }
+        },
     )
-    id: Optional[str] = field(
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",
@@ -354,7 +339,6 @@ class TransformType:
         metadata={
             "name": "Algorithm",
             "type": "Attribute",
-            "required": True,
         }
     )
     content: list[object] = field(
@@ -381,7 +365,6 @@ class X509IssuerSerialType:
             "name": "X509IssuerName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     x509_serial_number: int = field(
@@ -389,7 +372,6 @@ class X509IssuerSerialType:
             "name": "X509SerialNumber",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
 
@@ -415,13 +397,8 @@ class DigestMethod(DigestMethodType):
 
 @dataclass(kw_only=True)
 class IdentifierType:
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
-    qualifier: Optional[QualifierType] = field(
+    value: str = field(default="")
+    qualifier: None | QualifierType = field(
         default=None,
         metadata={
             "name": "Qualifier",
@@ -562,10 +539,9 @@ class ObjectIdentifierType:
             "name": "Identifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "name": "Description",
@@ -573,7 +549,7 @@ class ObjectIdentifierType:
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    documentation_references: Optional[DocumentationReferencesType] = field(
+    documentation_references: None | DocumentationReferencesType = field(
         default=None,
         metadata={
             "name": "DocumentationReferences",
@@ -610,7 +586,7 @@ class KeyValue(KeyValueType):
 
 @dataclass(kw_only=True)
 class RetrievalMethodType:
-    transforms: Optional[TransformsType] = field(
+    transforms: None | TransformsType = field(
         default=None,
         metadata={
             "name": "Transforms",
@@ -618,14 +594,14 @@ class RetrievalMethodType:
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    uri: Optional[str] = field(
+    uri: None | str = field(
         default=None,
         metadata={
             "name": "URI",
             "type": "Attribute",
         },
     )
-    type_value: Optional[str] = field(
+    type_value: None | str = field(
         default=None,
         metadata={
             "name": "Type",
@@ -643,14 +619,12 @@ class TstxmlinfoType:
         metadata={
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     policy: ObjectIdentifierType = field(
         metadata={
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     serial_number: Decimal = field(
@@ -658,7 +632,6 @@ class TstxmlinfoType:
             "name": "serialNumber",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     gen_time: XmlDateTime = field(
@@ -666,31 +639,30 @@ class TstxmlinfoType:
             "name": "genTime",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
-    accuracy: Optional[AccuracyType] = field(
+    accuracy: None | AccuracyType = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    ordering: Optional[bool] = field(
+    ordering: None | bool = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    nonce: Optional[Decimal] = field(
+    nonce: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    tsa: Optional[EntityNameType] = field(
+    tsa: None | EntityNameType = field(
         default=None,
         metadata={
             "type": "Element",
@@ -701,7 +673,6 @@ class TstxmlinfoType:
         metadata={
             "name": "Id",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -714,21 +685,21 @@ class Transforms(TransformsType):
 
 @dataclass(kw_only=True)
 class ObjectType:
-    id: Optional[str] = field(
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
         },
     )
-    mime_type: Optional[str] = field(
+    mime_type: None | str = field(
         default=None,
         metadata={
             "name": "MimeType",
             "type": "Attribute",
         },
     )
-    encoding: Optional[str] = field(
+    encoding: None | str = field(
         default=None,
         metadata={
             "name": "Encoding",
@@ -754,7 +725,7 @@ class ObjectType:
 
 @dataclass(kw_only=True)
 class ReferenceType:
-    transforms: Optional[Transforms] = field(
+    transforms: None | Transforms = field(
         default=None,
         metadata={
             "name": "Transforms",
@@ -767,7 +738,6 @@ class ReferenceType:
             "name": "DigestMethod",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     digest_value: DigestValue = field(
@@ -775,24 +745,23 @@ class ReferenceType:
             "name": "DigestValue",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
-    id: Optional[str] = field(
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",
             "type": "Attribute",
         },
     )
-    uri: Optional[str] = field(
+    uri: None | str = field(
         default=None,
         metadata={
             "name": "URI",
             "type": "Attribute",
         },
     )
-    type_value: Optional[str] = field(
+    type_value: None | str = field(
         default=None,
         metadata={
             "name": "Type",
@@ -809,7 +778,7 @@ class RetrievalMethod(RetrievalMethodType):
 
 @dataclass(kw_only=True)
 class KeyInfoType:
-    id: Optional[str] = field(
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",
@@ -895,7 +864,6 @@ class TimestampedInfoType:
             "name": "CanonicalizationMethod",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     signature_or_tstmethod: SignatureOrTstmethod = field(
@@ -903,7 +871,6 @@ class TimestampedInfoType:
             "name": "SignatureOrTSTMethod",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     reference: Reference = field(
@@ -911,10 +878,9 @@ class TimestampedInfoType:
             "name": "Reference",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
-    tstxmlinfo_reference: Optional[TstxmlinfoReference] = field(
+    tstxmlinfo_reference: None | TstxmlinfoReference = field(
         default=None,
         metadata={
             "name": "TSTXMLInfoReference",
@@ -922,7 +888,7 @@ class TimestampedInfoType:
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
         },
     )
-    id: Optional[str] = field(
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",
@@ -944,7 +910,6 @@ class TimestampType:
             "name": "TimestampedInfo",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
     signature_or_tstvalue: SignatureOrTstvalue = field(
@@ -952,10 +917,9 @@ class TimestampType:
             "name": "SignatureOrTSTValue",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
-    key_info: Optional[KeyInfo] = field(
+    key_info: None | KeyInfo = field(
         default=None,
         metadata={
             "name": "KeyInfo",
@@ -968,10 +932,9 @@ class TimestampType:
             "name": "Object",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml:ts",
-            "required": True,
         }
     )
-    id: Optional[str] = field(
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",

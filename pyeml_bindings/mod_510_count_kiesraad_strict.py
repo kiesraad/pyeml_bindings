@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any
 
 from pyeml_bindings.emlcore_kiesraad_strict import (
     EventIdentifier,
@@ -17,6 +19,7 @@ from pyeml_bindings.kiesraad_eml_extensions import (
     RejectedVotesType,
     ReportingUnitInvestigations,
     ReportingUnitType,
+    Schema,
     SharedLocation,
     UncountedVotesType,
 )
@@ -37,14 +40,13 @@ __NAMESPACE__ = "urn:oasis:names:tc:evs:schema:eml"
 @dataclass(kw_only=True)
 class AffiliationIdentifierStructure510(AffiliationIdentifierStructureKr):
     """
-    Mandatory ElectionCategory, and some additional Elements.
+    mandatory ElectionCategory, and some additional Elements.
     """
 
     id: str = field(
         metadata={
             "name": "Id",
             "type": "Attribute",
-            "required": True,
             "pattern": r"[1-9]\d*",
         }
     )
@@ -53,8 +55,8 @@ class AffiliationIdentifierStructure510(AffiliationIdentifierStructureKr):
 @dataclass(kw_only=True)
 class CandidateIdentifierStructure510(CandidateIdentifierStructureKr):
     """
-    Only CandidateName and ShortCode (Element or Attribute) allowed, Id Attribute
-    mandatory when candidate number is known at this level.
+    only CandidateName and ShortCode (Element or Attribute) allowed, Id
+    Attribute mandatory when candidate number is known at this level.
     """
 
     candidate_name: Any = field(
@@ -90,7 +92,7 @@ class CandidateIdentifierStructure510(CandidateIdentifierStructureKr):
 @dataclass(kw_only=True)
 class CandidateStructure510(CandidateStructureKr):
     """
-    Only CandidateIdentifier and Gender allowed.
+    only CandidateIdentifier and Gender allowed.
     """
 
     date_of_birth: Any = field(
@@ -133,7 +135,7 @@ class CandidateStructure510(CandidateStructureKr):
 @dataclass(kw_only=True)
 class Emlstructure510(EmlstructureKr):
     """
-    Only TransactionId and IssueDate needed, CanoncalizationMethod added.
+    only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
 
     class Meta:
@@ -151,8 +153,17 @@ class Emlstructure510(EmlstructureKr):
             "name": "ManagingAuthority",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
+    )
+    schema: list[Schema] = field(
+        default_factory=list,
+        metadata={
+            "name": "Schema",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 2,
+            "max_occurs": 3,
+        },
     )
     creation_date_time: list[CreationDateTime] = field(
         default_factory=list,
@@ -169,7 +180,7 @@ class Emlstructure510(EmlstructureKr):
 @dataclass(kw_only=True)
 class ElectionIdentifierStructure510(ElectionIdentifierStructureKr):
     """
-    Mandatory ElectionCategory, and some additional Elements.
+    mandatory ElectionCategory, and some additional Elements.
     """
 
     nomination_date: Any = field(
@@ -190,10 +201,9 @@ class ReportingUnitVotes:
         metadata={
             "name": "ReportingUnitIdentifier",
             "type": "Element",
-            "required": True,
         }
     )
-    reporting_unit_type: Optional[ReportingUnitType] = field(
+    reporting_unit_type: None | ReportingUnitType = field(
         default=None,
         metadata={
             "name": "ReportingUnitType",
@@ -201,7 +211,7 @@ class ReportingUnitVotes:
             "namespace": "http://www.kiesraad.nl/extensions",
         },
     )
-    shared_location: Optional[SharedLocation] = field(
+    shared_location: None | SharedLocation = field(
         default=None,
         metadata={
             "name": "SharedLocation",
@@ -209,7 +219,7 @@ class ReportingUnitVotes:
             "namespace": "http://www.kiesraad.nl/extensions",
         },
     )
-    selection: list["ReportingUnitVotes.Selection"] = field(
+    selection: list[ReportingUnitVotes.Selection] = field(
         default_factory=list,
         metadata={
             "name": "Selection",
@@ -217,7 +227,7 @@ class ReportingUnitVotes:
             "min_occurs": 1,
         },
     )
-    initial_cast: Optional[InitialCast] = field(
+    initial_cast: None | InitialCast = field(
         default=None,
         metadata={
             "name": "InitialCast",
@@ -229,10 +239,9 @@ class ReportingUnitVotes:
         metadata={
             "name": "Cast",
             "type": "Element",
-            "required": True,
         }
     )
-    initial_total_counted: Optional[InitialTotalCounted] = field(
+    initial_total_counted: None | InitialTotalCounted = field(
         default=None,
         metadata={
             "name": "InitialTotalCounted",
@@ -244,7 +253,6 @@ class ReportingUnitVotes:
         metadata={
             "name": "TotalCounted",
             "type": "Element",
-            "required": True,
         }
     )
     initial_rejected_votes: list[InitialRejectedVotes] = field(
@@ -282,45 +290,39 @@ class ReportingUnitVotes:
             "max_occurs": 14,
         },
     )
-    reporting_unit_investigations: Optional[ReportingUnitInvestigations] = (
-        field(
-            default=None,
-            metadata={
-                "name": "ReportingUnitInvestigations",
-                "type": "Element",
-                "namespace": "http://www.kiesraad.nl/extensions",
-            },
-        )
+    reporting_unit_investigations: None | ReportingUnitInvestigations = field(
+        default=None,
+        metadata={
+            "name": "ReportingUnitInvestigations",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+        },
     )
 
     @dataclass(kw_only=True)
     class Selection:
-        candidate: Optional[CandidateStructure510] = field(
+        candidate: None | CandidateStructure510 = field(
             default=None,
             metadata={
                 "name": "Candidate",
                 "type": "Element",
             },
         )
-        affiliation_identifier: Optional[AffiliationIdentifierStructure510] = (
-            field(
-                default=None,
-                metadata={
-                    "name": "AffiliationIdentifier",
-                    "type": "Element",
-                },
-            )
+        affiliation_identifier: None | AffiliationIdentifierStructure510 = field(
+            default=None,
+            metadata={
+                "name": "AffiliationIdentifier",
+                "type": "Element",
+            },
         )
-        referendum_option_identifier: Optional[ReferendumOptionIdentifier] = (
-            field(
-                default=None,
-                metadata={
-                    "name": "ReferendumOptionIdentifier",
-                    "type": "Element",
-                },
-            )
+        referendum_option_identifier: None | ReferendumOptionIdentifier = field(
+            default=None,
+            metadata={
+                "name": "ReferendumOptionIdentifier",
+                "type": "Element",
+            },
         )
-        initial_valid_votes: Optional[InitialValidVotes] = field(
+        initial_valid_votes: None | InitialValidVotes = field(
             default=None,
             metadata={
                 "name": "InitialValidVotes",
@@ -332,17 +334,16 @@ class ReportingUnitVotes:
             metadata={
                 "name": "ValidVotes",
                 "type": "Element",
-                "required": True,
             }
         )
-        value: Optional[int] = field(
+        value: None | int = field(
             default=None,
             metadata={
                 "name": "Value",
                 "type": "Attribute",
             },
         )
-        category: Optional[str] = field(
+        category: None | str = field(
             default=None,
             metadata={
                 "name": "Category",
@@ -356,7 +357,7 @@ class Count:
     class Meta:
         namespace = "urn:oasis:names:tc:evs:schema:eml"
 
-    counting_method: Optional[CountingMethod] = field(
+    counting_method: None | CountingMethod = field(
         default=None,
         metadata={
             "name": "CountingMethod",
@@ -368,10 +369,9 @@ class Count:
         metadata={
             "name": "EventIdentifier",
             "type": "Element",
-            "required": True,
         }
     )
-    phase: Optional[Phase] = field(
+    phase: None | Phase = field(
         default=None,
         metadata={
             "name": "Phase",
@@ -379,11 +379,10 @@ class Count:
             "namespace": "http://www.kiesraad.nl/extensions",
         },
     )
-    election: "Count.Election" = field(
+    election: Count.Election = field(
         metadata={
             "name": "Election",
             "type": "Element",
-            "required": True,
         }
     )
     other_element: list[object] = field(
@@ -400,20 +399,18 @@ class Count:
             metadata={
                 "name": "ElectionIdentifier",
                 "type": "Element",
-                "required": True,
             }
         )
-        contests: "Count.Election.Contests" = field(
+        contests: Count.Election.Contests = field(
             metadata={
                 "name": "Contests",
                 "type": "Element",
-                "required": True,
             }
         )
 
         @dataclass(kw_only=True)
         class Contests:
-            contest: list["Count.Election.Contests.Contest"] = field(
+            contest: list[Count.Election.Contests.Contest] = field(
                 default_factory=list,
                 metadata={
                     "name": "Contest",
@@ -428,32 +425,27 @@ class Count:
                     metadata={
                         "name": "ContestIdentifier",
                         "type": "Element",
-                        "required": True,
                     }
                 )
-                total_votes: "Count.Election.Contests.Contest.TotalVotes" = (
-                    field(
-                        metadata={
-                            "name": "TotalVotes",
-                            "type": "Element",
-                            "required": True,
-                        }
-                    )
+                total_votes: None | Count.Election.Contests.Contest.TotalVotes = field(
+                    default=None,
+                    metadata={
+                        "name": "TotalVotes",
+                        "type": "Element",
+                    },
                 )
                 reporting_unit_votes: list[ReportingUnitVotes] = field(
                     default_factory=list,
                     metadata={
                         "name": "ReportingUnitVotes",
                         "type": "Element",
-                        "min_occurs": 1,
-                        "sequence": 1,
                     },
                 )
 
                 @dataclass(kw_only=True)
                 class TotalVotes:
                     selection: list[
-                        "Count.Election.Contests.Contest.TotalVotes.Selection"
+                        Count.Election.Contests.Contest.TotalVotes.Selection
                     ] = field(
                         default_factory=list,
                         metadata={
@@ -462,7 +454,7 @@ class Count:
                             "min_occurs": 1,
                         },
                     )
-                    initial_cast: Optional[InitialCast] = field(
+                    initial_cast: None | InitialCast = field(
                         default=None,
                         metadata={
                             "name": "InitialCast",
@@ -474,24 +466,20 @@ class Count:
                         metadata={
                             "name": "Cast",
                             "type": "Element",
-                            "required": True,
                         }
                     )
-                    initial_total_counted: Optional[InitialTotalCounted] = (
-                        field(
-                            default=None,
-                            metadata={
-                                "name": "InitialTotalCounted",
-                                "type": "Element",
-                                "namespace": "http://www.kiesraad.nl/extensions",
-                            },
-                        )
+                    initial_total_counted: None | InitialTotalCounted = field(
+                        default=None,
+                        metadata={
+                            "name": "InitialTotalCounted",
+                            "type": "Element",
+                            "namespace": "http://www.kiesraad.nl/extensions",
+                        },
                     )
                     total_counted: int = field(
                         metadata={
                             "name": "TotalCounted",
                             "type": "Element",
-                            "required": True,
                         }
                     )
                     initial_rejected_votes: list[InitialRejectedVotes] = field(
@@ -512,16 +500,14 @@ class Count:
                             "max_occurs": 2,
                         },
                     )
-                    initial_uncounted_votes: list[InitialUncountedVotes] = (
-                        field(
-                            default_factory=list,
-                            metadata={
-                                "name": "InitialUncountedVotes",
-                                "type": "Element",
-                                "namespace": "http://www.kiesraad.nl/extensions",
-                                "max_occurs": 14,
-                            },
-                        )
+                    initial_uncounted_votes: list[InitialUncountedVotes] = field(
+                        default_factory=list,
+                        metadata={
+                            "name": "InitialUncountedVotes",
+                            "type": "Element",
+                            "namespace": "http://www.kiesraad.nl/extensions",
+                            "max_occurs": 14,
+                        },
                     )
                     uncounted_votes: list[UncountedVotesType] = field(
                         default_factory=list,
@@ -534,59 +520,71 @@ class Count:
 
                     @dataclass(kw_only=True)
                     class Selection:
-                        candidate: Optional[CandidateStructure510] = field(
+                        candidate: None | CandidateStructure510 = field(
                             default=None,
                             metadata={
                                 "name": "Candidate",
                                 "type": "Element",
                             },
                         )
-                        affiliation_identifier: Optional[
-                            AffiliationIdentifierStructure510
-                        ] = field(
+                        affiliation_identifier: (
+                            None | AffiliationIdentifierStructure510
+                        ) = field(
                             default=None,
                             metadata={
                                 "name": "AffiliationIdentifier",
                                 "type": "Element",
                             },
                         )
-                        referendum_option_identifier: Optional[
-                            ReferendumOptionIdentifier
-                        ] = field(
+                        referendum_option_identifier: (
+                            None | ReferendumOptionIdentifier
+                        ) = field(
                             default=None,
                             metadata={
                                 "name": "ReferendumOptionIdentifier",
                                 "type": "Element",
                             },
                         )
-                        initial_valid_votes: Optional[InitialValidVotes] = (
-                            field(
-                                default=None,
-                                metadata={
-                                    "name": "InitialValidVotes",
-                                    "type": "Element",
-                                    "namespace": "http://www.kiesraad.nl/extensions",
-                                },
-                            )
+                        initial_valid_votes: None | InitialValidVotes = field(
+                            default=None,
+                            metadata={
+                                "name": "InitialValidVotes",
+                                "type": "Element",
+                                "namespace": "http://www.kiesraad.nl/extensions",
+                            },
                         )
                         valid_votes: int = field(
                             metadata={
                                 "name": "ValidVotes",
                                 "type": "Element",
-                                "required": True,
                             }
                         )
-                        value: Optional[int] = field(
+                        value: None | int = field(
                             default=None,
                             metadata={
                                 "name": "Value",
                                 "type": "Attribute",
                             },
                         )
-                        category: Optional[str] = field(
+                        category: None | str = field(
                             default=None,
                             metadata={
                                 "name": "Category",
                                 "type": "Attribute",
                             },
                         )
+
+
+@dataclass(kw_only=True)
+class Eml(Emlstructure510):
+    class Meta:
+        name = "EML"
+        namespace = "urn:oasis:names:tc:evs:schema:eml"
+
+    count: Count = field(
+        metadata={
+            "name": "Count",
+            "type": "Element",
+            "required": True,
+        }
+    )

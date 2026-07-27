@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 __NAMESPACE__ = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
@@ -20,14 +22,14 @@ class Address:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -53,7 +55,8 @@ class Address:
 
 @dataclass(kw_only=True)
 class AddressLine:
-    """Free format address representation.
+    """
+    Free format address representation.
 
     An address can have more than one line. The order of the AddressLine
     elements must be preserved.
@@ -69,14 +72,14 @@ class AddressLine:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -120,14 +123,14 @@ class CountryName:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -165,14 +168,14 @@ class CountryNameCodeType:
     :ivar content:
     """
 
-    scheme: Optional[object] = field(
+    scheme: None | object = field(
         default=None,
         metadata={
             "name": "Scheme",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -213,14 +216,14 @@ class LocalityNameType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -256,8 +259,9 @@ class PostOfficeNumberIndicatorOccurrence(Enum):
 
 @dataclass(kw_only=True)
 class PostalCode:
-    """PostalCode is the container element for either simple or complex (extended)
-    postal codes.
+    """
+    PostalCode is the container element for either simple or complex
+    (extended) postal codes.
 
     Type: Area Code, Postcode, etc.
 
@@ -271,14 +275,13 @@ class PostalCode:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    postal_code_number: "PostalCode.PostalCodeNumber" = field(
+    postal_code_number: PostalCode.PostalCodeNumber = field(
         metadata={
             "name": "PostalCodeNumber",
             "type": "Element",
-            "required": True,
         }
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
@@ -303,14 +306,14 @@ class PostalCode:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -356,27 +359,22 @@ class PremiseNumberPrefix:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
-    number_prefix_separator: Optional[object] = field(
+    value: str = field(default="")
+    number_prefix_separator: None | object = field(
         default=None,
         metadata={
             "name": "NumberPrefixSeparator",
             "type": "Attribute",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -421,21 +419,21 @@ class PremiseNumberSuffix:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    number_suffix_separator: Optional[object] = field(
+    number_suffix_separator: None | object = field(
         default=None,
         metadata={
             "name": "NumberSuffixSeparator",
             "type": "Attribute",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -499,14 +497,14 @@ class ThoroughfareLeadingTypeType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -540,14 +538,14 @@ class ThoroughfareNameType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -573,9 +571,10 @@ class ThoroughfareNameType:
 
 @dataclass(kw_only=True)
 class ThoroughfareNumberPrefix:
-    """Prefix before the number.
+    """
+    Prefix before the number.
 
-    A in A12 Archer Street
+    A in A12 Archer Street.
 
     :ivar number_prefix_separator:
     :ivar type_value:
@@ -588,21 +587,21 @@ class ThoroughfareNumberPrefix:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    number_prefix_separator: Optional[object] = field(
+    number_prefix_separator: None | object = field(
         default=None,
         metadata={
             "name": "NumberPrefixSeparator",
             "type": "Attribute",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -645,9 +644,10 @@ class ThoroughfareNumberRangeRangeType(Enum):
 
 @dataclass(kw_only=True)
 class ThoroughfareNumberSuffix:
-    """Suffix after the number.
+    """
+    Suffix after the number.
 
-    A in 12A Archer Street
+    A in 12A Archer Street.
 
     :ivar number_suffix_separator: NEAR, ADJACENT TO, etc 12-A where 12
         is number and A is suffix and "-" is the separator
@@ -661,21 +661,21 @@ class ThoroughfareNumberSuffix:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    number_suffix_separator: Optional[object] = field(
+    number_suffix_separator: None | object = field(
         default=None,
         metadata={
             "name": "NumberSuffixSeparator",
             "type": "Attribute",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -726,14 +726,14 @@ class ThoroughfarePostDirectionType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -767,14 +767,14 @@ class ThoroughfarePreDirectionType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -808,14 +808,14 @@ class ThoroughfareTrailingTypeType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -883,21 +883,21 @@ class BuildingNameType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    type_occurrence: Optional[BuildingNameTypeTypeOccurrence] = field(
+    type_occurrence: None | BuildingNameTypeTypeOccurrence = field(
         default=None,
         metadata={
             "name": "TypeOccurrence",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -923,7 +923,8 @@ class BuildingNameType:
 
 @dataclass(kw_only=True)
 class GenericLocalityType:
-    """Locality is one level lower than administrative area.
+    """
+    Locality is one level lower than administrative area.
 
     Eg.: cities, reservations and any other built-up areas.
 
@@ -939,7 +940,7 @@ class GenericLocalityType:
     :ivar other_attributes:
     """
 
-    address_line: Optional[AddressLine] = field(
+    address_line: None | AddressLine = field(
         default=None,
         metadata={
             "name": "AddressLine",
@@ -952,10 +953,9 @@ class GenericLocalityType:
             "name": "LocalityName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-            "required": True,
         }
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -963,21 +963,21 @@ class GenericLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    usage_type: Optional[object] = field(
+    usage_type: None | object = field(
         default=None,
         metadata={
             "name": "UsageType",
             "type": "Attribute",
         },
     )
-    indicator: Optional[object] = field(
+    indicator: None | object = field(
         default=None,
         metadata={
             "name": "Indicator",
@@ -1012,7 +1012,7 @@ class MailStopType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    mail_stop_name: Optional["MailStopType.MailStopName"] = field(
+    mail_stop_name: None | MailStopType.MailStopName = field(
         default=None,
         metadata={
             "name": "MailStopName",
@@ -1020,7 +1020,7 @@ class MailStopType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    mail_stop_number: Optional["MailStopType.MailStopNumber"] = field(
+    mail_stop_number: None | MailStopType.MailStopNumber = field(
         default=None,
         metadata={
             "name": "MailStopNumber",
@@ -1035,7 +1035,7 @@ class MailStopType:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
@@ -1060,14 +1060,14 @@ class MailStopType:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -1100,14 +1100,14 @@ class MailStopType:
         :ivar content:
         """
 
-        name_number_separator: Optional[object] = field(
+        name_number_separator: None | object = field(
             default=None,
             metadata={
                 "name": "NameNumberSeparator",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -1133,7 +1133,8 @@ class MailStopType:
 
 @dataclass(kw_only=True)
 class PremiseNumber:
-    """Specification of the identifier of the premise (house, building, etc).
+    """
+    Specification of the identifier of the premise (house, building, etc).
 
     Premises in a street are often uniquely identified by means of
     consecutive identifiers. The identifier can be a number, a letter or
@@ -1155,44 +1156,42 @@ class PremiseNumber:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    number_type: Optional[PremiseNumberNumberType] = field(
+    number_type: None | PremiseNumberNumberType = field(
         default=None,
         metadata={
             "name": "NumberType",
             "type": "Attribute",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    indicator: Optional[object] = field(
+    indicator: None | object = field(
         default=None,
         metadata={
             "name": "Indicator",
             "type": "Attribute",
         },
     )
-    indicator_occurrence: Optional[PremiseNumberIndicatorOccurrence] = field(
+    indicator_occurrence: None | PremiseNumberIndicatorOccurrence = field(
         default=None,
         metadata={
             "name": "IndicatorOccurrence",
             "type": "Attribute",
         },
     )
-    number_type_occurrence: Optional[PremiseNumberNumberTypeOccurrence] = (
-        field(
-            default=None,
-            metadata={
-                "name": "NumberTypeOccurrence",
-                "type": "Attribute",
-            },
-        )
+    number_type_occurrence: None | PremiseNumberNumberTypeOccurrence = field(
+        default=None,
+        metadata={
+            "name": "NumberTypeOccurrence",
+            "type": "Attribute",
+        },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -1238,44 +1237,42 @@ class ThoroughfareNumber:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    number_type: Optional[ThoroughfareNumberNumberType] = field(
+    number_type: None | ThoroughfareNumberNumberType = field(
         default=None,
         metadata={
             "name": "NumberType",
             "type": "Attribute",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    indicator: Optional[object] = field(
+    indicator: None | object = field(
         default=None,
         metadata={
             "name": "Indicator",
             "type": "Attribute",
         },
     )
-    indicator_occurrence: Optional[ThoroughfareNumberIndicatorOccurrence] = (
-        field(
-            default=None,
-            metadata={
-                "name": "IndicatorOccurrence",
-                "type": "Attribute",
-            },
-        )
+    indicator_occurrence: None | ThoroughfareNumberIndicatorOccurrence = field(
+        default=None,
+        metadata={
+            "name": "IndicatorOccurrence",
+            "type": "Attribute",
+        },
     )
-    number_occurrence: Optional[ThoroughfareNumberNumberOccurrence] = field(
+    number_occurrence: None | ThoroughfareNumberNumberOccurrence = field(
         default=None,
         metadata={
             "name": "NumberOccurrence",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -1301,7 +1298,9 @@ class ThoroughfareNumber:
 
 @dataclass(kw_only=True)
 class Department:
-    """Subdivision in the firm: School of Physics at Victoria University (School of Physics is the department)
+    """
+    Subdivision in the firm: School of Physics at Victoria University
+    (School of Physics is the department).
 
     :ivar address_line:
     :ivar department_name: Specification of the name of a department.
@@ -1324,21 +1323,21 @@ class Department:
             "type": "Element",
         },
     )
-    department_name: list["Department.DepartmentName"] = field(
+    department_name: list[Department.DepartmentName] = field(
         default_factory=list,
         metadata={
             "name": "DepartmentName",
             "type": "Element",
         },
     )
-    mail_stop: Optional[MailStopType] = field(
+    mail_stop: None | MailStopType = field(
         default=None,
         metadata={
             "name": "MailStop",
             "type": "Element",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -1352,7 +1351,7 @@ class Department:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
@@ -1377,14 +1376,14 @@ class Department:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -1419,7 +1418,7 @@ class GenericCountryType:
     :ivar other_attributes:
     """
 
-    country_name_code: Optional[CountryNameCodeType] = field(
+    country_name_code: None | CountryNameCodeType = field(
         default=None,
         metadata={
             "name": "CountryNameCode",
@@ -1432,7 +1431,6 @@ class GenericCountryType:
             "name": "Locality",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-            "required": True,
         }
     )
     other_attributes: dict[str, str] = field(
@@ -1462,7 +1460,7 @@ class LocalityType(GenericLocalityType):
             "type": "Ignore",
         },
     )
-    usage_type: Optional[LocalityTypeUsageType] = field(
+    usage_type: None | LocalityTypeUsageType = field(
         default=None,
         metadata={
             "name": "UsageType",
@@ -1474,7 +1472,7 @@ class LocalityType(GenericLocalityType):
 @dataclass(kw_only=True)
 class LocalityType110(GenericLocalityType):
     """
-    Only LocalityName and PostalCode allowed.
+    only LocalityName and PostalCode allowed.
     """
 
     other_attributes: Any = field(
@@ -1544,7 +1542,6 @@ class CountryType(GenericCountryType):
             "name": "CountryNameCode",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-            "required": True,
         }
     )
 
@@ -1571,7 +1568,7 @@ class FirmType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    firm_name: list["FirmType.FirmName"] = field(
+    firm_name: list[FirmType.FirmName] = field(
         default_factory=list,
         metadata={
             "name": "FirmName",
@@ -1587,7 +1584,7 @@ class FirmType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    mail_stop: Optional[MailStopType] = field(
+    mail_stop: None | MailStopType = field(
         default=None,
         metadata={
             "name": "MailStop",
@@ -1595,7 +1592,7 @@ class FirmType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -1610,7 +1607,7 @@ class FirmType:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
@@ -1635,14 +1632,14 @@ class FirmType:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -1668,7 +1665,8 @@ class FirmType:
 
 @dataclass(kw_only=True)
 class Locality(LocalityType):
-    """Locality is one level lower than adminisstrative area.
+    """
+    Locality is one level lower than adminisstrative area.
 
     Eg.: cities, reservations and any other built-up areas.
     """
@@ -1699,7 +1697,6 @@ class MinimalCountryType(GenericCountryType):
             "name": "CountryNameCode",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-            "required": True,
         }
     )
 
@@ -1716,7 +1713,8 @@ class Country(CountryType):
 
 @dataclass(kw_only=True)
 class PostBox:
-    """Specification of a postbox like mail delivery point.
+    """
+    Specification of a postbox like mail delivery point.
 
     Only a single postbox number can be specified. Examples of postboxes
     are POBox, free mail numbers, etc.
@@ -1752,44 +1750,41 @@ class PostBox:
             "type": "Element",
         },
     )
-    post_box_number: "PostBox.PostBoxNumber" = field(
+    post_box_number: PostBox.PostBoxNumber = field(
         metadata={
             "name": "PostBoxNumber",
             "type": "Element",
-            "required": True,
         }
     )
-    post_box_number_prefix: Optional["PostBox.PostBoxNumberPrefix"] = field(
+    post_box_number_prefix: None | PostBox.PostBoxNumberPrefix = field(
         default=None,
         metadata={
             "name": "PostBoxNumberPrefix",
             "type": "Element",
         },
     )
-    post_box_number_suffix: Optional["PostBox.PostBoxNumberSuffix"] = field(
+    post_box_number_suffix: None | PostBox.PostBoxNumberSuffix = field(
         default=None,
         metadata={
             "name": "PostBoxNumberSuffix",
             "type": "Element",
         },
     )
-    post_box_number_extension: Optional["PostBox.PostBoxNumberExtension"] = (
-        field(
-            default=None,
-            metadata={
-                "name": "PostBoxNumberExtension",
-                "type": "Element",
-            },
-        )
+    post_box_number_extension: None | PostBox.PostBoxNumberExtension = field(
+        default=None,
+        metadata={
+            "name": "PostBoxNumberExtension",
+            "type": "Element",
+        },
     )
-    firm: Optional[FirmType] = field(
+    firm: None | FirmType = field(
         default=None,
         metadata={
             "name": "Firm",
             "type": "Element",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -1803,14 +1798,14 @@ class PostBox:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    indicator: Optional[object] = field(
+    indicator: None | object = field(
         default=None,
         metadata={
             "name": "Indicator",
@@ -1834,7 +1829,7 @@ class PostBox:
         :ivar content:
         """
 
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -1868,14 +1863,14 @@ class PostBox:
         :ivar content:
         """
 
-        number_prefix_separator: Optional[object] = field(
+        number_prefix_separator: None | object = field(
             default=None,
             metadata={
                 "name": "NumberPrefixSeparator",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -1909,14 +1904,14 @@ class PostBox:
         :ivar content:
         """
 
-        number_suffix_separator: Optional[object] = field(
+        number_suffix_separator: None | object = field(
             default=None,
             metadata={
                 "name": "NumberSuffixSeparator",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -1948,7 +1943,7 @@ class PostBox:
         :ivar content:
         """
 
-        number_extension_separator: Optional[object] = field(
+        number_extension_separator: None | object = field(
             default=None,
             metadata={
                 "name": "NumberExtensionSeparator",
@@ -2019,7 +2014,7 @@ class SubPremiseType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    sub_premise_name: list["SubPremiseType.SubPremiseName"] = field(
+    sub_premise_name: list[SubPremiseType.SubPremiseName] = field(
         default_factory=list,
         metadata={
             "name": "SubPremiseName",
@@ -2027,17 +2022,15 @@ class SubPremiseType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    sub_premise_location: Optional["SubPremiseType.SubPremiseLocation"] = (
-        field(
-            default=None,
-            metadata={
-                "name": "SubPremiseLocation",
-                "type": "Element",
-                "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-            },
-        )
+    sub_premise_location: None | SubPremiseType.SubPremiseLocation = field(
+        default=None,
+        metadata={
+            "name": "SubPremiseLocation",
+            "type": "Element",
+            "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
+        },
     )
-    sub_premise_number: list["SubPremiseType.SubPremiseNumber"] = field(
+    sub_premise_number: list[SubPremiseType.SubPremiseNumber] = field(
         default_factory=list,
         metadata={
             "name": "SubPremiseNumber",
@@ -2045,25 +2038,25 @@ class SubPremiseType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    sub_premise_number_prefix: list[
-        "SubPremiseType.SubPremiseNumberPrefix"
-    ] = field(
-        default_factory=list,
-        metadata={
-            "name": "SubPremiseNumberPrefix",
-            "type": "Element",
-            "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        },
+    sub_premise_number_prefix: list[SubPremiseType.SubPremiseNumberPrefix] = (
+        field(
+            default_factory=list,
+            metadata={
+                "name": "SubPremiseNumberPrefix",
+                "type": "Element",
+                "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
+            },
+        )
     )
-    sub_premise_number_suffix: list[
-        "SubPremiseType.SubPremiseNumberSuffix"
-    ] = field(
-        default_factory=list,
-        metadata={
-            "name": "SubPremiseNumberSuffix",
-            "type": "Element",
-            "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
-        },
+    sub_premise_number_suffix: list[SubPremiseType.SubPremiseNumberSuffix] = (
+        field(
+            default_factory=list,
+            metadata={
+                "name": "SubPremiseNumberSuffix",
+                "type": "Element",
+                "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
+            },
+        )
     )
     building_name: list[BuildingNameType] = field(
         default_factory=list,
@@ -2073,7 +2066,7 @@ class SubPremiseType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    firm: Optional[FirmType] = field(
+    firm: None | FirmType = field(
         default=None,
         metadata={
             "name": "Firm",
@@ -2081,7 +2074,7 @@ class SubPremiseType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    mail_stop: Optional[MailStopType] = field(
+    mail_stop: None | MailStopType = field(
         default=None,
         metadata={
             "name": "MailStop",
@@ -2089,7 +2082,7 @@ class SubPremiseType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -2097,7 +2090,7 @@ class SubPremiseType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    sub_premise: Optional["SubPremiseType"] = field(
+    sub_premise: None | SubPremiseType = field(
         default=None,
         metadata={
             "name": "SubPremise",
@@ -2112,7 +2105,7 @@ class SubPremiseType:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
@@ -2139,21 +2132,21 @@ class SubPremiseType:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        type_occurrence: Optional[SubPremiseNameTypeOccurrence] = field(
+        type_occurrence: None | SubPremiseNameTypeOccurrence = field(
             default=None,
             metadata={
                 "name": "TypeOccurrence",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2188,21 +2181,21 @@ class SubPremiseType:
         :ivar content:
         """
 
-        number_prefix_separator: Optional[object] = field(
+        number_prefix_separator: None | object = field(
             default=None,
             metadata={
                 "name": "NumberPrefixSeparator",
                 "type": "Attribute",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2237,21 +2230,21 @@ class SubPremiseType:
         :ivar content:
         """
 
-        number_suffix_separator: Optional[object] = field(
+        number_suffix_separator: None | object = field(
             default=None,
             metadata={
                 "name": "NumberSuffixSeparator",
                 "type": "Attribute",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2282,7 +2275,7 @@ class SubPremiseType:
         :ivar content:
         """
 
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2316,14 +2309,14 @@ class SubPremiseType:
         :ivar content:
         """
 
-        indicator: Optional[object] = field(
+        indicator: None | object = field(
             default=None,
             metadata={
                 "name": "Indicator",
                 "type": "Attribute",
             },
         )
-        indicator_occurrence: Optional[SubPremiseNumberIndicatorOccurrence] = (
+        indicator_occurrence: None | SubPremiseNumberIndicatorOccurrence = (
             field(
                 default=None,
                 metadata={
@@ -2332,30 +2325,30 @@ class SubPremiseType:
                 },
             )
         )
-        number_type_occurrence: Optional[
-            SubPremiseNumberNumberTypeOccurrence
-        ] = field(
-            default=None,
-            metadata={
-                "name": "NumberTypeOccurrence",
-                "type": "Attribute",
-            },
+        number_type_occurrence: None | SubPremiseNumberNumberTypeOccurrence = (
+            field(
+                default=None,
+                metadata={
+                    "name": "NumberTypeOccurrence",
+                    "type": "Attribute",
+                },
+            )
         )
-        premise_number_separator: Optional[object] = field(
+        premise_number_separator: None | object = field(
             default=None,
             metadata={
                 "name": "PremiseNumberSeparator",
                 "type": "Attribute",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2399,7 +2392,7 @@ class PostalRouteType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    postal_route_name: list["PostalRouteType.PostalRouteName"] = field(
+    postal_route_name: list[PostalRouteType.PostalRouteName] = field(
         default_factory=list,
         metadata={
             "name": "PostalRouteName",
@@ -2407,7 +2400,7 @@ class PostalRouteType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    postal_route_number: Optional["PostalRouteType.PostalRouteNumber"] = field(
+    postal_route_number: None | PostalRouteType.PostalRouteNumber = field(
         default=None,
         metadata={
             "name": "PostalRouteNumber",
@@ -2415,7 +2408,7 @@ class PostalRouteType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    post_box: Optional[PostBox] = field(
+    post_box: None | PostBox = field(
         default=None,
         metadata={
             "name": "PostBox",
@@ -2430,7 +2423,7 @@ class PostalRouteType:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
@@ -2455,14 +2448,14 @@ class PostalRouteType:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2494,7 +2487,7 @@ class PostalRouteType:
         :ivar content:
         """
 
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2520,12 +2513,13 @@ class PostalRouteType:
 
 @dataclass(kw_only=True)
 class Premise:
-    """Specification of a single premise, for example a house or a building.
+    """
+    Specification of a single premise, for example a house or a building.
 
-    The premise as a whole has a unique premise (house) number or a
-    premise name.  There could be more than one premise in a street
-    referenced in an address. For example a building address near a
-    major shopping centre or raiwlay station
+    The premise as a whole has a unique premise (house) number or a premise
+    name. There could be more than one premise in a street referenced in an
+    address. For example a building address near a major shopping centre or
+    raiwlay station.
 
     :ivar address_line:
     :ivar premise_name: Specification of the name of the premise (house,
@@ -2573,14 +2567,14 @@ class Premise:
             "type": "Element",
         },
     )
-    premise_name: list["Premise.PremiseName"] = field(
+    premise_name: list[Premise.PremiseName] = field(
         default_factory=list,
         metadata={
             "name": "PremiseName",
             "type": "Element",
         },
     )
-    premise_location: Optional["Premise.PremiseLocation"] = field(
+    premise_location: None | Premise.PremiseLocation = field(
         default=None,
         metadata={
             "name": "PremiseLocation",
@@ -2594,7 +2588,7 @@ class Premise:
             "type": "Element",
         },
     )
-    premise_number_range: Optional["Premise.PremiseNumberRange"] = field(
+    premise_number_range: None | Premise.PremiseNumberRange = field(
         default=None,
         metadata={
             "name": "PremiseNumberRange",
@@ -2629,28 +2623,28 @@ class Premise:
             "type": "Element",
         },
     )
-    firm: Optional[FirmType] = field(
+    firm: None | FirmType = field(
         default=None,
         metadata={
             "name": "Firm",
             "type": "Element",
         },
     )
-    mail_stop: Optional[MailStopType] = field(
+    mail_stop: None | MailStopType = field(
         default=None,
         metadata={
             "name": "MailStop",
             "type": "Element",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
             "type": "Element",
         },
     )
-    premise: Optional["Premise"] = field(
+    premise: None | Premise = field(
         default=None,
         metadata={
             "name": "Premise",
@@ -2664,28 +2658,28 @@ class Premise:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    premise_dependency: Optional[object] = field(
+    premise_dependency: None | object = field(
         default=None,
         metadata={
             "name": "PremiseDependency",
             "type": "Attribute",
         },
     )
-    premise_dependency_type: Optional[object] = field(
+    premise_dependency_type: None | object = field(
         default=None,
         metadata={
             "name": "PremiseDependencyType",
             "type": "Attribute",
         },
     )
-    premise_thoroughfare_connector: Optional[object] = field(
+    premise_thoroughfare_connector: None | object = field(
         default=None,
         metadata={
             "name": "PremiseThoroughfareConnector",
@@ -2712,21 +2706,21 @@ class Premise:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        type_occurrence: Optional[PremiseNameTypeOccurrence] = field(
+        type_occurrence: None | PremiseNameTypeOccurrence = field(
             default=None,
             metadata={
                 "name": "TypeOccurrence",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2758,7 +2752,7 @@ class Premise:
         :ivar content:
         """
 
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -2798,49 +2792,47 @@ class Premise:
             occurs after building name
         """
 
-        premise_number_range_from: "Premise.PremiseNumberRange.PremiseNumberRangeFrom" = field(
+        premise_number_range_from: Premise.PremiseNumberRange.PremiseNumberRangeFrom = field(
             metadata={
                 "name": "PremiseNumberRangeFrom",
                 "type": "Element",
-                "required": True,
             }
         )
-        premise_number_range_to: "Premise.PremiseNumberRange.PremiseNumberRangeTo" = field(
+        premise_number_range_to: Premise.PremiseNumberRange.PremiseNumberRangeTo = field(
             metadata={
                 "name": "PremiseNumberRangeTo",
                 "type": "Element",
-                "required": True,
             }
         )
-        range_type: Optional[object] = field(
+        range_type: None | object = field(
             default=None,
             metadata={
                 "name": "RangeType",
                 "type": "Attribute",
             },
         )
-        indicator: Optional[object] = field(
+        indicator: None | object = field(
             default=None,
             metadata={
                 "name": "Indicator",
                 "type": "Attribute",
             },
         )
-        separator: Optional[object] = field(
+        separator: None | object = field(
             default=None,
             metadata={
                 "name": "Separator",
                 "type": "Attribute",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        indicator_occurence: Optional[PremiseNumberRangeIndicatorOccurence] = (
+        indicator_occurence: None | PremiseNumberRangeIndicatorOccurence = (
             field(
                 default=None,
                 metadata={
@@ -2849,9 +2841,9 @@ class Premise:
                 },
             )
         )
-        number_range_occurence: Optional[
-            PremiseNumberRangeNumberRangeOccurence
-        ] = field(
+        number_range_occurence: (
+            None | PremiseNumberRangeNumberRangeOccurence
+        ) = field(
             default=None,
             metadata={
                 "name": "NumberRangeOccurence",
@@ -2926,7 +2918,8 @@ class Premise:
 
 @dataclass(kw_only=True)
 class PostOffice:
-    """Specification of a post office.
+    """
+    Specification of a post office.
 
     Examples are a rural post office where post is delivered and a post
     office containing post office boxes.
@@ -2957,35 +2950,35 @@ class PostOffice:
             "type": "Element",
         },
     )
-    post_office_name: list["PostOffice.PostOfficeName"] = field(
+    post_office_name: list[PostOffice.PostOfficeName] = field(
         default_factory=list,
         metadata={
             "name": "PostOfficeName",
             "type": "Element",
         },
     )
-    post_office_number: Optional["PostOffice.PostOfficeNumber"] = field(
+    post_office_number: None | PostOffice.PostOfficeNumber = field(
         default=None,
         metadata={
             "name": "PostOfficeNumber",
             "type": "Element",
         },
     )
-    postal_route: Optional[PostalRouteType] = field(
+    postal_route: None | PostalRouteType = field(
         default=None,
         metadata={
             "name": "PostalRoute",
             "type": "Element",
         },
     )
-    post_box: Optional[PostBox] = field(
+    post_box: None | PostBox = field(
         default=None,
         metadata={
             "name": "PostBox",
             "type": "Element",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -2999,14 +2992,14 @@ class PostOffice:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    indicator: Optional[object] = field(
+    indicator: None | object = field(
         default=None,
         metadata={
             "name": "Indicator",
@@ -3031,14 +3024,14 @@ class PostOffice:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -3072,14 +3065,14 @@ class PostOffice:
         :ivar content:
         """
 
-        indicator: Optional[object] = field(
+        indicator: None | object = field(
             default=None,
             metadata={
                 "name": "Indicator",
                 "type": "Attribute",
             },
         )
-        indicator_occurrence: Optional[PostOfficeNumberIndicatorOccurrence] = (
+        indicator_occurrence: None | PostOfficeNumberIndicatorOccurrence = (
             field(
                 default=None,
                 metadata={
@@ -3088,7 +3081,7 @@ class PostOffice:
                 },
             )
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -3115,8 +3108,8 @@ class PostOffice:
 @dataclass(kw_only=True)
 class AdministrativeArea:
     """
-    Examples of administrative areas are provinces counties, special regions (such
-    as "Rijnmond"), etc.
+    Examples of administrative areas are provinces counties, special
+    regions (such as "Rijnmond"), etc.
 
     :ivar address_line:
     :ivar administrative_area_name: Name of the administrative area. eg.
@@ -3149,7 +3142,7 @@ class AdministrativeArea:
         },
     )
     administrative_area_name: list[
-        "AdministrativeArea.AdministrativeAreaName"
+        AdministrativeArea.AdministrativeAreaName
     ] = field(
         default_factory=list,
         metadata={
@@ -3157,30 +3150,30 @@ class AdministrativeArea:
             "type": "Element",
         },
     )
-    sub_administrative_area: Optional[
-        "AdministrativeArea.SubAdministrativeArea"
-    ] = field(
+    sub_administrative_area: (
+        None | AdministrativeArea.SubAdministrativeArea
+    ) = field(
         default=None,
         metadata={
             "name": "SubAdministrativeArea",
             "type": "Element",
         },
     )
-    locality: Optional[Locality] = field(
+    locality: None | Locality = field(
         default=None,
         metadata={
             "name": "Locality",
             "type": "Element",
         },
     )
-    post_office: Optional[PostOffice] = field(
+    post_office: None | PostOffice = field(
         default=None,
         metadata={
             "name": "PostOffice",
             "type": "Element",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -3194,21 +3187,21 @@ class AdministrativeArea:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    usage_type: Optional[object] = field(
+    usage_type: None | object = field(
         default=None,
         metadata={
             "name": "UsageType",
             "type": "Attribute",
         },
     )
-    indicator: Optional[object] = field(
+    indicator: None | object = field(
         default=None,
         metadata={
             "name": "Indicator",
@@ -3233,14 +3226,14 @@ class AdministrativeArea:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -3289,7 +3282,7 @@ class AdministrativeArea:
             },
         )
         sub_administrative_area_name: list[
-            "AdministrativeArea.SubAdministrativeArea.SubAdministrativeAreaName"
+            AdministrativeArea.SubAdministrativeArea.SubAdministrativeAreaName
         ] = field(
             default_factory=list,
             metadata={
@@ -3297,21 +3290,21 @@ class AdministrativeArea:
                 "type": "Element",
             },
         )
-        locality: Optional[Locality] = field(
+        locality: None | Locality = field(
             default=None,
             metadata={
                 "name": "Locality",
                 "type": "Element",
             },
         )
-        post_office: Optional[PostOffice] = field(
+        post_office: None | PostOffice = field(
             default=None,
             metadata={
                 "name": "PostOffice",
                 "type": "Element",
             },
         )
-        postal_code: Optional[PostalCode] = field(
+        postal_code: None | PostalCode = field(
             default=None,
             metadata={
                 "name": "PostalCode",
@@ -3325,21 +3318,21 @@ class AdministrativeArea:
                 "namespace": "##other",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        usage_type: Optional[object] = field(
+        usage_type: None | object = field(
             default=None,
             metadata={
                 "name": "UsageType",
                 "type": "Attribute",
             },
         )
-        indicator: Optional[object] = field(
+        indicator: None | object = field(
             default=None,
             metadata={
                 "name": "Indicator",
@@ -3364,14 +3357,14 @@ class AdministrativeArea:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -3442,7 +3435,7 @@ class DependentLocalityType:
         },
     )
     dependent_locality_name: list[
-        "DependentLocalityType.DependentLocalityName"
+        DependentLocalityType.DependentLocalityName
     ] = field(
         default_factory=list,
         metadata={
@@ -3451,9 +3444,9 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    dependent_locality_number: Optional[
-        "DependentLocalityType.DependentLocalityNumber"
-    ] = field(
+    dependent_locality_number: (
+        None | DependentLocalityType.DependentLocalityNumber
+    ) = field(
         default=None,
         metadata={
             "name": "DependentLocalityNumber",
@@ -3461,7 +3454,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    post_box: Optional[PostBox] = field(
+    post_box: None | PostBox = field(
         default=None,
         metadata={
             "name": "PostBox",
@@ -3469,7 +3462,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    large_mail_user: Optional["LargeMailUserType"] = field(
+    large_mail_user: None | LargeMailUserType = field(
         default=None,
         metadata={
             "name": "LargeMailUser",
@@ -3477,7 +3470,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    post_office: Optional[PostOffice] = field(
+    post_office: None | PostOffice = field(
         default=None,
         metadata={
             "name": "PostOffice",
@@ -3485,7 +3478,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    postal_route: Optional[PostalRouteType] = field(
+    postal_route: None | PostalRouteType = field(
         default=None,
         metadata={
             "name": "PostalRoute",
@@ -3493,7 +3486,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    thoroughfare: Optional["Thoroughfare"] = field(
+    thoroughfare: None | Thoroughfare = field(
         default=None,
         metadata={
             "name": "Thoroughfare",
@@ -3501,7 +3494,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    premise: Optional[Premise] = field(
+    premise: None | Premise = field(
         default=None,
         metadata={
             "name": "Premise",
@@ -3509,7 +3502,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    dependent_locality: Optional["DependentLocalityType"] = field(
+    dependent_locality: None | DependentLocalityType = field(
         default=None,
         metadata={
             "name": "DependentLocality",
@@ -3517,7 +3510,7 @@ class DependentLocalityType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -3532,28 +3525,28 @@ class DependentLocalityType:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    usage_type: Optional[object] = field(
+    usage_type: None | object = field(
         default=None,
         metadata={
             "name": "UsageType",
             "type": "Attribute",
         },
     )
-    connector: Optional[object] = field(
+    connector: None | object = field(
         default=None,
         metadata={
             "name": "Connector",
             "type": "Attribute",
         },
     )
-    indicator: Optional[object] = field(
+    indicator: None | object = field(
         default=None,
         metadata={
             "name": "Indicator",
@@ -3578,14 +3571,14 @@ class DependentLocalityType:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -3619,16 +3612,16 @@ class DependentLocalityType:
         :ivar content:
         """
 
-        name_number_occurrence: Optional[
-            DependentLocalityNumberNameNumberOccurrence
-        ] = field(
+        name_number_occurrence: (
+            None | DependentLocalityNumberNameNumberOccurrence
+        ) = field(
             default=None,
             metadata={
                 "name": "NameNumberOccurrence",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -3654,13 +3647,14 @@ class DependentLocalityType:
 
 @dataclass(kw_only=True)
 class Thoroughfare:
-    """Specification of a thoroughfare.
+    """
+    Specification of a thoroughfare.
 
-    A thoroughfare could be a rd, street, canal, river, etc.  Note
-    dependentlocality in a street. For example, in some countries, a
-    large street will have many subdivisions with numbers. Normally the
+    A thoroughfare could be a rd, street, canal, river, etc. Note
+    dependentlocality in a street. For example, in some countries, a large
+    street will have many subdivisions with numbers. Normally the
     subdivision name is the same as the road name, but with a number to
-    identifiy it. Eg. SOI SUKUMVIT 3, SUKUMVIT RD, BANGKOK
+    identifiy it. Eg. SOI SUKUMVIT 3, SUKUMVIT RD, BANGKOK.
 
     :ivar address_line:
     :ivar thoroughfare_number:
@@ -3723,7 +3717,7 @@ class Thoroughfare:
             "type": "Element",
         },
     )
-    thoroughfare_number_range: list["Thoroughfare.ThoroughfareNumberRange"] = (
+    thoroughfare_number_range: list[Thoroughfare.ThoroughfareNumberRange] = (
         field(
             default_factory=list,
             metadata={
@@ -3746,14 +3740,14 @@ class Thoroughfare:
             "type": "Element",
         },
     )
-    thoroughfare_pre_direction: Optional[ThoroughfarePreDirectionType] = field(
+    thoroughfare_pre_direction: None | ThoroughfarePreDirectionType = field(
         default=None,
         metadata={
             "name": "ThoroughfarePreDirection",
             "type": "Element",
         },
     )
-    thoroughfare_leading_type: Optional[ThoroughfareLeadingTypeType] = field(
+    thoroughfare_leading_type: None | ThoroughfareLeadingTypeType = field(
         default=None,
         metadata={
             "name": "ThoroughfareLeadingType",
@@ -3767,53 +3761,49 @@ class Thoroughfare:
             "type": "Element",
         },
     )
-    thoroughfare_trailing_type: Optional[ThoroughfareTrailingTypeType] = field(
+    thoroughfare_trailing_type: None | ThoroughfareTrailingTypeType = field(
         default=None,
         metadata={
             "name": "ThoroughfareTrailingType",
             "type": "Element",
         },
     )
-    thoroughfare_post_direction: Optional[ThoroughfarePostDirectionType] = (
-        field(
-            default=None,
-            metadata={
-                "name": "ThoroughfarePostDirection",
-                "type": "Element",
-            },
-        )
+    thoroughfare_post_direction: None | ThoroughfarePostDirectionType = field(
+        default=None,
+        metadata={
+            "name": "ThoroughfarePostDirection",
+            "type": "Element",
+        },
     )
-    dependent_thoroughfare: Optional["Thoroughfare.DependentThoroughfare"] = (
-        field(
-            default=None,
-            metadata={
-                "name": "DependentThoroughfare",
-                "type": "Element",
-            },
-        )
+    dependent_thoroughfare: None | Thoroughfare.DependentThoroughfare = field(
+        default=None,
+        metadata={
+            "name": "DependentThoroughfare",
+            "type": "Element",
+        },
     )
-    dependent_locality: Optional[DependentLocalityType] = field(
+    dependent_locality: None | DependentLocalityType = field(
         default=None,
         metadata={
             "name": "DependentLocality",
             "type": "Element",
         },
     )
-    premise: Optional[Premise] = field(
+    premise: None | Premise = field(
         default=None,
         metadata={
             "name": "Premise",
             "type": "Element",
         },
     )
-    firm: Optional[FirmType] = field(
+    firm: None | FirmType = field(
         default=None,
         metadata={
             "name": "Firm",
             "type": "Element",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -3827,37 +3817,35 @@ class Thoroughfare:
             "namespace": "##other",
         },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    dependent_thoroughfares: Optional[ThoroughfareDependentThoroughfares] = (
-        field(
-            default=None,
-            metadata={
-                "name": "DependentThoroughfares",
-                "type": "Attribute",
-            },
-        )
+    dependent_thoroughfares: None | ThoroughfareDependentThoroughfares = field(
+        default=None,
+        metadata={
+            "name": "DependentThoroughfares",
+            "type": "Attribute",
+        },
     )
-    dependent_thoroughfares_indicator: Optional[object] = field(
+    dependent_thoroughfares_indicator: None | object = field(
         default=None,
         metadata={
             "name": "DependentThoroughfaresIndicator",
             "type": "Attribute",
         },
     )
-    dependent_thoroughfares_connector: Optional[object] = field(
+    dependent_thoroughfares_connector: None | object = field(
         default=None,
         metadata={
             "name": "DependentThoroughfaresConnector",
             "type": "Attribute",
         },
     )
-    dependent_thoroughfares_type: Optional[object] = field(
+    dependent_thoroughfares_type: None | object = field(
         default=None,
         metadata={
             "name": "DependentThoroughfaresType",
@@ -3904,7 +3892,7 @@ class Thoroughfare:
                 "type": "Element",
             },
         )
-        thoroughfare_pre_direction: Optional[ThoroughfarePreDirectionType] = (
+        thoroughfare_pre_direction: None | ThoroughfarePreDirectionType = (
             field(
                 default=None,
                 metadata={
@@ -3913,14 +3901,12 @@ class Thoroughfare:
                 },
             )
         )
-        thoroughfare_leading_type: Optional[ThoroughfareLeadingTypeType] = (
-            field(
-                default=None,
-                metadata={
-                    "name": "ThoroughfareLeadingType",
-                    "type": "Element",
-                },
-            )
+        thoroughfare_leading_type: None | ThoroughfareLeadingTypeType = field(
+            default=None,
+            metadata={
+                "name": "ThoroughfareLeadingType",
+                "type": "Element",
+            },
         )
         thoroughfare_name: list[ThoroughfareNameType] = field(
             default_factory=list,
@@ -3929,7 +3915,7 @@ class Thoroughfare:
                 "type": "Element",
             },
         )
-        thoroughfare_trailing_type: Optional[ThoroughfareTrailingTypeType] = (
+        thoroughfare_trailing_type: None | ThoroughfareTrailingTypeType = (
             field(
                 default=None,
                 metadata={
@@ -3938,14 +3924,14 @@ class Thoroughfare:
                 },
             )
         )
-        thoroughfare_post_direction: Optional[
-            ThoroughfarePostDirectionType
-        ] = field(
-            default=None,
-            metadata={
-                "name": "ThoroughfarePostDirection",
-                "type": "Element",
-            },
+        thoroughfare_post_direction: None | ThoroughfarePostDirectionType = (
+            field(
+                default=None,
+                metadata={
+                    "name": "ThoroughfarePostDirection",
+                    "type": "Element",
+                },
+            )
         )
         other_element: list[object] = field(
             default_factory=list,
@@ -3954,7 +3940,7 @@ class Thoroughfare:
                 "namespace": "##other",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
@@ -3995,67 +3981,65 @@ class Thoroughfare:
                 "type": "Element",
             },
         )
-        thoroughfare_number_from: "Thoroughfare.ThoroughfareNumberRange.ThoroughfareNumberFrom" = field(
+        thoroughfare_number_from: Thoroughfare.ThoroughfareNumberRange.ThoroughfareNumberFrom = field(
             metadata={
                 "name": "ThoroughfareNumberFrom",
                 "type": "Element",
-                "required": True,
             }
         )
-        thoroughfare_number_to: "Thoroughfare.ThoroughfareNumberRange.ThoroughfareNumberTo" = field(
+        thoroughfare_number_to: Thoroughfare.ThoroughfareNumberRange.ThoroughfareNumberTo = field(
             metadata={
                 "name": "ThoroughfareNumberTo",
                 "type": "Element",
-                "required": True,
             }
         )
-        range_type: Optional[ThoroughfareNumberRangeRangeType] = field(
+        range_type: None | ThoroughfareNumberRangeRangeType = field(
             default=None,
             metadata={
                 "name": "RangeType",
                 "type": "Attribute",
             },
         )
-        indicator: Optional[object] = field(
+        indicator: None | object = field(
             default=None,
             metadata={
                 "name": "Indicator",
                 "type": "Attribute",
             },
         )
-        separator: Optional[object] = field(
+        separator: None | object = field(
             default=None,
             metadata={
                 "name": "Separator",
                 "type": "Attribute",
             },
         )
-        indicator_occurrence: Optional[
-            ThoroughfareNumberRangeIndicatorOccurrence
-        ] = field(
+        indicator_occurrence: (
+            None | ThoroughfareNumberRangeIndicatorOccurrence
+        ) = field(
             default=None,
             metadata={
                 "name": "IndicatorOccurrence",
                 "type": "Attribute",
             },
         )
-        number_range_occurrence: Optional[
-            ThoroughfareNumberRangeNumberRangeOccurrence
-        ] = field(
+        number_range_occurrence: (
+            None | ThoroughfareNumberRangeNumberRangeOccurrence
+        ) = field(
             default=None,
             metadata={
                 "name": "NumberRangeOccurrence",
                 "type": "Attribute",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -4079,7 +4063,7 @@ class Thoroughfare:
             :ivar content:
             """
 
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4129,7 +4113,7 @@ class Thoroughfare:
             :ivar content:
             """
 
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4173,9 +4157,10 @@ class Thoroughfare:
 
 @dataclass(kw_only=True)
 class AddressDetails:
-    """This container defines the details of the address.
+    """
+    This container defines the details of the address.
 
-    Can define multiple addresses including tracking address history
+    Can define multiple addresses including tracking address history.
 
     :ivar postal_service_elements: Postal authorities use specific
         postal service data to expedient delivery of mail
@@ -4205,51 +4190,51 @@ class AddressDetails:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 
-    postal_service_elements: Optional[
-        "AddressDetails.PostalServiceElements"
-    ] = field(
-        default=None,
-        metadata={
-            "name": "PostalServiceElements",
-            "type": "Element",
-        },
+    postal_service_elements: None | AddressDetails.PostalServiceElements = (
+        field(
+            default=None,
+            metadata={
+                "name": "PostalServiceElements",
+                "type": "Element",
+            },
+        )
     )
-    address: Optional[Address] = field(
+    address: None | Address = field(
         default=None,
         metadata={
             "name": "Address",
             "type": "Element",
         },
     )
-    address_lines: Optional[AddressLinesType] = field(
+    address_lines: None | AddressLinesType = field(
         default=None,
         metadata={
             "name": "AddressLines",
             "type": "Element",
         },
     )
-    country: Optional["AddressDetails.Country"] = field(
+    country: None | AddressDetails.Country = field(
         default=None,
         metadata={
             "name": "Country",
             "type": "Element",
         },
     )
-    administrative_area: Optional[AdministrativeArea] = field(
+    administrative_area: None | AdministrativeArea = field(
         default=None,
         metadata={
             "name": "AdministrativeArea",
             "type": "Element",
         },
     )
-    locality: Optional[Locality] = field(
+    locality: None | Locality = field(
         default=None,
         metadata={
             "name": "Locality",
             "type": "Element",
         },
     )
-    thoroughfare: Optional[Thoroughfare] = field(
+    thoroughfare: None | Thoroughfare = field(
         default=None,
         metadata={
             "name": "Thoroughfare",
@@ -4263,49 +4248,49 @@ class AddressDetails:
             "namespace": "##other",
         },
     )
-    address_type: Optional[object] = field(
+    address_type: None | object = field(
         default=None,
         metadata={
             "name": "AddressType",
             "type": "Attribute",
         },
     )
-    current_status: Optional[object] = field(
+    current_status: None | object = field(
         default=None,
         metadata={
             "name": "CurrentStatus",
             "type": "Attribute",
         },
     )
-    valid_from_date: Optional[object] = field(
+    valid_from_date: None | object = field(
         default=None,
         metadata={
             "name": "ValidFromDate",
             "type": "Attribute",
         },
     )
-    valid_to_date: Optional[object] = field(
+    valid_to_date: None | object = field(
         default=None,
         metadata={
             "name": "ValidToDate",
             "type": "Attribute",
         },
     )
-    usage: Optional[object] = field(
+    usage: None | object = field(
         default=None,
         metadata={
             "name": "Usage",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
             "type": "Attribute",
         },
     )
-    address_details_key: Optional[object] = field(
+    address_details_key: None | object = field(
         default=None,
         metadata={
             "name": "AddressDetailsKey",
@@ -4346,7 +4331,7 @@ class AddressDetails:
         """
 
         address_identifier: list[
-            "AddressDetails.PostalServiceElements.AddressIdentifier"
+            AddressDetails.PostalServiceElements.AddressIdentifier
         ] = field(
             default_factory=list,
             metadata={
@@ -4354,72 +4339,72 @@ class AddressDetails:
                 "type": "Element",
             },
         )
-        endorsement_line_code: Optional[
-            "AddressDetails.PostalServiceElements.EndorsementLineCode"
-        ] = field(
+        endorsement_line_code: (
+            None | AddressDetails.PostalServiceElements.EndorsementLineCode
+        ) = field(
             default=None,
             metadata={
                 "name": "EndorsementLineCode",
                 "type": "Element",
             },
         )
-        key_line_code: Optional[
-            "AddressDetails.PostalServiceElements.KeyLineCode"
-        ] = field(
+        key_line_code: (
+            None | AddressDetails.PostalServiceElements.KeyLineCode
+        ) = field(
             default=None,
             metadata={
                 "name": "KeyLineCode",
                 "type": "Element",
             },
         )
-        barcode: Optional["AddressDetails.PostalServiceElements.Barcode"] = (
-            field(
-                default=None,
-                metadata={
-                    "name": "Barcode",
-                    "type": "Element",
-                },
-            )
+        barcode: None | AddressDetails.PostalServiceElements.Barcode = field(
+            default=None,
+            metadata={
+                "name": "Barcode",
+                "type": "Element",
+            },
         )
-        sorting_code: Optional[
-            "AddressDetails.PostalServiceElements.SortingCode"
-        ] = field(
+        sorting_code: (
+            None | AddressDetails.PostalServiceElements.SortingCode
+        ) = field(
             default=None,
             metadata={
                 "name": "SortingCode",
                 "type": "Element",
             },
         )
-        address_latitude: Optional[
-            "AddressDetails.PostalServiceElements.AddressLatitude"
-        ] = field(
+        address_latitude: (
+            None | AddressDetails.PostalServiceElements.AddressLatitude
+        ) = field(
             default=None,
             metadata={
                 "name": "AddressLatitude",
                 "type": "Element",
             },
         )
-        address_latitude_direction: Optional[
-            "AddressDetails.PostalServiceElements.AddressLatitudeDirection"
-        ] = field(
+        address_latitude_direction: (
+            None
+            | AddressDetails.PostalServiceElements.AddressLatitudeDirection
+        ) = field(
             default=None,
             metadata={
                 "name": "AddressLatitudeDirection",
                 "type": "Element",
             },
         )
-        address_longitude: Optional[
-            "AddressDetails.PostalServiceElements.AddressLongitude"
-        ] = field(
+        address_longitude: (
+            None | AddressDetails.PostalServiceElements.AddressLongitude
+        ) = field(
             default=None,
             metadata={
                 "name": "AddressLongitude",
                 "type": "Element",
             },
         )
-        address_longitude_direction: Optional[
-            "AddressDetails.PostalServiceElements.AddressLongitudeDirection"
-        ] = field(
+        address_longitude_direction: (
+            None
+            | AddressDetails.PostalServiceElements.AddressLongitudeDirection
+        ) = field(
             default=None,
             metadata={
                 "name": "AddressLongitudeDirection",
@@ -4427,7 +4412,7 @@ class AddressDetails:
             },
         )
         supplementary_postal_service_data: list[
-            "AddressDetails.PostalServiceElements.SupplementaryPostalServiceData"
+            AddressDetails.PostalServiceElements.SupplementaryPostalServiceData
         ] = field(
             default_factory=list,
             metadata={
@@ -4442,7 +4427,7 @@ class AddressDetails:
                 "namespace": "##other",
             },
         )
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
@@ -4469,21 +4454,21 @@ class AddressDetails:
             :ivar content:
             """
 
-            identifier_type: Optional[object] = field(
+            identifier_type: None | object = field(
                 default=None,
                 metadata={
                     "name": "IdentifierType",
                     "type": "Attribute",
                 },
             )
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4516,14 +4501,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4556,14 +4541,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4596,14 +4581,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4634,14 +4619,14 @@ class AddressDetails:
                 the element.
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4659,14 +4644,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4701,14 +4686,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4741,14 +4726,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4781,14 +4766,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4821,14 +4806,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            type_value: Optional[object] = field(
+            type_value: None | object = field(
                 default=None,
                 metadata={
                     "name": "Type",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4872,7 +4857,7 @@ class AddressDetails:
                 "type": "Element",
             },
         )
-        country_name_code: list["AddressDetails.Country.CountryNameCode"] = (
+        country_name_code: list[AddressDetails.Country.CountryNameCode] = (
             field(
                 default_factory=list,
                 metadata={
@@ -4888,21 +4873,21 @@ class AddressDetails:
                 "type": "Element",
             },
         )
-        administrative_area: Optional[AdministrativeArea] = field(
+        administrative_area: None | AdministrativeArea = field(
             default=None,
             metadata={
                 "name": "AdministrativeArea",
                 "type": "Element",
             },
         )
-        locality: Optional[Locality] = field(
+        locality: None | Locality = field(
             default=None,
             metadata={
                 "name": "Locality",
                 "type": "Element",
             },
         )
-        thoroughfare: Optional[Thoroughfare] = field(
+        thoroughfare: None | Thoroughfare = field(
             default=None,
             metadata={
                 "name": "Thoroughfare",
@@ -4936,14 +4921,14 @@ class AddressDetails:
             :ivar content:
             """
 
-            scheme: Optional[object] = field(
+            scheme: None | object = field(
                 default=None,
                 metadata={
                     "name": "Scheme",
                     "type": "Attribute",
                 },
             )
-            code: Optional[object] = field(
+            code: None | object = field(
                 default=None,
                 metadata={
                     "name": "Code",
@@ -4994,7 +4979,7 @@ class LargeMailUserType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    large_mail_user_name: list["LargeMailUserType.LargeMailUserName"] = field(
+    large_mail_user_name: list[LargeMailUserType.LargeMailUserName] = field(
         default_factory=list,
         metadata={
             "name": "LargeMailUserName",
@@ -5002,9 +4987,9 @@ class LargeMailUserType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    large_mail_user_identifier: Optional[
-        "LargeMailUserType.LargeMailUserIdentifier"
-    ] = field(
+    large_mail_user_identifier: (
+        None | LargeMailUserType.LargeMailUserIdentifier
+    ) = field(
         default=None,
         metadata={
             "name": "LargeMailUserIdentifier",
@@ -5020,7 +5005,7 @@ class LargeMailUserType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    department: Optional[Department] = field(
+    department: None | Department = field(
         default=None,
         metadata={
             "name": "Department",
@@ -5028,7 +5013,7 @@ class LargeMailUserType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    post_box: Optional[PostBox] = field(
+    post_box: None | PostBox = field(
         default=None,
         metadata={
             "name": "PostBox",
@@ -5036,7 +5021,7 @@ class LargeMailUserType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    thoroughfare: Optional[Thoroughfare] = field(
+    thoroughfare: None | Thoroughfare = field(
         default=None,
         metadata={
             "name": "Thoroughfare",
@@ -5044,7 +5029,7 @@ class LargeMailUserType:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0",
         },
     )
-    postal_code: Optional[PostalCode] = field(
+    postal_code: None | PostalCode = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -5059,7 +5044,7 @@ class LargeMailUserType:
             "namespace": "##other",
         },
     )
-    type_value: Optional[str] = field(
+    type_value: None | str = field(
         default=None,
         metadata={
             "name": "Type",
@@ -5083,14 +5068,14 @@ class LargeMailUserType:
         :ivar content:
         """
 
-        type_value: Optional[str] = field(
+        type_value: None | str = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        code: Optional[str] = field(
+        code: None | str = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -5125,21 +5110,21 @@ class LargeMailUserType:
         :ivar content:
         """
 
-        type_value: Optional[str] = field(
+        type_value: None | str = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        indicator: Optional[object] = field(
+        indicator: None | object = field(
             default=None,
             metadata={
                 "name": "Indicator",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -5193,7 +5178,7 @@ class XAl:
             "namespace": "##other",
         },
     )
-    version: Optional[object] = field(
+    version: None | object = field(
         default=None,
         metadata={
             "name": "Version",

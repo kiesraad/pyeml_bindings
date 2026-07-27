@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
-from typing import Optional
 
 __NAMESPACE__ = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
 
 
 @dataclass(kw_only=True)
 class Function:
-    """Function of the Person defined.
+    """
+    Function of the Person defined.
 
     Example: Managing Director, CEO, Marketing Manager, etc.
 
@@ -20,7 +22,7 @@ class Function:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
 
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -61,7 +63,7 @@ class NameLineType:
     :ivar content:
     """
 
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
@@ -77,7 +79,7 @@ class NameLineType:
             "required": True,
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -131,34 +133,30 @@ class OrganisationNameDetails1:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
         },
     )
-    organisation_name: list["OrganisationNameDetails1.OrganisationName"] = (
-        field(
-            default_factory=list,
-            metadata={
-                "name": "OrganisationName",
-                "type": "Element",
-                "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
-            },
-        )
+    organisation_name: list[OrganisationNameDetails1.OrganisationName] = field(
+        default_factory=list,
+        metadata={
+            "name": "OrganisationName",
+            "type": "Element",
+            "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
+        },
     )
-    organisation_type: list["OrganisationNameDetails1.OrganisationType"] = (
-        field(
-            default_factory=list,
-            metadata={
-                "name": "OrganisationType",
-                "type": "Element",
-                "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
-            },
-        )
+    organisation_type: list[OrganisationNameDetails1.OrganisationType] = field(
+        default_factory=list,
+        metadata={
+            "name": "OrganisationType",
+            "type": "Element",
+            "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
+        },
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    name_details_key_ref: Optional[object] = field(
+    name_details_key_ref: None | object = field(
         default=None,
         metadata={
             "name": "NameDetailsKeyRef",
@@ -187,21 +185,21 @@ class OrganisationNameDetails1:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        name_type: Optional[object] = field(
+        name_type: None | object = field(
             default=None,
             metadata={
                 "name": "NameType",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -238,21 +236,21 @@ class OrganisationNameDetails1:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        name_type: Optional[object] = field(
+        name_type: None | object = field(
             default=None,
             metadata={
                 "name": "NameType",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -278,7 +276,8 @@ class OrganisationNameDetails1:
 
 @dataclass(kw_only=True)
 class PersonName:
-    """Container for person name details.
+    """
+    Container for person name details.
 
     Restricted for OSV!
 
@@ -308,49 +307,48 @@ class PersonName:
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
 
-    name_line: Optional[NameLineType] = field(
+    name_line: None | NameLineType = field(
         default=None,
         metadata={
             "name": "NameLine",
             "type": "Element",
         },
     )
-    first_name: Optional["PersonName.FirstName"] = field(
+    first_name: None | PersonName.FirstName = field(
         default=None,
         metadata={
             "name": "FirstName",
             "type": "Element",
         },
     )
-    name_prefix: Optional["PersonName.NamePrefix"] = field(
+    name_prefix: None | PersonName.NamePrefix = field(
         default=None,
         metadata={
             "name": "NamePrefix",
             "type": "Element",
         },
     )
-    last_name: "PersonName.LastName" = field(
+    last_name: PersonName.LastName = field(
         metadata={
             "name": "LastName",
             "type": "Element",
-            "required": True,
         }
     )
-    type_value: Optional[object] = field(
+    type_value: None | object = field(
         default=None,
         metadata={
             "name": "Type",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
             "type": "Attribute",
         },
     )
-    name_details_key_ref: Optional[object] = field(
+    name_details_key_ref: None | object = field(
         default=None,
         metadata={
             "name": "NameDetailsKeyRef",
@@ -381,21 +379,21 @@ class PersonName:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        name_type: Optional[object] = field(
+        name_type: None | object = field(
             default=None,
             metadata={
                 "name": "NameType",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -433,21 +431,21 @@ class PersonName:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        name_type: Optional[object] = field(
+        name_type: None | object = field(
             default=None,
             metadata={
                 "name": "NameType",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -486,21 +484,21 @@ class PersonName:
         :ivar content:
         """
 
-        type_value: Optional[object] = field(
+        type_value: None | object = field(
             default=None,
             metadata={
                 "name": "Type",
                 "type": "Attribute",
             },
         )
-        name_type: Optional[object] = field(
+        name_type: None | object = field(
             default=None,
             metadata={
                 "name": "NameType",
                 "type": "Attribute",
             },
         )
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -526,9 +524,10 @@ class PersonName:
 
 @dataclass(kw_only=True)
 class JointPersonName:
-    """A container to define more than one person name.
+    """
+    A container to define more than one person name.
 
-    Example: Mrs Mary Johnson and Mr.Patrick Johnson
+    Example: Mrs Mary Johnson and Mr.Patrick Johnson.
 
     :ivar name_line: Name or part of the name as a free format text. If
         the name structure has to be broken down into individual
@@ -570,14 +569,14 @@ class JointPersonName:
             "namespace": "##other",
         },
     )
-    joint_name_connector: Optional[object] = field(
+    joint_name_connector: None | object = field(
         default=None,
         metadata={
             "name": "JointNameConnector",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -609,7 +608,7 @@ class OrganisationNameDetails(OrganisationNameDetails1):
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
 
     organisation_former_name: list[
-        "OrganisationNameDetails.OrganisationFormerName"
+        OrganisationNameDetails.OrganisationFormerName
     ] = field(
         default_factory=list,
         metadata={
@@ -618,7 +617,7 @@ class OrganisationNameDetails(OrganisationNameDetails1):
         },
     )
     organisation_known_as: list[
-        "OrganisationNameDetails.OrganisationKnownAs"
+        OrganisationNameDetails.OrganisationKnownAs
     ] = field(
         default_factory=list,
         metadata={
@@ -651,14 +650,14 @@ class OrganisationNameDetails(OrganisationNameDetails1):
                 "namespace": "##other",
             },
         )
-        valid_from: Optional[object] = field(
+        valid_from: None | object = field(
             default=None,
             metadata={
                 "name": "ValidFrom",
                 "type": "Attribute",
             },
         )
-        valid_to: Optional[object] = field(
+        valid_to: None | object = field(
             default=None,
             metadata={
                 "name": "ValidTo",
@@ -683,14 +682,14 @@ class OrganisationNameDetails(OrganisationNameDetails1):
                 "namespace": "##other",
             },
         )
-        valid_from: Optional[object] = field(
+        valid_from: None | object = field(
             default=None,
             metadata={
                 "name": "ValidFrom",
                 "type": "Attribute",
             },
         )
-        valid_to: Optional[object] = field(
+        valid_to: None | object = field(
             default=None,
             metadata={
                 "name": "ValidTo",
@@ -729,7 +728,7 @@ class NameDetails1:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
         },
     )
-    person_name: Optional[PersonName] = field(
+    person_name: None | PersonName = field(
         default=None,
         metadata={
             "name": "PersonName",
@@ -737,7 +736,7 @@ class NameDetails1:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
         },
     )
-    joint_person_name: Optional[JointPersonName] = field(
+    joint_person_name: None | JointPersonName = field(
         default=None,
         metadata={
             "name": "JointPersonName",
@@ -745,7 +744,7 @@ class NameDetails1:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
         },
     )
-    organisation_name_details: Optional[OrganisationNameDetails1] = field(
+    organisation_name_details: None | OrganisationNameDetails1 = field(
         default=None,
         metadata={
             "name": "OrganisationNameDetails",
@@ -753,14 +752,14 @@ class NameDetails1:
             "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
         },
     )
-    party_type: Optional[object] = field(
+    party_type: None | object = field(
         default=None,
         metadata={
             "name": "PartyType",
             "type": "Attribute",
         },
     )
-    code: Optional[object] = field(
+    code: None | object = field(
         default=None,
         metadata={
             "name": "Code",
@@ -802,21 +801,21 @@ class NameDetails(NameDetails1):
     class Meta:
         namespace = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
 
-    addressee_indicator: Optional["NameDetails.AddresseeIndicator"] = field(
+    addressee_indicator: None | NameDetails.AddresseeIndicator = field(
         default=None,
         metadata={
             "name": "AddresseeIndicator",
             "type": "Element",
         },
     )
-    function: Optional[Function] = field(
+    function: None | Function = field(
         default=None,
         metadata={
             "name": "Function",
             "type": "Element",
         },
     )
-    dependency_name: Optional["NameDetails.DependencyName"] = field(
+    dependency_name: None | NameDetails.DependencyName = field(
         default=None,
         metadata={
             "name": "DependencyName",
@@ -830,7 +829,7 @@ class NameDetails(NameDetails1):
             "namespace": "##other",
         },
     )
-    name_details_key: Optional[object] = field(
+    name_details_key: None | object = field(
         default=None,
         metadata={
             "name": "NameDetailsKey",
@@ -848,7 +847,7 @@ class NameDetails(NameDetails1):
         :ivar content:
         """
 
-        code: Optional[object] = field(
+        code: None | object = field(
             default=None,
             metadata={
                 "name": "Code",
@@ -891,14 +890,14 @@ class NameDetails(NameDetails1):
                 "namespace": "##other",
             },
         )
-        dependency_type: Optional[object] = field(
+        dependency_type: None | object = field(
             default=None,
             metadata={
                 "name": "DependencyType",
                 "type": "Attribute",
             },
         )
-        name_details_key_ref: Optional[object] = field(
+        name_details_key_ref: None | object = field(
             default=None,
             metadata={
                 "name": "NameDetailsKeyRef",
@@ -910,7 +909,7 @@ class NameDetails(NameDetails1):
 @dataclass(kw_only=True)
 class XNl:
     """
-    Root element to define name of a Person or an Organisation  in detail.
+    Root element to define name of a Person or an Organisation in detail.
 
     :ivar name_details:
     :ivar other_element: Use this to import/use/reference name elements
@@ -939,7 +938,7 @@ class XNl:
             "namespace": "##other",
         },
     )
-    version: Optional[object] = field(
+    version: None | object = field(
         default=None,
         metadata={
             "name": "Version",

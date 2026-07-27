@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime
 
@@ -21,10 +22,9 @@ class AccessibilityPropertiesTypeSignLanguageInterpreter(Enum):
 
 
 class BuildingUsageType(Enum):
-    """Building usage type according to the BAG.
-
-    (see
-    https://www.amsterdam.nl/stelselpedia/bag-index/handboek-inwinnen/introductie-bag/registratie/gebruiksdoel/)
+    """
+    Building usage type according to the BAG. (see
+    https://www.amsterdam.nl/stelselpedia/bag-index/handboek-inwinnen/introductie-bag/registratie/gebruiksdoel/).
     """
 
     WONEN = "Wonen"
@@ -45,12 +45,7 @@ class MunicipalityContactDetails:
     class Meta:
         namespace = "http://www.kiesraad.nl/sb-extensions"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
 
 
 @dataclass(kw_only=True)
@@ -61,7 +56,6 @@ class MunicipalityElectionSite:
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "pattern": r"https?://.+",
         },
     )
@@ -69,7 +63,7 @@ class MunicipalityElectionSite:
 
 @dataclass(kw_only=True)
 class AccessibilityPropertiesType:
-    accessible_public_transport: Optional[bool] = field(
+    accessible_public_transport: None | bool = field(
         default=None,
         metadata={
             "name": "AccessiblePublicTransport",
@@ -77,7 +71,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    accessible_toilet: Optional[bool] = field(
+    accessible_toilet: None | bool = field(
         default=None,
         metadata={
             "name": "AccessibleToilet",
@@ -85,7 +79,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    host_present: Optional[bool] = field(
+    host_present: None | bool = field(
         default=None,
         metadata={
             "name": "HostPresent",
@@ -93,7 +87,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    guidelines: Optional[AccessibilityPropertiesTypeGuidelines] = field(
+    guidelines: None | AccessibilityPropertiesTypeGuidelines = field(
         default=None,
         metadata={
             "name": "Guidelines",
@@ -101,7 +95,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    voting_template: Optional[bool] = field(
+    voting_template: None | bool = field(
         default=None,
         metadata={
             "name": "VotingTemplate",
@@ -109,7 +103,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    braille_candidate_list: Optional[bool] = field(
+    braille_candidate_list: None | bool = field(
         default=None,
         metadata={
             "name": "BrailleCandidateList",
@@ -117,7 +111,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    large_lettered_candidate_list: Optional[bool] = field(
+    large_lettered_candidate_list: None | bool = field(
         default=None,
         metadata={
             "name": "LargeLetteredCandidateList",
@@ -125,9 +119,9 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    sign_language_interpreter: Optional[
-        AccessibilityPropertiesTypeSignLanguageInterpreter
-    ] = field(
+    sign_language_interpreter: (
+        None | AccessibilityPropertiesTypeSignLanguageInterpreter
+    ) = field(
         default=None,
         metadata={
             "name": "SignLanguageInterpreter",
@@ -135,7 +129,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    sign_language_polling_station_member: Optional[bool] = field(
+    sign_language_polling_station_member: None | bool = field(
         default=None,
         metadata={
             "name": "SignLanguagePollingStationMember",
@@ -143,7 +137,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    acoustics_for_hearing_impaired: Optional[bool] = field(
+    acoustics_for_hearing_impaired: None | bool = field(
         default=None,
         metadata={
             "name": "AcousticsForHearingImpaired",
@@ -151,7 +145,7 @@ class AccessibilityPropertiesType:
             "namespace": "http://www.kiesraad.nl/sb-extensions",
         },
     )
-    low_stimulus_environment: Optional[bool] = field(
+    low_stimulus_environment: None | bool = field(
         default=None,
         metadata={
             "name": "LowStimulusEnvironment",
@@ -174,7 +168,7 @@ class Location:
     class Meta:
         namespace = "http://www.kiesraad.nl/sb-extensions"
 
-    bagid: Optional[str] = field(
+    bagid: None | str = field(
         default=None,
         metadata={
             "name": "BAGId",
@@ -182,35 +176,35 @@ class Location:
             "pattern": r"\d{16}",
         },
     )
-    street_name: Optional[str] = field(
+    street_name: None | str = field(
         default=None,
         metadata={
             "name": "StreetName",
             "type": "Element",
         },
     )
-    number: Optional[int] = field(
+    number: None | int = field(
         default=None,
         metadata={
             "name": "Number",
             "type": "Element",
         },
     )
-    letter: Optional[str] = field(
+    letter: None | str = field(
         default=None,
         metadata={
             "name": "Letter",
             "type": "Element",
         },
     )
-    number_addition: Optional[str] = field(
+    number_addition: None | str = field(
         default=None,
         metadata={
             "name": "NumberAddition",
             "type": "Element",
         },
     )
-    postal_code: Optional[str] = field(
+    postal_code: None | str = field(
         default=None,
         metadata={
             "name": "PostalCode",
@@ -218,35 +212,35 @@ class Location:
             "pattern": r"\d{4} [A-Z]{2}",
         },
     )
-    city: Optional[str] = field(
+    city: None | str = field(
         default=None,
         metadata={
             "name": "City",
             "type": "Element",
         },
     )
-    additional_address_information: Optional[str] = field(
+    additional_address_information: None | str = field(
         default=None,
         metadata={
             "name": "AdditionalAddressInformation",
             "type": "Element",
         },
     )
-    building_usage: Optional[BuildingUsageType] = field(
+    building_usage: None | BuildingUsageType = field(
         default=None,
         metadata={
             "name": "BuildingUsage",
             "type": "Element",
         },
     )
-    district_name: Optional[str] = field(
+    district_name: None | str = field(
         default=None,
         metadata={
             "name": "DistrictName",
             "type": "Element",
         },
     )
-    district_code: Optional[str] = field(
+    district_code: None | str = field(
         default=None,
         metadata={
             "name": "DistrictCode",
@@ -254,14 +248,14 @@ class Location:
             "pattern": r"WK\d{6}",
         },
     )
-    neighbourhood_name: Optional[str] = field(
+    neighbourhood_name: None | str = field(
         default=None,
         metadata={
             "name": "NeighbourhoodName",
             "type": "Element",
         },
     )
-    neighbourhood_code: Optional[str] = field(
+    neighbourhood_code: None | str = field(
         default=None,
         metadata={
             "name": "NeighbourhoodCode",
@@ -269,7 +263,7 @@ class Location:
             "pattern": r"BU\d{8}",
         },
     )
-    website: Optional[str] = field(
+    website: None | str = field(
         default=None,
         metadata={
             "name": "Website",
@@ -277,21 +271,21 @@ class Location:
             "pattern": r"https?://.+",
         },
     )
-    open_time: Optional[XmlDateTime] = field(
+    open_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "OpenTime",
             "type": "Element",
         },
     )
-    closing_time: Optional[XmlDateTime] = field(
+    closing_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "ClosingTime",
             "type": "Element",
         },
     )
-    rdx: Optional[str] = field(
+    rdx: None | str = field(
         default=None,
         metadata={
             "name": "RDx",
@@ -299,7 +293,7 @@ class Location:
             "pattern": r"\d{1,6}(.\d{1,})?",
         },
     )
-    rdy: Optional[str] = field(
+    rdy: None | str = field(
         default=None,
         metadata={
             "name": "RDy",
@@ -307,7 +301,7 @@ class Location:
             "pattern": r"\d{1,6}(.\d{1,})?",
         },
     )
-    latitude: Optional[str] = field(
+    latitude: None | str = field(
         default=None,
         metadata={
             "name": "Latitude",
@@ -315,7 +309,7 @@ class Location:
             "pattern": r"\d{1,2}\.\d{4,}",
         },
     )
-    longitude: Optional[str] = field(
+    longitude: None | str = field(
         default=None,
         metadata={
             "name": "Longitude",
@@ -323,21 +317,21 @@ class Location:
             "pattern": r"\d{1,2}\.\d{4,}",
         },
     )
-    counting_location: Optional[bool] = field(
+    counting_location: None | bool = field(
         default=None,
         metadata={
             "name": "CountingLocation",
             "type": "Element",
         },
     )
-    accessibility: Optional["Location.Accessibility"] = field(
+    accessibility: None | Location.Accessibility = field(
         default=None,
         metadata={
             "name": "Accessibility",
             "type": "Element",
         },
     )
-    other_info: Optional[str] = field(
+    other_info: None | str = field(
         default=None,
         metadata={
             "name": "OtherInfo",
@@ -351,15 +345,12 @@ class Location:
             metadata={
                 "name": "Accessible",
                 "type": "Element",
-                "required": True,
             }
         )
-        accessibility_properties: Optional[AccessibilityPropertiesType] = (
-            field(
-                default=None,
-                metadata={
-                    "name": "AccessibilityProperties",
-                    "type": "Element",
-                },
-            )
+        accessibility_properties: None | AccessibilityPropertiesType = field(
+            default=None,
+            metadata={
+                "name": "AccessibilityProperties",
+                "type": "Element",
+            },
         )

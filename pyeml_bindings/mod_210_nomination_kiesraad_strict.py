@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Optional, Union
+from typing import Any
 
 from xsdata.models.datatype import XmlDate, XmlDateTime
 
@@ -8,9 +10,11 @@ from pyeml_bindings.emlexternals_kiesraad_strict import PersonNameStructure
 from pyeml_bindings.kiesraad_eml_extensions import (
     AffiliationType,
     CreationDateTime,
+    ElectionDate,
     ListData,
     LivingAddress,
     NominationDate,
+    Schema,
 )
 from pyeml_bindings.kiesraad_eml_restrictions import (
     AffiliationIdentifierStructureKr,
@@ -55,7 +59,7 @@ class AffiliationIdentifierStructure210(AffiliationIdentifierStructureKr):
 @dataclass(kw_only=True)
 class CandidateIdentifierStructure210(CandidateIdentifierStructureKr):
     """
-    Only empty content allowed, Id Attribute mandatory.
+    only empty content allowed, Id Attribute mandatory.
     """
 
     candidate_name: Any = field(
@@ -90,7 +94,6 @@ class CandidateIdentifierStructure210(CandidateIdentifierStructureKr):
         metadata={
             "name": "Id",
             "type": "Attribute",
-            "required": True,
             "pattern": r"[1-9]\d*",
         }
     )
@@ -99,7 +102,7 @@ class CandidateIdentifierStructure210(CandidateIdentifierStructureKr):
 @dataclass(kw_only=True)
 class CandidateStructure210(CandidateStructureKr):
     """
-    Only CandidateIdentifier, CandidateFullName, DateOfBirth, Gender,
+    only CandidateIdentifier, CandidateFullName, DateOfBirth, Gender,
     QualifyingAddress, and Agent allowed.
     """
 
@@ -108,7 +111,6 @@ class CandidateStructure210(CandidateStructureKr):
             "name": "CandidateFullName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
     qualifying_address: QualifyingAddressStructureKr = field(
@@ -116,7 +118,6 @@ class CandidateStructure210(CandidateStructureKr):
             "name": "QualifyingAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
 
@@ -124,7 +125,7 @@ class CandidateStructure210(CandidateStructureKr):
 @dataclass(kw_only=True)
 class ContestIdentifierStructure210(ContestIdentifierStructureKr):
     """
-    Mandatory ContestName.
+    mandatory ContestName.
     """
 
     contest_name: str = field(
@@ -132,7 +133,6 @@ class ContestIdentifierStructure210(ContestIdentifierStructureKr):
             "name": "ContestName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
 
@@ -140,19 +140,28 @@ class ContestIdentifierStructure210(ContestIdentifierStructureKr):
 @dataclass(kw_only=True)
 class Emlstructure210(EmlstructureKr):
     """
-    Only TransactionId and IssueDate needed, CanoncalizationMethod added.
+    only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
 
     class Meta:
         name = "EMLstructure210"
 
-    issue_date: Union[XmlDate, XmlDateTime] = field(
+    issue_date: XmlDate | XmlDateTime = field(
         metadata={
             "name": "IssueDate",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
+    )
+    schema: list[Schema] = field(
+        default_factory=list,
+        metadata={
+            "name": "Schema",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 2,
+            "max_occurs": 3,
+        },
     )
     creation_date_time: list[CreationDateTime] = field(
         default_factory=list,
@@ -178,9 +187,19 @@ class Emlstructure210(EmlstructureKr):
 @dataclass(kw_only=True)
 class ElectionIdentifierStructure210(ElectionIdentifierStructureKr):
     """
-    Mandatory ElectionCategory, and some additional Elements.
+    mandatory ElectionCategory, and some additional Elements.
     """
 
+    election_date: list[ElectionDate] = field(
+        default_factory=list,
+        metadata={
+            "name": "ElectionDate",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 2,
+            "max_occurs": 4,
+        },
+    )
     nomination_date: list[NominationDate] = field(
         default_factory=list,
         metadata={
@@ -196,8 +215,8 @@ class ElectionIdentifierStructure210(ElectionIdentifierStructureKr):
 @dataclass(kw_only=True)
 class ProposerStructureRestricted:
     """
-    Due to the anonymous definition of the original Id, a removal by restriction
-    was necessary.
+    due to the anonymous definition of the original Id, a removal by
+    restriction was necessary.
     """
 
     name: PersonNameStructure = field(
@@ -205,7 +224,6 @@ class ProposerStructureRestricted:
             "name": "Name",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
     contact: ContactDetailsStructureKr = field(
@@ -213,7 +231,6 @@ class ProposerStructureRestricted:
             "name": "Contact",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
     job_title: ProposerStructureRestrictedJobTitle = field(
@@ -221,7 +238,6 @@ class ProposerStructureRestricted:
             "name": "JobTitle",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
 
@@ -237,7 +253,6 @@ class AffiliationStructure210:
             "name": "AffiliationIdentifier",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
     type_value: AffiliationType = field(
@@ -245,16 +260,14 @@ class AffiliationStructure210:
             "name": "Type",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
-    list_data: list[ListData] = field(
-        default_factory=list,
+    list_data: None | ListData = field(
+        default=None,
         metadata={
             "name": "ListData",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
-            "max_occurs": 2,
         },
     )
     kiesraad_nl_reportgenerator_element: list[object] = field(
@@ -269,8 +282,8 @@ class AffiliationStructure210:
 @dataclass(kw_only=True)
 class ProposerStructureKr(ProposerStructureRestricted):
     """
-    Due to the anonymous definition of the original Id, a repeated definition by
-    extension was necessary.
+    due to the anonymous definition of the original Id, a repeated
+    definition by extension was necessary.
 
     :ivar id: mandatory if it is a deputy
     :ivar living_address:
@@ -279,7 +292,7 @@ class ProposerStructureKr(ProposerStructureRestricted):
     class Meta:
         name = "ProposerStructureKR"
 
-    id: Optional[str] = field(
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",
@@ -287,7 +300,7 @@ class ProposerStructureKr(ProposerStructureRestricted):
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
         },
     )
-    living_address: Optional[LivingAddress] = field(
+    living_address: None | LivingAddress = field(
         default=None,
         metadata={
             "name": "LivingAddress",
@@ -306,28 +319,24 @@ class Nomination:
         metadata={
             "name": "ElectionIdentifier",
             "type": "Element",
-            "required": True,
         }
     )
     contest_identifier: ContestIdentifierStructure210 = field(
         metadata={
             "name": "ContestIdentifier",
             "type": "Element",
-            "required": True,
         }
     )
-    affiliation: "Nomination.Affiliation" = field(
+    affiliation: Nomination.Affiliation = field(
         metadata={
             "name": "Affiliation",
             "type": "Element",
-            "required": True,
         }
     )
-    nominate: "Nomination.Nominate" = field(
+    nominate: Nomination.Nominate = field(
         metadata={
             "name": "Nominate",
             "type": "Element",
-            "required": True,
         }
     )
     other_element: list[object] = field(
@@ -359,3 +368,18 @@ class Nomination:
                 "min_occurs": 2,
             },
         )
+
+
+@dataclass(kw_only=True)
+class Eml(Emlstructure210):
+    class Meta:
+        name = "EML"
+        namespace = "urn:oasis:names:tc:evs:schema:eml"
+
+    nomination: Nomination = field(
+        metadata={
+            "name": "Nomination",
+            "type": "Element",
+            "required": True,
+        }
+    )

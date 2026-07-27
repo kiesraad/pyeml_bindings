@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
 
 from xsdata.models.datatype import XmlDate, XmlDateTime
 
@@ -9,7 +10,8 @@ __NAMESPACE__ = "http://www.kiesraad.nl/extensions"
 
 class AffiliationType(Enum):
     """
-    Restricts the basic type to the allowed values for the affiliation type.
+    restricts the basic type to the allowed values for the affiliation
+    type.
     """
 
     LIJSTENGROEP = "lijstengroep"
@@ -29,17 +31,11 @@ class Contest:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
     id: str = field(
         metadata={
             "name": "Id",
             "type": "Attribute",
-            "required": True,
             "pattern": r"[1-9]\d*|geen|alle|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})",
         }
     )
@@ -53,7 +49,8 @@ class CountingMethodMethodCode(Enum):
 @dataclass(kw_only=True)
 class CreatedByAuthority:
     """
-    Instance which created a data set on behalf of another (only if different!)
+    Instance which created a data set on behalf of another (only if
+    different!).
     """
 
     class Meta:
@@ -63,7 +60,6 @@ class CreatedByAuthority:
         metadata={
             "name": "Id",
             "type": "Attribute",
-            "required": True,
             "min_length": 3,
             "pattern": r"CSB|((HSB|SB)\d+)|(\d{4})",
         }
@@ -81,24 +77,22 @@ class CreatedByAuthority:
 @dataclass(kw_only=True)
 class CreationDateTime:
     """
-    Date and time of the last modification of the data which was used to create the
-    EML file.
+    date and time of the last modification of the data which was used to
+    create the EML file.
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: XmlDateTime = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: XmlDateTime = field()
 
 
 @dataclass(kw_only=True)
 class DateOfBirthAnnex:
     """
-    Use this instead of DateOfBirth when day, month and/or year is unknown, e.g.
+    Use this instead of DateOfBirth when day, month and/or year is unknown,
+    e.g.
+
     XX-05-1976, XX-XX-1964, XX-XX-XXXX.
     """
 
@@ -115,8 +109,8 @@ class DateOfBirthAnnex:
 
 class ElectionCategoryType(Enum):
     """
-    Restricts the basic type to the allowed values for the election category
-    (election type abreviation)
+    restricts the basic type to the allowed values for the election
+    category (election type abreviation).
     """
 
     EK = "EK"
@@ -138,38 +132,30 @@ class ElectionCategoryType(Enum):
 @dataclass(kw_only=True)
 class ElectionDate:
     """
-    Election date.
+    election date.
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: XmlDate = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: XmlDate = field()
 
 
 @dataclass(kw_only=True)
 class ElectionDomain:
-    """The (top level) region where the election takes place.
+    """
+    The (top level) region where the election takes place.
 
     Optional. Only needed if the ElectionDomain is part of the election
-    name, e.g. election of the council of a municipality or province.
-    Not needed e.g. for Tweede Kamer or European Parliament.
+    name, e.g. election of the council of a municipality or province. Not
+    needed e.g. for Tweede Kamer or European Parliament.
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
-    id: Optional[str] = field(
+    value: str = field(default="")
+    id: None | str = field(
         default=None,
         metadata={
             "name": "Id",
@@ -229,55 +215,47 @@ class GenderAnnexValue(Enum):
 
 @dataclass(kw_only=True)
 class InitialCast:
-    """The initial 'cast' element which has been corrected.
+    """
+    The initial 'cast' element which has been corrected.
 
-    Should only appear for changed values of 'cast' in correction files
+    Should only appear for changed values of 'cast' in correction files.
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: int = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: int = field()
 
 
 @dataclass(kw_only=True)
 class InitialTotalCounted:
-    """The initial total amount of counted valid votes.
+    """
+    The initial total amount of counted valid votes.
 
     Should only appear for changed values of TotalCounted in correction
-    files
+    files.
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: int = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: int = field()
 
 
 @dataclass(kw_only=True)
 class InitialValidVotes:
-    """The initial votecount for a candidate or party which has been corrected.
+    """
+    The initial votecount for a candidate or party which has been
+    corrected.
 
     Should only appear for changed values of ValidVotes in correction
-    files
+    files.
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: int = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: int = field()
 
 
 class InvestigationReasonCode(Enum):
@@ -300,10 +278,9 @@ class LivingAddressType:
             "name": "LocalityName",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
-            "required": True,
         }
     )
-    country_name_code: Optional[str] = field(
+    country_name_code: None | str = field(
         default=None,
         metadata={
             "name": "CountryNameCode",
@@ -315,7 +292,8 @@ class LivingAddressType:
 
 @dataclass(kw_only=True)
 class NationalIdentificationNumber:
-    """Number identifying a person in the National administration.
+    """
+    Number identifying a person in the National administration.
 
     For the Netherlands, this is the Burgerservicenummer (BSN).
     """
@@ -323,29 +301,20 @@ class NationalIdentificationNumber:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
 
 
 @dataclass(kw_only=True)
 class NominationDate:
     """
-    Date of the proposition of the candidate list (filing of the candidate list at
-    the electoral committee)
+    date of the proposition of the candidate list (filing of the candidate
+    list at the electoral committee).
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: XmlDate = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: XmlDate = field()
 
 
 @dataclass(kw_only=True)
@@ -353,11 +322,7 @@ class NumberOfSeats:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: int = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: int = field()
 
 
 class PhasePhaseCode(Enum):
@@ -374,11 +339,7 @@ class PreferenceThreshold:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: int = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: int = field()
 
 
 class PublicationLanguageType(Enum):
@@ -410,12 +371,7 @@ class RegionName:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
 
 
 @dataclass(kw_only=True)
@@ -427,12 +383,7 @@ class RegisteredAppellation:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
 
 
 @dataclass(kw_only=True)
@@ -444,12 +395,7 @@ class RegisteredBy:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-        },
-    )
+    value: str = field(default="")
 
 
 class RejectedVotesTypeReasonCode(Enum):
@@ -469,10 +415,11 @@ class ReportingUnitTypeValue(Enum):
 
 @dataclass(kw_only=True)
 class Schema:
-    """The EML_NL schema version.
+    """
+    The EML_NL schema version.
 
-    Note that this differs from the OASIS EML schema version (5) on
-    which EML_NL is based
+    Note that this differs from the OASIS EML schema version (5) on which
+    EML_NL is based.
     """
 
     class Meta:
@@ -482,7 +429,6 @@ class Schema:
         metadata={
             "name": "Version",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -490,18 +436,14 @@ class Schema:
 @dataclass(kw_only=True)
 class SharedLocation:
     """
-    Boolean element, true if a given reporting unit shares this location with
-    another reporting unit.
+    Boolean element, true if a given reporting unit shares this location
+    with another reporting unit.
     """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: bool = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: bool = field()
 
 
 class UncountedVotesTypeReasonCode(Enum):
@@ -524,7 +466,7 @@ class UncountedVotesTypeReasonCode(Enum):
 @dataclass(kw_only=True)
 class Committee:
     """
-    Committee (e.g. central electoral committee)
+    Committee (e.g. central electoral committee).
 
     :ivar committee_category:
     :ivar committee_name: If not set, use region name
@@ -538,17 +480,16 @@ class Committee:
         metadata={
             "name": "CommitteeCategory",
             "type": "Attribute",
-            "required": True,
         }
     )
-    committee_name: Optional[str] = field(
+    committee_name: None | str = field(
         default=None,
         metadata={
             "name": "CommitteeName",
             "type": "Attribute",
         },
     )
-    accept_central_submissions: Optional[bool] = field(
+    accept_central_submissions: None | bool = field(
         default=None,
         metadata={
             "name": "AcceptCentralSubmissions",
@@ -559,7 +500,8 @@ class Committee:
 
 @dataclass(kw_only=True)
 class Contests:
-    """Information in addition to the eml:ContestIdentifier.
+    """
+    Information in addition to the eml:ContestIdentifier.
 
     For submission to multiple contests (provinces for EK elections,
     electoral districts for PS, TK and EP).
@@ -580,7 +522,8 @@ class Contests:
 
 @dataclass(kw_only=True)
 class CountingMethod:
-    """The way in which the votes were counted.
+    """
+    The way in which the votes were counted.
 
     Restricted to valid counting methods in Ducth electoral law.
     """
@@ -592,29 +535,30 @@ class CountingMethod:
         metadata={
             "name": "MethodCode",
             "type": "Attribute",
-            "required": True,
         }
     )
 
 
 @dataclass(kw_only=True)
 class ElectionSubcategory:
-    """defines a subcategory to the ElectionCategory: PS1 (one electoral district), PS2 (more than one electoral district), AB1 (less than 19 seats), AB2 (19 seats or more), GR1 (less than 19 seats), GR2 (19 seats or more), TK, EK, BC, GC, and EP (not sub-categorized)"""
+    """
+    defines a subcategory to the ElectionCategory: PS1 (one electoral
+    district), PS2 (more than one electoral district), AB1 (less than 19
+    seats), AB2 (19 seats or more), GR1 (less than 19 seats), GR2 (19 seats
+    or more), TK, EK, BC, GC, and EP (not sub-categorized).
+    """
 
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    value: ElectionSubcategoryType = field(
-        metadata={
-            "required": True,
-        }
-    )
+    value: ElectionSubcategoryType = field()
 
 
 @dataclass(kw_only=True)
 class GenderAnnex:
-    """Restricts the base EML gender type to not allow 'unknown', replacing it with
-    'other'.
+    """
+    Restricts the base EML gender type to not allow 'unknown', replacing it
+    with 'other'.
 
     Prefer using this over the original 'Gender' element.
     """
@@ -633,9 +577,10 @@ class LivingAddress(LivingAddressType):
 
 @dataclass(kw_only=True)
 class Phase:
-    """The 'phase' of a count.
+    """
+    The 'phase' of a count.
 
-    PhaseCodes correspond to the names of the proces-verbaal
+    PhaseCodes correspond to the names of the proces-verbaal.
     """
 
     class Meta:
@@ -645,7 +590,6 @@ class Phase:
         metadata={
             "name": "PhaseCode",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -663,10 +607,9 @@ class RegisteredParty:
         metadata={
             "name": "RegisteredAppellation",
             "type": "Element",
-            "required": True,
         }
     )
-    registered_by: Optional[RegisteredBy] = field(
+    registered_by: None | RegisteredBy = field(
         default=None,
         metadata={
             "name": "RegisteredBy",
@@ -677,12 +620,8 @@ class RegisteredParty:
 
 @dataclass(kw_only=True)
 class RejectedVotesType:
-    value: int = field(
-        metadata={
-            "required": True,
-        }
-    )
-    reason: Optional[str] = field(
+    value: int = field()
+    reason: None | str = field(
         default=None,
         metadata={
             "name": "Reason",
@@ -693,10 +632,9 @@ class RejectedVotesType:
         metadata={
             "name": "ReasonCode",
             "type": "Attribute",
-            "required": True,
         }
     )
-    vote_type: Optional[str] = field(
+    vote_type: None | str = field(
         default=None,
         metadata={
             "name": "VoteType",
@@ -710,7 +648,7 @@ class ReportingUnitInvestigations:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    investigation: list["ReportingUnitInvestigations.Investigation"] = field(
+    investigation: list[ReportingUnitInvestigations.Investigation] = field(
         default_factory=list,
         metadata={
             "name": "Investigation",
@@ -721,16 +659,11 @@ class ReportingUnitInvestigations:
 
     @dataclass(kw_only=True)
     class Investigation:
-        value: bool = field(
-            metadata={
-                "required": True,
-            }
-        )
+        value: bool = field()
         reason_code: InvestigationReasonCode = field(
             metadata={
                 "name": "ReasonCode",
                 "type": "Attribute",
-                "required": True,
             }
         )
 
@@ -750,12 +683,8 @@ class ReportingUnitType:
 
 @dataclass(kw_only=True)
 class UncountedVotesType:
-    value: int = field(
-        metadata={
-            "required": True,
-        }
-    )
-    reason: Optional[str] = field(
+    value: int = field()
+    reason: None | str = field(
         default=None,
         metadata={
             "name": "Reason",
@@ -766,10 +695,9 @@ class UncountedVotesType:
         metadata={
             "name": "ReasonCode",
             "type": "Attribute",
-            "required": True,
         }
     )
-    vote_type: Optional[str] = field(
+    vote_type: None | str = field(
         default=None,
         metadata={
             "name": "VoteType",
@@ -780,10 +708,11 @@ class UncountedVotesType:
 
 @dataclass(kw_only=True)
 class InitialRejectedVotes(RejectedVotesType):
-    """The initial RejectedVotes for a reporting unit or main unit which has been
-    corrected.
+    """
+    The initial RejectedVotes for a reporting unit or main unit which has
+    been corrected.
 
-    Should only appear for changed values in correction files
+    Should only appear for changed values in correction files.
     """
 
     class Meta:
@@ -792,10 +721,11 @@ class InitialRejectedVotes(RejectedVotesType):
 
 @dataclass(kw_only=True)
 class InitialUncountedVotes(UncountedVotesType):
-    """The initial Uncountedvotes (metadata) for a reporting unit or main unit
+    """
+    The initial Uncountedvotes (metadata) for a reporting unit or main unit
     which has been corrected.
 
-    Should only appear for changed values in correction files
+    Should only appear for changed values in correction files.
     """
 
     class Meta:
@@ -805,7 +735,7 @@ class InitialUncountedVotes(UncountedVotesType):
 @dataclass(kw_only=True)
 class ListData:
     """
-    Additional OSV data for the candidate list.
+    additional OSV data for the candidate list.
 
     :ivar contests:
     :ivar publish_gender: denotes if the gender information shall be
@@ -821,7 +751,7 @@ class ListData:
     class Meta:
         namespace = "http://www.kiesraad.nl/extensions"
 
-    contests: Optional[Contests] = field(
+    contests: None | Contests = field(
         default=None,
         metadata={
             "name": "Contests",
@@ -832,24 +762,23 @@ class ListData:
         metadata={
             "name": "PublishGender",
             "type": "Attribute",
-            "required": True,
         }
     )
-    publication_language: Optional[PublicationLanguageType] = field(
+    publication_language: None | PublicationLanguageType = field(
         default=None,
         metadata={
             "name": "PublicationLanguage",
             "type": "Attribute",
         },
     )
-    belongs_to_set: Optional[int] = field(
+    belongs_to_set: None | int = field(
         default=None,
         metadata={
             "name": "BelongsToSet",
             "type": "Attribute",
         },
     )
-    belongs_to_combination: Optional[str] = field(
+    belongs_to_combination: None | str = field(
         default=None,
         metadata={
             "name": "BelongsToCombination",
@@ -869,7 +798,6 @@ class Region:
         metadata={
             "name": "RegionName",
             "type": "Element",
-            "required": True,
         }
     )
     committee: list[Committee] = field(
@@ -880,7 +808,7 @@ class Region:
             "max_occurs": 3,
         },
     )
-    region_number: Optional[int] = field(
+    region_number: None | int = field(
         default=None,
         metadata={
             "name": "RegionNumber",
@@ -891,7 +819,6 @@ class Region:
         metadata={
             "name": "RegionCategory",
             "type": "Attribute",
-            "required": True,
         }
     )
     roman_numerals: bool = field(
@@ -908,14 +835,14 @@ class Region:
             "type": "Attribute",
         },
     )
-    superior_region_number: Optional[int] = field(
+    superior_region_number: None | int = field(
         default=None,
         metadata={
             "name": "SuperiorRegionNumber",
             "type": "Attribute",
         },
     )
-    superior_region_category: Optional[RegionCategoryType] = field(
+    superior_region_category: None | RegionCategoryType = field(
         default=None,
         metadata={
             "name": "SuperiorRegionCategory",

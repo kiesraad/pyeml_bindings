@@ -1,10 +1,15 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 from pyeml_bindings.emlcore_kiesraad_strict import YesNoType
 from pyeml_bindings.emlexternals_kiesraad_strict import PersonNameStructure
-from pyeml_bindings.kiesraad_eml_extensions import CreationDateTime
+from pyeml_bindings.kiesraad_eml_extensions import (
+    CreationDateTime,
+    Schema,
+)
 from pyeml_bindings.kiesraad_eml_restrictions import (
     AffiliationIdentifierStructureKr,
     CandidateIdentifierStructureKr,
@@ -34,7 +39,6 @@ class AffiliationIdentifierStructure520(AffiliationIdentifierStructureKr):
         metadata={
             "name": "Id",
             "type": "Attribute",
-            "required": True,
             "pattern": r"[1-9]\d*",
         }
     )
@@ -42,10 +46,11 @@ class AffiliationIdentifierStructure520(AffiliationIdentifierStructureKr):
 
 @dataclass(kw_only=True)
 class CandidateIdentifierStructure520(CandidateIdentifierStructureKr):
-    """Id Attribute mandatory.
+    """
+    Id Attribute mandatory.
 
     Does not refer to candidate number but the order in which the
-    candidates are elected
+    candidates are elected.
     """
 
     candidate_name: Any = field(
@@ -80,7 +85,6 @@ class CandidateIdentifierStructure520(CandidateIdentifierStructureKr):
         metadata={
             "name": "Id",
             "type": "Attribute",
-            "required": True,
             "pattern": r"[1-9]\d*",
         }
     )
@@ -88,9 +92,10 @@ class CandidateIdentifierStructure520(CandidateIdentifierStructureKr):
 
 @dataclass(kw_only=True)
 class CandidateStructure520(CandidateStructureKr):
-    """Only CandidateIdentifier.
+    """
+    only CandidateIdentifier.
 
-    Gender, and QualifyingAddress allowed, the latter made mandatory
+    Gender, and QualifyingAddress allowed, the latter made mandatory.
     """
 
     date_of_birth: Any = field(
@@ -133,7 +138,6 @@ class CandidateStructure520(CandidateStructureKr):
             "name": "CandidateFullName",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
     qualifying_address: MinimalQualifyingAddressStructureKr = field(
@@ -141,7 +145,6 @@ class CandidateStructure520(CandidateStructureKr):
             "name": "QualifyingAddress",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
 
@@ -149,7 +152,7 @@ class CandidateStructure520(CandidateStructureKr):
 @dataclass(kw_only=True)
 class Emlstructure520(EmlstructureKr):
     """
-    Only TransactionId and IssueDate needed, CanoncalizationMethod added.
+    only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
 
     class Meta:
@@ -167,8 +170,17 @@ class Emlstructure520(EmlstructureKr):
             "name": "ManagingAuthority",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
+    )
+    schema: list[Schema] = field(
+        default_factory=list,
+        metadata={
+            "name": "Schema",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 2,
+            "max_occurs": 3,
+        },
     )
     creation_date_time: list[CreationDateTime] = field(
         default_factory=list,
@@ -194,7 +206,7 @@ class Emlstructure520(EmlstructureKr):
 @dataclass(kw_only=True)
 class ElectionIdentifierStructure520(ElectionIdentifierStructureKr):
     """
-    Mandatory ElectionCategory, and some additional Elements.
+    mandatory ElectionCategory, and some additional Elements.
     """
 
     nomination_date: Any = field(
@@ -211,11 +223,10 @@ class Result:
     class Meta:
         namespace = "urn:oasis:names:tc:evs:schema:eml"
 
-    election: "Result.Election" = field(
+    election: Result.Election = field(
         metadata={
             "name": "Election",
             "type": "Element",
-            "required": True,
         }
     )
     other_element: list[object] = field(
@@ -232,10 +243,9 @@ class Result:
             metadata={
                 "name": "ElectionIdentifier",
                 "type": "Element",
-                "required": True,
             }
         )
-        contest: list["Result.Election.Contest"] = field(
+        contest: list[Result.Election.Contest] = field(
             default_factory=list,
             metadata={
                 "name": "Contest",
@@ -250,10 +260,9 @@ class Result:
                 metadata={
                     "name": "ContestIdentifier",
                     "type": "Element",
-                    "required": True,
                 }
             )
-            selection: list["Result.Election.Contest.Selection"] = field(
+            selection: list[Result.Election.Contest.Selection] = field(
                 default_factory=list,
                 metadata={
                     "name": "Selection",
@@ -264,43 +273,55 @@ class Result:
 
             @dataclass(kw_only=True)
             class Selection:
-                candidate: Optional[CandidateStructure520] = field(
+                candidate: None | CandidateStructure520 = field(
                     default=None,
                     metadata={
                         "name": "Candidate",
                         "type": "Element",
                     },
                 )
-                affiliation_identifier: Optional[
-                    AffiliationIdentifierStructure520
-                ] = field(
-                    default=None,
-                    metadata={
-                        "name": "AffiliationIdentifier",
-                        "type": "Element",
-                    },
+                affiliation_identifier: None | AffiliationIdentifierStructure520 = (
+                    field(
+                        default=None,
+                        metadata={
+                            "name": "AffiliationIdentifier",
+                            "type": "Element",
+                        },
+                    )
                 )
-                votes: Optional[int] = field(
+                votes: None | int = field(
                     default=None,
                     metadata={
                         "name": "Votes",
                         "type": "Element",
                     },
                 )
-                ranking: SelectionRanking = field(
+                ranking: None | SelectionRanking = field(
+                    default=None,
                     metadata={
                         "name": "Ranking",
                         "type": "Element",
-                        "required": True,
-                    }
+                    },
                 )
-                elected: list[YesNoType] = field(
-                    default_factory=list,
+                elected: None | YesNoType = field(
+                    default=None,
                     metadata={
                         "name": "Elected",
                         "type": "Element",
-                        "min_occurs": 2,
-                        "max_occurs": 2,
-                        "sequence": 1,
                     },
                 )
+
+
+@dataclass(kw_only=True)
+class Eml(Emlstructure520):
+    class Meta:
+        name = "EML"
+        namespace = "urn:oasis:names:tc:evs:schema:eml"
+
+    result: Result = field(
+        metadata={
+            "name": "Result",
+            "type": "Element",
+            "required": True,
+        }
+    )

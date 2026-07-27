@@ -1,11 +1,10 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import Any
 
 from pyeml_bindings.x_al_kiesraad_strict import AddressDetails
-from pyeml_bindings.x_nl_kiesraad_strict import (
-    NameDetails1,
-    PersonName,
-)
+from pyeml_bindings.x_nl_kiesraad_strict import NameDetails1
 
 __NAMESPACE__ = "urn:oasis:names:tc:evs:schema:eml"
 
@@ -40,7 +39,6 @@ class PersonNameStructure(NameDetails1):
     :ivar joint_person_name:
     :ivar organisation_name_details:
     :ivar other_attributes:
-    :ivar person_name:
     """
 
     name_line: Any = field(
@@ -70,14 +68,6 @@ class PersonNameStructure(NameDetails1):
         metadata={
             "type": "Ignore",
         },
-    )
-    person_name: PersonName = field(
-        metadata={
-            "name": "PersonName",
-            "type": "Element",
-            "namespace": "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
-            "required": True,
-        }
     )
 
 

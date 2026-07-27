@@ -1,12 +1,15 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional, Union
 
 from xsdata.models.datatype import XmlDate, XmlDateTime
 
 from pyeml_bindings.kiesraad_eml_extensions import (
     CreationDateTime,
+    ElectionDate,
     NominationDate,
+    Schema,
 )
 from pyeml_bindings.kiesraad_eml_restrictions import (
     AffiliationStructureKr,
@@ -28,7 +31,7 @@ class Emlstructure230Id(Enum):
 @dataclass(kw_only=True)
 class Emlstructure230(EmlstructureKr):
     """
-    Only TransactionId and IssueDate needed, CanoncalizationMethod added.
+    only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
 
     class Meta:
@@ -39,16 +42,24 @@ class Emlstructure230(EmlstructureKr):
             "name": "ManagingAuthority",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
     )
-    issue_date: Union[XmlDate, XmlDateTime] = field(
+    issue_date: XmlDate | XmlDateTime = field(
         metadata={
             "name": "IssueDate",
             "type": "Element",
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            "required": True,
         }
+    )
+    schema: list[Schema] = field(
+        default_factory=list,
+        metadata={
+            "name": "Schema",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 2,
+            "max_occurs": 3,
+        },
     )
     creation_date_time: list[CreationDateTime] = field(
         default_factory=list,
@@ -65,9 +76,19 @@ class Emlstructure230(EmlstructureKr):
 @dataclass(kw_only=True)
 class ElectionIdentifierStructure230(ElectionIdentifierStructureKr):
     """
-    Mandatory ElectionCategory, and some additional Elements.
+    mandatory ElectionCategory, and some additional Elements.
     """
 
+    election_date: list[ElectionDate] = field(
+        default_factory=list,
+        metadata={
+            "name": "ElectionDate",
+            "type": "Element",
+            "namespace": "http://www.kiesraad.nl/extensions",
+            "min_occurs": 2,
+            "max_occurs": 4,
+        },
+    )
     nomination_date: list[NominationDate] = field(
         default_factory=list,
         metadata={
@@ -85,18 +106,17 @@ class CandidateList:
     class Meta:
         namespace = "urn:oasis:names:tc:evs:schema:eml"
 
-    list_date: Optional[Union[XmlDate, XmlDateTime]] = field(
+    list_date: None | XmlDate | XmlDateTime = field(
         default=None,
         metadata={
             "name": "ListDate",
             "type": "Element",
         },
     )
-    election: "CandidateList.Election" = field(
+    election: CandidateList.Election = field(
         metadata={
             "name": "Election",
             "type": "Element",
-            "required": True,
         }
     )
     other_element: list[object] = field(
@@ -113,10 +133,9 @@ class CandidateList:
             metadata={
                 "name": "ElectionIdentifier",
                 "type": "Element",
-                "required": True,
             }
         )
-        contest: list["CandidateList.Election.Contest"] = field(
+        contest: list[CandidateList.Election.Contest] = field(
             default_factory=list,
             metadata={
                 "name": "Contest",
@@ -131,18 +150,15 @@ class CandidateList:
                 metadata={
                     "name": "ContestIdentifier",
                     "type": "Element",
-                    "required": True,
                 }
             )
-            affiliation: list["CandidateList.Election.Contest.Affiliation"] = (
-                field(
-                    default_factory=list,
-                    metadata={
-                        "name": "Affiliation",
-                        "type": "Element",
-                        "min_occurs": 1,
-                    },
-                )
+            affiliation: list[CandidateList.Election.Contest.Affiliation] = field(
+                default_factory=list,
+                metadata={
+                    "name": "Affiliation",
+                    "type": "Element",
+                    "min_occurs": 1,
+                },
             )
             other_element: list[object] = field(
                 default_factory=list,
@@ -162,3 +178,18 @@ class CandidateList:
                         "min_occurs": 1,
                     },
                 )
+
+
+@dataclass(kw_only=True)
+class Eml(Emlstructure230):
+    class Meta:
+        name = "EML"
+        namespace = "urn:oasis:names:tc:evs:schema:eml"
+
+    candidate_list: CandidateList = field(
+        metadata={
+            "name": "CandidateList",
+            "type": "Element",
+            "required": True,
+        }
+    )
