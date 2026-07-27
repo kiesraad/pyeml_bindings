@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
-from pyeml_bindings.emlcore_kiesraad_strict import YesNoType
+from pyeml_bindings.emlcore_kiesraad_strict import Emlstructure, YesNoType
 from pyeml_bindings.emlexternals_kiesraad_strict import PersonNameStructure
 from pyeml_bindings.kiesraad_eml_extensions import (
     CreationDateTime,
@@ -150,7 +150,7 @@ class CandidateStructure520(CandidateStructureKr):
 
 
 @dataclass(kw_only=True)
-class Emlstructure520(EmlstructureKr):
+class Emlstructure520(Emlstructure, EmlstructureKr):
     """
     only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """

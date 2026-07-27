@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from pyeml_bindings.emlcore_kiesraad_strict import Emlstructure
 from pyeml_bindings.kiesraad_eml_extensions import (
     CreationDateTime,
     ElectionDate,
@@ -83,7 +84,7 @@ class ReferendumOptionIdentifierStructure630:
 
 
 @dataclass(kw_only=True)
-class Emlstructure630(EmlstructureKr):
+class Emlstructure630(Emlstructure, EmlstructureKr):
     """
     only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
@@ -190,16 +191,16 @@ class ProposalStructure630:
             text to the referendum question.
         """
 
-        referendum_option_identifier: list[
-            ReferendumOptionIdentifierStructure630
-        ] = field(
-            default_factory=list,
-            metadata={
-                "name": "ReferendumOptionIdentifier",
-                "type": "Element",
-                "namespace": "urn:oasis:names:tc:evs:schema:eml",
-                "min_occurs": 1,
-            },
+        referendum_option_identifier: list[ReferendumOptionIdentifierStructure630] = (
+            field(
+                default_factory=list,
+                metadata={
+                    "name": "ReferendumOptionIdentifier",
+                    "type": "Element",
+                    "namespace": "urn:oasis:names:tc:evs:schema:eml",
+                    "min_occurs": 1,
+                },
+            )
         )
 
 

@@ -5,6 +5,7 @@ from enum import Enum
 from typing import Any
 
 from pyeml_bindings.emlcore_kiesraad_strict import (
+    Emlstructure,
     MaxVotes,
     VotingMethod,
 )
@@ -53,7 +54,7 @@ class ContestIdentifierStructure110A(ContestIdentifierStructureKr):
 
 
 @dataclass(kw_only=True)
-class Emlstructure110(EmlstructureKr):
+class Emlstructure110(Emlstructure, EmlstructureKr):
     """
     only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """

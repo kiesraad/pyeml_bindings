@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from pyeml_bindings.emlcore_kiesraad_strict import (
+    Emlstructure,
     EventIdentifier,
     ReferendumOptionIdentifier,
 )
@@ -133,7 +134,7 @@ class CandidateStructure510(CandidateStructureKr):
 
 
 @dataclass(kw_only=True)
-class Emlstructure510(EmlstructureKr):
+class Emlstructure510(Emlstructure, EmlstructureKr):
     """
     only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """

@@ -5,6 +5,7 @@ from enum import Enum
 
 from xsdata.models.datatype import XmlDate, XmlDateTime
 
+from pyeml_bindings.emlcore_kiesraad_strict import Emlstructure
 from pyeml_bindings.kiesraad_eml_extensions import (
     CreationDateTime,
     ElectionDate,
@@ -29,7 +30,7 @@ class Emlstructure230Id(Enum):
 
 
 @dataclass(kw_only=True)
-class Emlstructure230(EmlstructureKr):
+class Emlstructure230(Emlstructure, EmlstructureKr):
     """
     only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """

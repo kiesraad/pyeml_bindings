@@ -6,6 +6,7 @@ from typing import Any
 
 from xsdata.models.datatype import XmlDate, XmlDateTime
 
+from pyeml_bindings.emlcore_kiesraad_strict import Emlstructure
 from pyeml_bindings.emlexternals_kiesraad_strict import PersonNameStructure
 from pyeml_bindings.kiesraad_eml_extensions import (
     AffiliationType,
@@ -138,7 +139,7 @@ class ContestIdentifierStructure210(ContestIdentifierStructureKr):
 
 
 @dataclass(kw_only=True)
-class Emlstructure210(EmlstructureKr):
+class Emlstructure210(Emlstructure, EmlstructureKr):
     """
     only TransactionId and IssueDate needed, CanoncalizationMethod added.
     """
