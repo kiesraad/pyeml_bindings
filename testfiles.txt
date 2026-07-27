@@ -1,4 +1,4 @@
 https://data.overheid.nl/sites/default/files/dataset/a16f3352-c9ce-4831-a314-f989d442a258/resources/Verkiezingsuitslag%20Tweede%20Kamer%202025%20%28Deel%201%29.zip
 https://data.overheid.nl/sites/default/files/dataset/a16f3352-c9ce-4831-a314-f989d442a258/resources/Verkiezingsuitslag%20Tweede%20Kamer%202025%20%28Deel%202%29.zip
 https://data.overheid.nl/sites/default/files/dataset/a16f3352-c9ce-4831-a314-f989d442a258/resources/Verkiezingsuitslag%20Tweede%20Kamer%202025%20%28Deel%203%29.zip
-https://data.overheid.nl/sites/default/files/dataset/09cf04e7-11ac-4b53-a2cc-baccf95e82fd/resources/GR2026_2026_05_12T09.22.zip
+http://data.overheid.nl/sites/default/files/dataset/09cf04e7-11ac-4b53-a2cc-baccf95e82fd/resources/GR2026_2026_07_03T10.45.zip
