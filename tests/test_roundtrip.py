@@ -9,6 +9,7 @@ from formencode.doctest_xml_compare import xml_compare
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
+from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from pyeml_bindings import Eml110a, Eml230, Eml510, Eml520
 from pyeml_bindings.namespace import NAMESPACE
@@ -27,7 +28,8 @@ def parsing_roundtrip_same(parser, serializer, reporter, path_to_eml, type) -> b
 
 
 parser = XmlParser(ParserConfig(fail_on_unknown_properties=False))
-serializer = XmlSerializer()
+# Do not write default attributes since they are omitted in the data
+serializer = XmlSerializer(config=SerializerConfig(ignore_default_attributes=True))
 reporter = print
 files = glob.glob("data/**/*.eml.xml", recursive=True)
 

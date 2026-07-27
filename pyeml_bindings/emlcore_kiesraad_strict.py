@@ -296,7 +296,7 @@ class MaxVotes:
     class Meta:
         namespace = "urn:oasis:names:tc:evs:schema:eml"
 
-    value: int = field(default=1)
+    value: None | int = field(default=None)
 
 
 @dataclass(kw_only=True)
@@ -1666,15 +1666,13 @@ class PollingPlaceStructure:
             "namespace": "urn:oasis:names:tc:evs:schema:eml",
         },
     )
-    electronic_location: None | PollingPlaceStructure.ElectronicLocation = (
-        field(
-            default=None,
-            metadata={
-                "name": "ElectronicLocation",
-                "type": "Element",
-                "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            },
-        )
+    electronic_location: None | PollingPlaceStructure.ElectronicLocation = field(
+        default=None,
+        metadata={
+            "name": "ElectronicLocation",
+            "type": "Element",
+            "namespace": "urn:oasis:names:tc:evs:schema:eml",
+        },
     )
     other_location: None | PollingPlaceStructure.OtherLocation = field(
         default=None,
@@ -1740,15 +1738,15 @@ class PollingPlaceStructure:
                 "namespace": "urn:oasis:names:tc:evs:schema:eml",
             }
         )
-        polling_station: list[
-            PollingPlaceStructure.PhysicalLocation.PollingStation
-        ] = field(
-            default_factory=list,
-            metadata={
-                "name": "PollingStation",
-                "type": "Element",
-                "namespace": "urn:oasis:names:tc:evs:schema:eml",
-            },
+        polling_station: list[PollingPlaceStructure.PhysicalLocation.PollingStation] = (
+            field(
+                default_factory=list,
+                metadata={
+                    "name": "PollingStation",
+                    "type": "Element",
+                    "namespace": "urn:oasis:names:tc:evs:schema:eml",
+                },
+            )
         )
         map: None | BinaryItemStructure = field(
             default=None,
