@@ -12,10 +12,10 @@ requires-python = ">=3.10"
 dependencies = [
     "xsdata == 26.*"
 ]
-license = {file = "LICENSE"}
+license = "EUPL-1.2"
+license-files = ["LICEN[CS]E"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 
@@ -28,3 +28,4 @@ tests = [
 
 [project.urls]
 Home = "https://github.com/kiesraad/pyeml_bindings"
+Issues = "https://github.com/kiesraad/pyeml_bindings/issues"
