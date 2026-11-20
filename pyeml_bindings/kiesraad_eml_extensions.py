@@ -214,9 +214,9 @@ class GenderAnnexValue(Enum):
 
 
 @dataclass(kw_only=True)
-class InitialCast:
+class PreviousCast:
     """
-    The initial 'cast' element which has been corrected.
+    The previous 'cast' element which has been corrected.
 
     Should only appear for changed values of 'cast' in correction files.
     """
@@ -228,9 +228,9 @@ class InitialCast:
 
 
 @dataclass(kw_only=True)
-class InitialTotalCounted:
+class PreviousTotalCounted:
     """
-    The initial total amount of counted valid votes.
+    The previous total amount of counted valid votes.
 
     Should only appear for changed values of TotalCounted in correction
     files.
@@ -243,9 +243,9 @@ class InitialTotalCounted:
 
 
 @dataclass(kw_only=True)
-class InitialValidVotes:
+class PreviousValidVotes:
     """
-    The initial votecount for a candidate or party which has been
+    The previous votecount for a candidate or party which has been
     corrected.
 
     Should only appear for changed values of ValidVotes in correction
@@ -259,14 +259,10 @@ class InitialValidVotes:
 
 
 class InvestigationReasonCode(Enum):
-    ONDERZOCHT_VANWEGE_ONVERKLAARD_VERSCHIL = (
-        "onderzocht vanwege onverklaard verschil"
-    )
+    ONDERZOCHT_VANWEGE_ONVERKLAARD_VERSCHIL = "onderzocht vanwege onverklaard verschil"
     ONDERZOCHT_VANWEGE_ANDERE_FOUT = "onderzocht vanwege andere fout"
     UITSLAG_GECORRIGEERD = "uitslag gecorrigeerd"
-    TOEGELATEN_KIEZERS_OPNIEUW_VASTGESTELD = (
-        "toegelaten kiezers opnieuw vastgesteld"
-    )
+    TOEGELATEN_KIEZERS_OPNIEUW_VASTGESTELD = "toegelaten kiezers opnieuw vastgesteld"
     ONDERZOCHT_VANWEGE_ANDERE_REDEN = "onderzocht vanwege andere reden"
     STEMBILJETTEN_DEELS_HERTELD = "stembiljetten deels herteld"
 
@@ -707,9 +703,9 @@ class UncountedVotesType:
 
 
 @dataclass(kw_only=True)
-class InitialRejectedVotes(RejectedVotesType):
+class PreviousRejectedVotes(RejectedVotesType):
     """
-    The initial RejectedVotes for a reporting unit or main unit which has
+    The previous RejectedVotes for a reporting unit or main unit which has
     been corrected.
 
     Should only appear for changed values in correction files.
@@ -720,9 +716,9 @@ class InitialRejectedVotes(RejectedVotesType):
 
 
 @dataclass(kw_only=True)
-class InitialUncountedVotes(UncountedVotesType):
+class PreviousUncountedVotes(UncountedVotesType):
     """
-    The initial Uncountedvotes (metadata) for a reporting unit or main unit
+    The previous Uncountedvotes (metadata) for a reporting unit or main unit
     which has been corrected.
 
     Should only appear for changed values in correction files.

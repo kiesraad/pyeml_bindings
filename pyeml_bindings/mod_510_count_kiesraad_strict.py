@@ -11,12 +11,12 @@ from pyeml_bindings.emlcore_kiesraad_strict import (
 from pyeml_bindings.kiesraad_eml_extensions import (
     CountingMethod,
     CreationDateTime,
-    InitialCast,
-    InitialRejectedVotes,
-    InitialTotalCounted,
-    InitialUncountedVotes,
-    InitialValidVotes,
     Phase,
+    PreviousCast,
+    PreviousRejectedVotes,
+    PreviousTotalCounted,
+    PreviousUncountedVotes,
+    PreviousValidVotes,
     RejectedVotesType,
     ReportingUnitInvestigations,
     ReportingUnitType,
@@ -228,10 +228,10 @@ class ReportingUnitVotes:
             "min_occurs": 1,
         },
     )
-    initial_cast: None | InitialCast = field(
+    previous_cast: None | PreviousCast = field(
         default=None,
         metadata={
-            "name": "InitialCast",
+            "name": "PreviousCast",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
         },
@@ -242,10 +242,10 @@ class ReportingUnitVotes:
             "type": "Element",
         }
     )
-    initial_total_counted: None | InitialTotalCounted = field(
+    previous_total_counted: None | PreviousTotalCounted = field(
         default=None,
         metadata={
-            "name": "InitialTotalCounted",
+            "name": "PreviousTotalCounted",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
         },
@@ -256,10 +256,10 @@ class ReportingUnitVotes:
             "type": "Element",
         }
     )
-    initial_rejected_votes: list[InitialRejectedVotes] = field(
+    previous_rejected_votes: list[PreviousRejectedVotes] = field(
         default_factory=list,
         metadata={
-            "name": "InitialRejectedVotes",
+            "name": "PreviousRejectedVotes",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 2,
@@ -274,10 +274,10 @@ class ReportingUnitVotes:
             "max_occurs": 2,
         },
     )
-    initial_uncounted_votes: list[InitialUncountedVotes] = field(
+    previous_uncounted_votes: list[PreviousUncountedVotes] = field(
         default_factory=list,
         metadata={
-            "name": "InitialUncountedVotes",
+            "name": "PreviousUncountedVotes",
             "type": "Element",
             "namespace": "http://www.kiesraad.nl/extensions",
             "max_occurs": 14,
@@ -323,10 +323,10 @@ class ReportingUnitVotes:
                 "type": "Element",
             },
         )
-        initial_valid_votes: None | InitialValidVotes = field(
+        previous_valid_votes: None | PreviousValidVotes = field(
             default=None,
             metadata={
-                "name": "InitialValidVotes",
+                "name": "PreviousValidVotes",
                 "type": "Element",
                 "namespace": "http://www.kiesraad.nl/extensions",
             },
@@ -455,10 +455,10 @@ class Count:
                             "min_occurs": 1,
                         },
                     )
-                    initial_cast: None | InitialCast = field(
+                    previous_cast: None | PreviousCast = field(
                         default=None,
                         metadata={
-                            "name": "InitialCast",
+                            "name": "PreviousCast",
                             "type": "Element",
                             "namespace": "http://www.kiesraad.nl/extensions",
                         },
@@ -469,10 +469,10 @@ class Count:
                             "type": "Element",
                         }
                     )
-                    initial_total_counted: None | InitialTotalCounted = field(
+                    previous_total_counted: None | PreviousTotalCounted = field(
                         default=None,
                         metadata={
-                            "name": "InitialTotalCounted",
+                            "name": "PreviousTotalCounted",
                             "type": "Element",
                             "namespace": "http://www.kiesraad.nl/extensions",
                         },
@@ -483,10 +483,10 @@ class Count:
                             "type": "Element",
                         }
                     )
-                    initial_rejected_votes: list[InitialRejectedVotes] = field(
+                    previous_rejected_votes: list[PreviousRejectedVotes] = field(
                         default_factory=list,
                         metadata={
-                            "name": "InitialRejectedVotes",
+                            "name": "PreviousRejectedVotes",
                             "type": "Element",
                             "namespace": "http://www.kiesraad.nl/extensions",
                             "max_occurs": 2,
@@ -501,10 +501,10 @@ class Count:
                             "max_occurs": 2,
                         },
                     )
-                    initial_uncounted_votes: list[InitialUncountedVotes] = field(
+                    previous_uncounted_votes: list[PreviousUncountedVotes] = field(
                         default_factory=list,
                         metadata={
-                            "name": "InitialUncountedVotes",
+                            "name": "PreviousUncountedVotes",
                             "type": "Element",
                             "namespace": "http://www.kiesraad.nl/extensions",
                             "max_occurs": 14,
@@ -546,10 +546,10 @@ class Count:
                                 "type": "Element",
                             },
                         )
-                        initial_valid_votes: None | InitialValidVotes = field(
+                        previous_valid_votes: None | PreviousValidVotes = field(
                             default=None,
                             metadata={
-                                "name": "InitialValidVotes",
+                                "name": "PreviousValidVotes",
                                 "type": "Element",
                                 "namespace": "http://www.kiesraad.nl/extensions",
                             },
